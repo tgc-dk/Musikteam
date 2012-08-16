@@ -1,0 +1,221 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Musikteam - print sang</title>
+<link href="musikstyle.css" type="text/css" rel="stylesheet" media="screen" />
+<script src='js/renderModPro.js' type="text/javascript"></script>
+<script type="text/javascript">
+var printAkk = true;
+var songCount = 0;
+var printedSongs = 0;
+
+function createXMLParser(text)
+{
+	// code for IE
+	if (window.ActiveXObject) {
+		var doc=new ActiveXObject("Microsoft.XMLDOM");
+		doc.async="false";
+		doc.loadXML(text);
+	} else {
+	// code for Mozilla, Firefox, Opera, etc.
+		var parser=new DOMParser();
+		var doc=parser.parseFromString(text,"text/xml");
+	}
+	return doc;
+}
+
+function setupPrint(akk, count)
+{
+	printAkk = akk;
+	songCount = count;
+
+	// Insert the needed song containers
+
+/*	This crap doesn't work, so for now I've added 50 song div's... should be enough for most...
+
+	var orgdiv = document.getElementById("content");
+	divs = "";
+	for (i = 0; i < count; i++)
+	{
+		//divs += '<div id="song' + i + '" class="tekst_m_akk">\n';
+		var div = document.createElement('div');
+		div.setAttribute("class", "tekst_m_akk");
+		div.setAttribute("id", "song" + i);
+		div.innerHTML="fairly empty right now...";
+		orgdiv.appendChild(div);
+	}
+	//.innerHTML = divs;
+
+	//i.type = 'text';*/
+}
+
+function createXmlHttpRequestObj()
+{
+	// Create the XMLHttpRequest object used for communication with the server
+	var xhr = false;
+
+	// try native XMLHttpRequest object
+	if(window.XMLHttpRequest && !(window.ActiveXObject)) {
+		try {
+			xhr = new XMLHttpRequest();
+		} catch(e) {
+			xhr = false;
+		}
+	// IE/Windows ActiveX version
+	} else if(window.ActiveXObject) {
+		try {
+			xhr = new ActiveXObject("Msxml2.XMLHTTP");
+		} catch(e) {
+			try {
+				xhr = new ActiveXObject("Microsoft.XMLHTTP");
+			} catch(e) {
+				xhr = false;
+			}
+		}
+	}
+	return xhr;
+}
+
+function parseSongXML(xml)
+{
+	// Parse the input XML and put the data into the correct input-element
+	xmldoc = createXMLParser(xml);
+	try {
+		numb = xmldoc.getElementsByTagName("num")[0].childNodes[0].nodeValue;
+	} catch(e) {
+		return;
+	}
+	index = 'song' + numb;
+
+	try {
+		songTitle = xmldoc.getElementsByTagName("songTitle")[0].childNodes[0].nodeValue;
+	} catch(e) {
+		songTitle = "";
+	}
+
+	try {
+		songAuthor = xmldoc.getElementsByTagName("songAuthor")[0].childNodes[0].nodeValue;
+	} catch(e) {
+		songAuthor = "";
+	}
+
+	try {
+		songText = xmldoc.getElementsByTagName("songText")[0].childNodes[0].nodeValue;
+	} catch(e) {
+		songText = "";
+	}
+
+	try {
+		songCommentAbove = xmldoc.getElementsByTagName("songCommentsAbove")[0].childNodes[0].nodeValue;
+	} catch(e) {
+		songCommentAbove = "";
+	}
+
+	try {
+		songCommentBelow = xmldoc.getElementsByTagName("songCommentsBelow")[0].childNodes[0].nodeValue;
+	} catch(e) {
+		songCommentBelow = "";
+	}
+
+	document.getElementById(index).innerHTML = RenderSong(songText, songTitle, songAuthor, songCommentAbove, songCommentBelow);
+
+	printedSongs++;
+	if (printedSongs == songCount) {
+		print();
+	} else {
+		document.getElementById(index).innerHTML += '<p style="page-break-after: always">';
+	}
+}
+
+function insertSong(num, song)
+{
+	// Create the XMLHttpRequest object used for communication with the server
+	var xhr = createXmlHttpRequestObj();
+	
+	if (!xhr) {
+		alert('Din browser understøtter ikke XmlHttpRequest!');
+		return;
+	}
+	
+	// Set the callback to handle the answer
+	xhr.onreadystatechange  = function()
+	{ 
+		if (xhr.readyState  == 4) {
+			if (xhr.status  == 200) {
+				window.parseSongXML(xhr.responseText);
+			} else {
+				alert('Der opstod en forbindelses fejl! Fejl meddelelse: ' + xhr.status);
+			}
+		}
+	};
+
+	// Gather the data
+	var text = "num=" + num + "&song=" + song;
+
+	// Send the data to the server
+	xhr.open("POST", "getSong.php",  true);
+	xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded; charset=iso-8859-1");
+	xhr.send(text);
+
+}
+
+</script>
+
+</head>
+<html>
+<body onLoad="javascript:window.opener.fillPrintWindow()">
+<div align="left" id="content">
+<div id="song0" class="tekst_m_akk"></div>
+<div id="song1" class="tekst_m_akk"></div>
+<div id="song2" class="tekst_m_akk"></div>
+<div id="song3" class="tekst_m_akk"></div>
+<div id="song4" class="tekst_m_akk"></div>
+<div id="song5" class="tekst_m_akk"></div>
+<div id="song6" class="tekst_m_akk"></div>
+<div id="song7" class="tekst_m_akk"></div>
+<div id="song8" class="tekst_m_akk"></div>
+<div id="song9" class="tekst_m_akk"></div>
+<div id="song10" class="tekst_m_akk"></div>
+<div id="song11" class="tekst_m_akk"></div>
+<div id="song12" class="tekst_m_akk"></div>
+<div id="song13" class="tekst_m_akk"></div>
+<div id="song14" class="tekst_m_akk"></div>
+<div id="song15" class="tekst_m_akk"></div>
+<div id="song16" class="tekst_m_akk"></div>
+<div id="song17" class="tekst_m_akk"></div>
+<div id="song18" class="tekst_m_akk"></div>
+<div id="song19" class="tekst_m_akk"></div>
+<div id="song20" class="tekst_m_akk"></div>
+<div id="song21" class="tekst_m_akk"></div>
+<div id="song22" class="tekst_m_akk"></div>
+<div id="song23" class="tekst_m_akk"></div>
+<div id="song24" class="tekst_m_akk"></div>
+<div id="song25" class="tekst_m_akk"></div>
+<div id="song26" class="tekst_m_akk"></div>
+<div id="song27" class="tekst_m_akk"></div>
+<div id="song28" class="tekst_m_akk"></div>
+<div id="song29" class="tekst_m_akk"></div>
+<div id="song30" class="tekst_m_akk"></div>
+<div id="song31" class="tekst_m_akk"></div>
+<div id="song32" class="tekst_m_akk"></div>
+<div id="song33" class="tekst_m_akk"></div>
+<div id="song34" class="tekst_m_akk"></div>
+<div id="song35" class="tekst_m_akk"></div>
+<div id="song36" class="tekst_m_akk"></div>
+<div id="song37" class="tekst_m_akk"></div>
+<div id="song38" class="tekst_m_akk"></div>
+<div id="song39" class="tekst_m_akk"></div>
+<div id="song40" class="tekst_m_akk"></div>
+<div id="song41" class="tekst_m_akk"></div>
+<div id="song42" class="tekst_m_akk"></div>
+<div id="song43" class="tekst_m_akk"></div>
+<div id="song44" class="tekst_m_akk"></div>
+<div id="song45" class="tekst_m_akk"></div>
+<div id="song46" class="tekst_m_akk"></div>
+<div id="song47" class="tekst_m_akk"></div>
+<div id="song48" class="tekst_m_akk"></div>
+<div id="song49" class="tekst_m_akk"></div>
+</div>
+</body>
+</html>
