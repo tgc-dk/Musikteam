@@ -1,7 +1,7 @@
 <?php
 
 // The root url of the site, must be for the form "musikteam.com" (do not include http://)
-$ROOT_URL = "www.musikteam.com/";
+$ROOT_URL = "localhost/musikteam/";
 
 // Name of the admin
 $WEBMASTER_NAME = "Københavnerkirkens Musikteam";
@@ -17,7 +17,7 @@ $conn;
 function db_fetch_array($result) {
 	global $DB_TYPE;
 	if ($DB_TYPE == "mysql") {
-		$ret = mysql_fetch_array($result);
+		$ret = mysqli_fetch_array($result);
 	} else if ($DB_TYPE == "odbc") {
 		$ret = odbc_fetch_array($result);
 	}
@@ -27,7 +27,10 @@ function db_fetch_array($result) {
 function db_result($result, $field) {
 	global $DB_TYPE;
 	if ($DB_TYPE == "mysql") {
-		$ret = mysql_result($result, 0, $field);
+		global $conn;
+		$arr = db_fetch_array($result);
+		return $arr[$field];
+		//$ret = mysqli_result($conn, $result, 0, $field);
 	} else if ($DB_TYPE == "odbc") {
 		$ret = odbc_result($result, $field);
 	}
@@ -38,12 +41,13 @@ function db_result($result, $field) {
 function openDB() {
 	global $DB_TYPE;
 	if ($DB_TYPE == "mysql") {
-		$user="username";
-		$password="password";
+		global $conn;
+		$user="musikteam";
+		$password="musikteamkode";
 		$database="musikteam";
 		$host = "localhost";
-		mysql_connect($host,$user,$password);
-		mysql_select_db($database) or die( "Unable to select database");
+		$conn = mysqli_connect($host,$user,$password);
+		mysqli_select_db($conn, $database) or die( "Unable to select database");
 	} else if ($DB_TYPE == "odbc") {
 		global $conn;
 		$conn = odbc_connect("MusikTeam", "", "");
@@ -54,7 +58,8 @@ function openDB() {
 function closeDB() {
 	global $DB_TYPE;
 	if ($DB_TYPE == "mysql") {
-		mysql_close();
+		global $conn;
+		mysqli_close($conn);
 	} else if ($DB_TYPE == "odbc") {
 		global $conn;
 		odbc_close($conn);
@@ -64,7 +69,8 @@ function closeDB() {
 function doSQLQuery($query) {
 	global $DB_TYPE;
 	if ($DB_TYPE == "mysql") {
-		$result =  mysql_query($query) or die("Query failed : " . mysql_error());
+		global $conn;
+		$result =  mysqli_query($conn, $query) or die("Query failed : " . mysqli_error());
 	} else if ($DB_TYPE == "odbc") {
 		global $conn;
 		$result = odbc_exec($conn, $query) or die("Query failed : " . odbc_error());
@@ -96,6 +102,7 @@ function CreateLikeClause($strField, $strCriteria) {
 }
 
 function db_fix_str($strIn) {
+	global $conn;
 	$str = utf8_decode($strIn);
 	$str = str_replace("‘", "'", $str);
 	$str = str_replace("’", "'", $str);
@@ -104,7 +111,7 @@ function db_fix_str($strIn) {
 	$str = str_replace("–", "-", $str);
 	$str = str_replace("…", "...", $str);
 	//$str = str_replace("'", "\'", $str);
-	$str = mysql_real_escape_string($str);
+	$str = mysqli_real_escape_string($conn, $str);
 	return $str;
 }
 
