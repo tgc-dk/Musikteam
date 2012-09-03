@@ -68,6 +68,12 @@ if (isset($_SESSION['logget_ind']) && isset($_SESSION['admin'])) {
 			" WHERE BrugerId = " . $_POST['userId'];
 		$result = doSQLQuery($query);
 		echo "done";
+
+	// Delete slide-template
+	} else if ($_POST['action'] == "deleteTemplate") {
+		$name = $_POST['templateName'];
+		// TODO: actually delete template
+		echo "done";
 	} else {
 		echo "ugyldig handling";
 	}

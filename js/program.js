@@ -422,7 +422,7 @@ function slides(eventname)
 		text += tmp.substr(start, length) + "&";
 	}
 	text += "songcount=" + count + "&eventName=" + eventname;
-	window.location = "impress3/createSlides.php?" + text;
+	window.location = "odp-handler/createSlides.php?" + text;
 }
 
 // Sends an email to the band with the setlist

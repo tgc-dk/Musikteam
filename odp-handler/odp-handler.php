@@ -152,11 +152,16 @@ class Presentation {
     
     var $layoutPath = "";
     
+    var $templatedir = "";
+    
     // Check that the default layout exists, and load it in
     function init () {
         
+        $this->templatedir = getcwd()."/templates/";
+        
         // Get a list of folders in the layout folder
-        $layouts = scandir(getcwd()."odp-handler/templates/");
+        //$layouts = scandir(getcwd()."odp-handler/templates/");
+        $layouts = scandir(getcwd()."/templates/");
         if ($layouts === FALSE) {
             return "ERROR: No layouts seems to be installed/uploaded!";
         }
@@ -202,8 +207,14 @@ class Presentation {
     }
 
     function insertTitleAuthor($page, $title, $author) {
-        $newpage = str_replace("[author]", $author, $page);
-        $newpage = str_replace("[title]", $title, $newpage);
+		if ($author == "") {
+			$pattern = '/<text:span .+?>.+?songauthor.+?<\/text:span>/';
+			$replace = "";
+			$newpage = preg_replace($pattern, $replace, $page);			
+		} else {
+			$newpage = str_replace("songauthor", $author, $page);
+		}
+        $newpage = str_replace("songtitle", $title, $newpage);
         return $newpage;
     }
 
@@ -243,10 +254,13 @@ class Presentation {
     function insertSongText($page, $songText) {
         $songArr = explode("\n", $songText);
         
-        $pattern = '/(.+>)(<text:p .+><text:span .+>)\[text\](<\/text:span><\/text:p>)(.+)/';
+        //$pattern = '/(.+>)(<text:p .+><text:span .+>)\[text\](<\/text:span><\/text:p>)(.+)/';
+        //$pattern = '/(.+>)(<text:p text:style-name="[\d|\w]+"><text:span text:style-name="[\d|\w]+">)songtext(<\/text:span><\/text:p>)(.+)/';
+        $pattern = '/(.+>)(<text:p .+?><text:span .+?>)songtext(<\/text:span>.+?<\/text:p>)(.+)/';
+
         $replace = "\\1";
         for ($i = 0; $i < count($songArr); $i++) {
-            $replace .= "\\2".$this->doWhiteSpaces($songArr[$i])."\\3";
+            $replace .= "\\2 ".$this->doWhiteSpaces($songArr[$i])."\\3";
         }
         $replace .= "\\4";
         $newpage = preg_replace($pattern, $replace, $page);
@@ -297,6 +311,13 @@ class Presentation {
         $zipfile->addFile($this->slides, "content.xml");
         return $zipfile->file();
     }
+}
+
+
+class RemoveTemplate {
+
+	function checkIfdefault() {
+	}
 }
 
 /*

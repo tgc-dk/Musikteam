@@ -114,3 +114,41 @@ function saveUser(userNum, userId)
 	xhr.send(text);
 	
 }
+
+// delete template
+function deleteTemplate(name)
+{
+	// Create the XMLHttpRequest object used for communication with the server
+	var xhr = createXmlHttpRequestObj();
+	
+	if (!xhr) {
+		alert('Din browser understøtter ikke XmlHttpRequest!');
+		return;
+	}
+	
+	// Set the callback to handle the answer
+	xhr.onreadystatechange  = function()
+	{ 
+		if (xhr.readyState  == 4) {
+			if (xhr.status  == 200) {
+				if (xhr.responseText == "done") {
+					alert('Ændringer gemt.');
+				} else {
+					alert('Der opstod en server fejl! Fejl meddelelse: ' + xhr.responseText);
+				}
+			} else {
+				alert('Der opstod en forbindelses fejl! Fejl meddelelse: ' + xhr.status);
+			}
+		}
+	};
+
+	// Gather the data
+	var text = "action=deleteTemplate&templateName=" + userId;
+	
+	// Send the data to the server
+	xhr.open("POST", "admin-action.php",  true);
+	xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded; charset=iso-8859-1");
+	xhr.send(text);
+
+}
+

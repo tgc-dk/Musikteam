@@ -15,7 +15,7 @@ if (isset($_SESSION['logget_ind'])) {
 					<button name="send" value="Kopier tekst fra sangtekst" class="submit_btn" onClick="javascript:copyToSlides();return false;"> Kopier tekst fra sangtekst </button>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					<!--<button name="send" value="Gem slides" class="submit_btn_2" onClick="javascript:saveSlides();return false;"> Gem slides </button>-->
-					<button name="send" value="Generer præsentation" class="submit_btn" onClick="javascript:window.location = 'impress3/createSlides.php?songcount=1&Song0=<?php echo $intSongId; ?>';return false;"> <img src="img/oo-impress.gif" alt="Udskriv" width="18" height="19" border="0" align="absmiddle" /> Generer præsentation </button>
+					<button name="send" value="Generer præsentation" class="submit_btn" onClick="javascript:window.location = 'odp-handler/createSlides.php?songcount=1&Song0=<?php echo $intSongId; ?>';return false;"> <img src="img/oo-impress.gif" alt="Udskriv" width="18" height="19" border="0" align="absmiddle" /> Generer præsentation </button>
 					<br />
 					<span class="stamdata">Slide A: </span><br />
 					<textarea cols="60" rows="8" id="slideA"><?php print(stripslashes($slide_arr[0])); ?></textarea><br />
