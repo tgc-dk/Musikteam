@@ -12,6 +12,10 @@ $WEBMASTER_EMAIL = "admin@musikteam.com";
 // DB type, supported: "mysql", "odbc"
 $DB_TYPE = "mysql";
 
+// temp mysql array, used by the db_result function
+$result_arr;
+
+// DB Connection
 $conn;
 
 function db_fetch_array($result) {
@@ -28,8 +32,11 @@ function db_result($result, $field) {
 	global $DB_TYPE;
 	if ($DB_TYPE == "mysql") {
 		global $conn;
-		$arr = db_fetch_array($result);
-		return $arr[$field];
+		global $result_arr;
+		if ($result_arr == "") {
+			$result_arr = mysqli_fetch_array($result);
+		}
+		return $result_arr[$field];
 		//$ret = mysqli_result($conn, $result, 0, $field);
 	} else if ($DB_TYPE == "odbc") {
 		$ret = odbc_result($result, $field);
@@ -70,7 +77,9 @@ function doSQLQuery($query) {
 	global $DB_TYPE;
 	if ($DB_TYPE == "mysql") {
 		global $conn;
-		$result =  mysqli_query($conn, $query) or die("Query failed : " . mysqli_error());
+		global $result_arr;
+		$result =  mysqli_query($conn, $query) or die("Query failed : " . mysqli_error($conn));
+		$result_arr = "";
 	} else if ($DB_TYPE == "odbc") {
 		global $conn;
 		$result = odbc_exec($conn, $query) or die("Query failed : " . odbc_error());
