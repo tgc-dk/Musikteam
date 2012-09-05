@@ -34,7 +34,7 @@ if (isset($_SESSION['logget_ind'])) {
 	date_default_timezone_set('Europe/Copenhagen');
 	$date = date("Y-m-d H:i:s");
 	$query = "INSERT INTO Historik (SangId,BrugerId,Dato) VALUES ('" . $id . "','".$_SESSION['brugerid']."','".$date."');";
-	$result = doSQLQuery($query);
+	$result = doSQLQuery($query);
 	if ($type == "slides" || $type == "all") {
 		
 		// First we delete all the old slides in the database for this song
