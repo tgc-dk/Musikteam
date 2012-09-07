@@ -126,14 +126,12 @@ function layout_edit()
 	Afstande();
 }
 
-// When page is loaded this makes sure the modpro lyrics is rendered and that only the modpro edit window is shown
+// When page is loaded this makes sure the modpro lyrics is rendered and that only the modpro edit window is shown.
+// It also setups onkeydown for all input fields.
 function first_load()
 {
 	text_input();
 	update();
-
-	// setup the message that pops up on exit
-	window.onbeforeunload = beforeunload;
 
 	// setup shortcut keys
 	// Vertical dash
@@ -144,6 +142,19 @@ function first_load()
 	shortcut.add("Ctrl+Alt+T",function() {
 		insertAtCursor(document.getElementById('editArea'),'[]');
 	});
+	
+	// set onkeydown for all input fields and textareas, so that
+	// users are asked if any changes should be saved.
+	for (i=0; i < document.getElementsByTagName("input").length; i++) {	 
+		document.getElementsByTagName("input")[i].onkeydown=function(){
+			window.onbeforeunload = beforeunload;
+		};
+	}
+	for (i=0; i < document.getElementsByTagName("textarea").length; i++) {	 
+		document.getElementsByTagName("textarea")[i].onkeydown=function(){
+			window.onbeforeunload = beforeunload;
+		};
+	}
 }
 
 function beforeunload()
