@@ -198,7 +198,7 @@ function NewWindow(mypage, myname, scroll)
         <td><div class="wrapper_2">
 		<div id="header_2">
 			<div id="skriv_sang_nav">
-				<a href="#" onClick="javascript:text_input();"><img src="img/tekst_down.gif" width="101" height="27" border="0" id="text_img" /></a><a onClick="javascript:layout_edit();" href="#"><img src="img/layout_up.gif" width="101" height="27" border="0" id="layout_img" /></a><a href="#" onClick="javascript:slides_edit();"><img src="img/slides_up.gif" width="101" height="27" border="0" id="slides_img" /></a>
+				<a href="#" onClick="javascript:text_input();"><img src="img/tekst_down.gif" width="101" height="27" border="0" id="text_img" /></a><!--<a onClick="javascript:layout_edit();" href="#"><img src="img/layout_up.gif" width="101" height="27" border="0" id="layout_img" /> --></a><a href="#" onClick="javascript:slides_edit();"><img src="img/slides_up.gif" width="101" height="27" border="0" id="slides_img" /></a>
 			
           </div>
 		</div>

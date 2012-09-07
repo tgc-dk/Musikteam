@@ -97,7 +97,7 @@ function slides_edit()
 
 	document.getElementById("slides_img").src = "img/slides_down.gif";
 	document.getElementById("text_img").src = "img/tekst_up.gif";
-	document.getElementById("layout_img").src = "img/layout_up.gif";
+	//document.getElementById("layout_img").src = "img/layout_up.gif";
 	
 }
 function text_input()
@@ -108,7 +108,7 @@ function text_input()
 	document.getElementById("modpro_txt").style.display="inline";
 
 	document.getElementById("text_img").src = "img/tekst_down.gif";
-	document.getElementById("layout_img").src = "img/layout_up.gif";
+	//document.getElementById("layout_img").src = "img/layout_up.gif";
 	document.getElementById("slides_img").src = "img/slides_up.gif";
 	
 }
@@ -120,7 +120,7 @@ function layout_edit()
 	document.getElementById("modpro_txt").style.display="inline";
 
 	document.getElementById("text_img").src = "img/tekst_up.gif";
-	document.getElementById("layout_img").src = "img/layout_down.gif";
+	//document.getElementById("layout_img").src = "img/layout_down.gif";
 	document.getElementById("slides_img").src = "img/slides_up.gif";
 
 	Afstande();
