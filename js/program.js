@@ -124,7 +124,7 @@ function save(eventid)
 	var xhr = createXmlHttpRequestObj();
 	
 	if (!xhr) {
-		alert('Din browser understøtter ikke XmlHttpRequest!');
+		alert('Din browser understÃ¸tter ikke XmlHttpRequest!');
 		return;
 	}
 	
@@ -176,7 +176,7 @@ function save(eventid)
 
 	// Send the data to the server
 	xhr.open("POST", "saveProgram.php",  true);
-	xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded; charset=iso-8859-1");
+	xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded; charset=UTF-8");
 	xhr.send(text);
 
 }
@@ -218,7 +218,7 @@ function addPerson(name, abilities, abilitiesID, id)
 		newCell = newRow.insertCell(2);
 		var abilitiesArr = abilities.split(", ");
 		var abilitiesIDArr = abilitiesID.split(",");
-		var selectBox = '<select name="selectAbility"><option value="-1">Vælg en rolle</option>';
+		var selectBox = '<select name="selectAbility"><option value="-1">VÃ¦lg en rolle</option>';
 		for (i=0; i<abilitiesArr.length; ++i) {
 			selectBox += '<option value="'+abilitiesIDArr[i]+'">'+abilitiesArr[i]+'</option>';
 		}
@@ -432,7 +432,7 @@ function sendSetlist(eventid,eventname,username)
 	var xhr = createXmlHttpRequestObj();
 	
 	if (!xhr) {
-		alert('Din browser understøtter ikke XmlHttpRequest!');
+		alert('Din browser understÃ¸tter ikke XmlHttpRequest!');
 		return;
 	}
 	
@@ -480,7 +480,7 @@ function sendSetlist(eventid,eventname,username)
 
 	// Send the data to the server
 	xhr.open("POST", "sendsetlist.php",  true);
-	xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded; charset=iso-8859-1");
+	xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded; charset=UTF-8");
 	xhr.send(text);
 
 }
@@ -547,11 +547,11 @@ function isDate(dtStr){
 	day=parseInt(strDay)
 	year=parseInt(strYr)
 	if (pos1==-1 || pos2==-1){
-		alert("Datoen skal skrives på følgende måde : dd/mm/åååå!")
+		alert("Datoen skal skrives pÃ¥ fÃ¸lgende mÃ¥de : dd/mm/Ã¥Ã¥Ã¥Ã¥!")
 		return false
 	}
 	if (strMonth.length<1 || month<1 || month>12){
-		alert("Indtast venligst en gyldig måned!")
+		alert("Indtast venligst en gyldig mÃ¥ned!")
 		return false
 	}
 	if (strDay.length<1 || day<1 || day>31 || (month==2 && day>daysInFebruary(year)) || day > daysInMonth[month]){
@@ -559,7 +559,7 @@ function isDate(dtStr){
 		return false
 	}
 	if (strYear.length != 4 || year==0 || year<minYear || year>maxYear){
-		alert("Indtast venligst et gyldigt 4-cifret årstal!")
+		alert("Indtast venligst et gyldigt 4-cifret Ã¥rstal!")
 		return false
 	}
 	if (dtStr.indexOf(dtCh,pos2+1)!=-1 || isInteger(stripCharsInBag(dtStr, dtCh))==false){

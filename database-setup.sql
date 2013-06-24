@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS `Bruger` (
   PRIMARY KEY (`BrugerId`),
   KEY `BrugerId` (`BrugerId`),
   KEY `PersonId` (`PersonId`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf-8 AUTO_INCREMENT=1 ;
 
 --
 -- Dumping data for table `Bruger`
@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS `Historik` (
   `Dato` datetime DEFAULT NULL,
   `Change` varchar(255) DEFAULT NULL,
   KEY `BrugerId` (`BrugerId`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf-8;
 
 
 -- --------------------------------------------------------
@@ -62,7 +62,7 @@ CREATE TABLE IF NOT EXISTS `Person` (
   `Leder` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`PersonID`),
   KEY `PersonID` (`PersonID`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf-8 AUTO_INCREMENT=1 ;
 
 
 -- --------------------------------------------------------
@@ -78,7 +78,7 @@ CREATE TABLE IF NOT EXISTS `PersonRolle` (
   PRIMARY KEY (`PersonID`,`RolleID`),
   KEY `PersonID` (`PersonID`),
   KEY `RolleID` (`RolleID`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf-8;
 
 
 -- --------------------------------------------------------
@@ -98,7 +98,7 @@ CREATE TABLE IF NOT EXISTS `Program` (
   KEY `LederID` (`LederID`),
   KEY `ProgramID` (`ProgramID`),
   KEY `TeamID` (`TeamID`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf-8 AUTO_INCREMENT=1 ;
 
 
 -- --------------------------------------------------------
@@ -115,7 +115,7 @@ CREATE TABLE IF NOT EXISTS `ProgramPerson` (
   PRIMARY KEY (`ProgramID`,`PersonID`),
   KEY `PersonID` (`PersonID`),
   KEY `RolleID` (`RolleID`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf-8;
 
 
 -- --------------------------------------------------------
@@ -132,7 +132,7 @@ CREATE TABLE IF NOT EXISTS `ProgramPunkt` (
   `Raekkefoelge` int(11) DEFAULT '0',
   KEY `ProgramID` (`ProgramID`),
   KEY `SangID` (`SangID`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf-8;
 
 
 -- --------------------------------------------------------
@@ -147,7 +147,7 @@ CREATE TABLE IF NOT EXISTS `Rolle` (
   `Raekkefoelge` int(11) DEFAULT '0',
   PRIMARY KEY (`RolleID`),
   KEY `RolleID` (`RolleID`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf-8 AUTO_INCREMENT=1 ;
 
 
 -- --------------------------------------------------------
@@ -173,7 +173,7 @@ CREATE TABLE IF NOT EXISTS `Sang` (
   PRIMARY KEY (`SangId`),
   KEY `Identifikation` (`Identifikation`),
   KEY `SangId` (`SangId`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf-8 AUTO_INCREMENT=1 ;
 
 
 -- --------------------------------------------------------
@@ -188,7 +188,7 @@ CREATE TABLE IF NOT EXISTS `SangBruger` (
   PRIMARY KEY (`BrugerId`,`SangId`),
   KEY `BrugerId` (`BrugerId`),
   KEY `SangId` (`SangId`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf-8;
 
 
 -- --------------------------------------------------------
@@ -204,7 +204,7 @@ CREATE TABLE IF NOT EXISTS `Slide` (
   PRIMARY KEY (`SangID`,`SlideID`),
   KEY `SangID` (`SangID`),
   KEY `SlideID` (`SlideID`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf-8;
 
 
 -- --------------------------------------------------------
@@ -220,7 +220,7 @@ CREATE TABLE IF NOT EXISTS `Slide2` (
   PRIMARY KEY (`SangID`,`SlideID`),
   KEY `SangID` (`SangID`),
   KEY `SlideID` (`SlideID`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf-8;
 
 
 -- --------------------------------------------------------
@@ -237,7 +237,7 @@ CREATE TABLE IF NOT EXISTS `Speciel` (
   `TilSlide` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`SpecielID`),
   KEY `SpecielID` (`SpecielID`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf-8;
 
 
 -- --------------------------------------------------------
@@ -253,7 +253,7 @@ CREATE TABLE IF NOT EXISTS `Team` (
   `Raekkefoelge` int(11) DEFAULT '0',
   PRIMARY KEY (`TeamID`),
   KEY `TeamID` (`TeamID`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf-8 AUTO_INCREMENT=1 ;
 
 
 --
@@ -266,5 +266,5 @@ CREATE TABLE IF NOT EXISTS `TeamPerson` (
   PRIMARY KEY (`TeamID`,`PersonID`),
   KEY `PersonID` (`PersonID`),
   KEY `TeamID` (`TeamID`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf-8;
 

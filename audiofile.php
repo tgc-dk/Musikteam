@@ -28,7 +28,7 @@ if (isset($_SESSION['logget_ind'])) {
 ?>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Musikteam - lydfil</title>
 </head>
 
@@ -64,7 +64,7 @@ window.close();
 <p>
 <form enctype="multipart/form-data" action="" method="POST">
 <input type="hidden" name="MAX_FILE_SIZE" value="8000000" />
-Vælg lydfilen som skal uploades: <input name="uploadedfile" type="file" /><br />
+VÃ¦lg lydfilen som skal uploades: <input name="uploadedfile" type="file" /><br />
 <input type="submit" name="upload" onClick="document.getElementById('info').innerHTML='Vent venligst mens filen uploades...'" value="Upload fil" />
 </form>
 <div id="info"></div>

@@ -47,7 +47,7 @@ if (isset($_SESSION['logget_ind']) && isset($_SESSION['admin'])) {
 		// Send an email to the new user with the username and password
 		$to = $_POST['email'];
 		$subject = "Ny kode til ".$ROOT_URL."!";
-		$body = "Hej!\n\nDin kode til http://".$ROOT_URL.", er blevet ændret og er nu: \"".$newPassword."\"\n".
+		$body = "Hej!\n\nDin kode til http://".$ROOT_URL.", er blevet Ã¦ndret og er nu: \"".$newPassword."\"\n".
 			"Dit brugernavn er stadig det samme.\n\n".
 			"Mvh\n\t ".$WEBMASTER_NAME."\n\n\nPS. Dette er en automatisk genereret e-mail.\n";
 		$headers = 'From: '.$WEBMASTER_EMAIL . "\r\n" .
@@ -67,12 +67,6 @@ if (isset($_SESSION['logget_ind']) && isset($_SESSION['admin'])) {
 			"', Admin = " . $admin .
 			" WHERE BrugerId = " . $_POST['userId'];
 		$result = doSQLQuery($query);
-		echo "done";
-
-	// Delete slide-template
-	} else if ($_POST['action'] == "deleteTemplate") {
-		$name = $_POST['templateName'];
-		// TODO: actually delete template
 		echo "done";
 	} else {
 		echo "ugyldig handling";

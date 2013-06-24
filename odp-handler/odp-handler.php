@@ -207,13 +207,14 @@ class Presentation {
     }
 
     function insertTitleAuthor($page, $title, $author) {
-		if ($author == "") {
+		/*if ($author == "") {
 			$pattern = '/<text:span .+?>.+?songauthor.+?<\/text:span>/';
 			$replace = "";
 			$newpage = preg_replace($pattern, $replace, $page);			
 		} else {
 			$newpage = str_replace("songauthor", $author, $page);
-		}
+		}*/
+		$newpage = str_replace("songauthor", $author, $page);
         $newpage = str_replace("songtitle", $title, $newpage);
         return $newpage;
     }
@@ -254,9 +255,7 @@ class Presentation {
     function insertSongText($page, $songText) {
         $songArr = explode("\n", $songText);
         
-        //$pattern = '/(.+>)(<text:p .+><text:span .+>)\[text\](<\/text:span><\/text:p>)(.+)/';
-        //$pattern = '/(.+>)(<text:p text:style-name="[\d|\w]+"><text:span text:style-name="[\d|\w]+">)songtext(<\/text:span><\/text:p>)(.+)/';
-        $pattern = '/(.+>)(<text:p .+?><text:span .+?>)songtext(<\/text:span>.+?<\/text:p>)(.+)/';
+        $pattern = '/(.+>)(<text:p .+?><text:span .+?>)songtext(<\/text:span>.*?<\/text:p>)(.+)/';
 
         $replace = "\\1";
         for ($i = 0; $i < count($songArr); $i++) {
@@ -264,7 +263,6 @@ class Presentation {
         }
         $replace .= "\\4";
         $newpage = preg_replace($pattern, $replace, $page);
-        // echo $pattern."\n".$replace."\n";
         
         return $newpage;
     }

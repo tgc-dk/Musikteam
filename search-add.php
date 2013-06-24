@@ -6,7 +6,7 @@ include("db.php");
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <style type="text/css">
 body
 {
@@ -99,16 +99,16 @@ if (isset($_SESSION['logget_ind'])) {
 				<input name="textfield" type="text" size="50" value="<?php echo $_POST['textfield']; ?>"/>
 			</label>
 			<label>&nbsp;
-				<input class="submit_btn" type="submit" name="Submit" value="Søg" />
+				<input class="submit_btn" type="submit" name="Submit" value="SÃ¸g" />
 
 			</label>
 			<br />
 			<span class="style2">
-				Søg i: 
+				SÃ¸g i: 
 				<INPUT type="checkbox" name="searchTitle" class="checkbox"<?php echo ($sTitle == "on" ? ' checked="true"' : ''); ?>>Titel&nbsp;&nbsp;&nbsp;&nbsp;
 				<INPUT type="checkbox" name="searchAuthor" class="checkbox"<?php echo($sAuthor == "on" ? ' checked="true"' : ''); ?>>Forfatter&nbsp;&nbsp;&nbsp;&nbsp;
 				<INPUT type="checkbox" name="searchText" class="checkbox"<?php echo ($sText == "on" ? ' checked="true"' : ''); ?>>Tekst&nbsp;&nbsp;&nbsp;&nbsp;
-				<INPUT type="checkbox" name="searchProTextOnly" class="checkbox"<?php echo ($sProTextOnly == "on" ? ' checked="true"' : ''); ?>>Søg kun i sange med akkorder
+				<INPUT type="checkbox" name="searchProTextOnly" class="checkbox"<?php echo ($sProTextOnly == "on" ? ' checked="true"' : ''); ?>>SÃ¸g kun i sange med akkorder
 			</span>
 			<p>
 				<button name="send" value="Vis alle sange" class="submit_btn" onClick="javascript:location.href='search-add.php?page=sange&showall=1';return false;"> Vis alle sange </button>&nbsp;&nbsp;&nbsp;&nbsp;
@@ -130,7 +130,7 @@ if (isset($_SESSION['logget_ind'])) {
 			<td height="15" background="img/tabletop_bg.gif"><div align="center"></div></td>
 			<td width="80" height="15" background="img/tabletop_bg.gif"><div align="center"><strong>Sidst spillet d</strong></div></td>
 			<td height="15" background="img/tabletop_bg.gif"><div align="center"><strong>Lyt</strong></div></td>
-			<td height="15" background="img/tabletop_bg.gif"><div align="center"><strong>Tilføj</strong></div></td>
+			<td height="15" background="img/tabletop_bg.gif"><div align="center"><strong>TilfÃ¸j</strong></div></td>
 		</tr>
 
 <?php

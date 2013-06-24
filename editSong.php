@@ -67,7 +67,7 @@ function NewWindow(mypage, myname, scroll)
 	function removeSong(sangid)
 	{
 		ajaxRequest('','program_ajax.php','sangid='+sangid+'&mode=remove');
-		document.getElementById("setlist").innerHTML = "<a href=\"javascript:addSong(" + sangid + ");\">Tilføj sangen til setlisten</a>";
+		document.getElementById("setlist").innerHTML = "<a href=\"javascript:addSong(" + sangid + ");\">TilfÃ¸j sangen til setlisten</a>";
 	}
 
 	function hideSetlistMenu()
@@ -198,7 +198,7 @@ function NewWindow(mypage, myname, scroll)
         <td><div class="wrapper_2">
 		<div id="header_2">
 			<div id="skriv_sang_nav">
-				<a href="#" onClick="javascript:text_input();"><img src="img/tekst_down.gif" width="101" height="27" border="0" id="text_img" /></a><!--<a onClick="javascript:layout_edit();" href="#"><img src="img/layout_up.gif" width="101" height="27" border="0" id="layout_img" /> --></a><a href="#" onClick="javascript:slides_edit();"><img src="img/slides_up.gif" width="101" height="27" border="0" id="slides_img" /></a>
+				<a href="#" onClick="javascript:text_input();"><img src="img/tekst_down.gif" width="101" height="27" border="0" id="text_img" /></a><a onClick="javascript:layout_edit();" href="#"><img src="img/layout_up.gif" width="101" height="27" border="0" id="layout_img" /></a><a href="#" onClick="javascript:slides_edit();"><img src="img/slides_up.gif" width="101" height="27" border="0" id="slides_img" /></a>
 			
           </div>
 		</div>
@@ -252,13 +252,13 @@ function NewWindow(mypage, myname, scroll)
 		if (isSongInProgram($sangid, $_SESSION['setlist'])) {
 			echo "<br/><span id=\"setlist\"><a href=\"javascript:removeSong(".$sangid.");\">Fjern sangen fra setlisten</a></span>";
 		} else {
-			echo "<br/><span id=\"setlist\"><a href=\"javascript:addSong(".$sangid.");\">Tilføj sangen til setlisten</a></span>";
+			echo "<br/><span id=\"setlist\"><a href=\"javascript:addSong(".$sangid.");\">TilfÃ¸j sangen til setlisten</a></span>";
 		}
 		echo "</span>";
 	} else {
 		echo "<span id=\"setListBar\"></span>";
 	}
-	echo "<br/><a href=\"javascript:selectSetlist(".$intSongId.");\">Vælg setliste</a>";
+	echo "<br/><a href=\"javascript:selectSetlist(".$intSongId.");\">VÃ¦lg setliste</a>";
 
 
 ?>
@@ -270,7 +270,7 @@ function NewWindow(mypage, myname, scroll)
 						<p><button name="send" value="Slet denne sang" class="submit_btn_2" onClick="javascript:deleteSong();return false;"> Slet denne sang </button></p>
 						<p><button name="send" value="Opret ny version af denne" class="submit_btn_2" onClick="javascript:copyToNew();return false;"> Opret ny version af denne </button></p>
                         <p><button name="send" value="Gem alt" class="submit_btn_2" onClick="javascript:saveAll();return false;"> Gem alt </button></p>
-                        <p><strong>Sidste ændringer:</strong><br/>
+                        <p><strong>Sidste Ã¦ndringer:</strong><br/>
 <?php
 		$query = "SELECT Bruger.Brugernavn,Historik.Dato FROM Historik INNER JOIN Bruger ON Historik.BrugerId=Bruger.BrugerId WHERE (Historik.SangId = " . $intSongId . ") ORDER BY Historik.Dato";
 		$result = doSQLQuery($query);
@@ -293,17 +293,17 @@ function NewWindow(mypage, myname, scroll)
 					<span style="position:relative;">
 					<span id="term1" class="help_popup">Her er det muligt at indtaste sangen med akkorder (i &quot;pro&quot; format). Eventuelle kommentarer skal skrives i feltet over eller under sangteksten. 
 					<ul>
-						<li> Hvis teksten allerede findes i systemet kan den  hentes ved tryk på&nbsp; 
+						<li> Hvis teksten allerede findes i systemet kan den  hentes ved tryk pÃ¥&nbsp; 
 						  <button name="send" value="Kopier tekst fra slides" class="submit_btn" onClick="#"> Hent tekst fra slides </button>
-							  Det er muligt at ændre tonearten på sangens akkorder ved at trykke på <img src="img/plus.gif" alt="+" width="12" height="16" align="absbottom"> eller <img src="img/minus.gif" alt="-" width="12" height="16" align="absbottom"> under teksten</li>
+							  Det er muligt at Ã¦ndre tonearten pÃ¥ sangens akkorder ved at trykke pÃ¥ <img src="img/plus.gif" alt="+" width="12" height="16" align="absbottom"> eller <img src="img/minus.gif" alt="-" width="12" height="16" align="absbottom"> under teksten</li>
 					</ul>
 					<strong>Skriv akkorder:</strong> Akkorden angives i kantede parenteser ( <strong>[</strong> og <strong>]</strong> ). (Genvejstast til <strong>[ ] : Ctrl+Alt+T</strong> )<img src="img/above-all---pro-html.png" alt="above all - pro - html format" width="374" height="60"><br>
-					Akkorden skal indsættes i sangteksten lige <strong>før</strong> det bogstav akkorden skal stå over. <br>
+					Akkorden skal indsÃ¦ttes i sangteksten lige <strong>fÃ¸r</strong> det bogstav akkorden skal stÃ¥ over. <br>
 					Klik p&aring;&nbsp; 
-					<button name="send" value="Opdatér" class="submit_btn_2" onClick="#"><img src="img/refresh_firefox.gif" alt="Opdat&eacute;r" width="18" height="19" align="absmiddle"/> Opdatér </button>  for at se resultatet.<br><br>
-					<strong>Tabulator:</strong> Hvis man ønsker at sangen vises sådan at bestemte elementer (f.eks akkorder) står lige under hinanden kan man benytte en lodret streg ( <strong>| </strong>). Dette vil fungere som tabulator. Det er muligt at indsætte flere lodrette streger på en linje.<br>
+					<button name="send" value="OpdatÃ©r" class="submit_btn_2" onClick="#"><img src="img/refresh_firefox.gif" alt="Opdat&eacute;r" width="18" height="19" align="absmiddle"/> OpdatÃ©r </button>  for at se resultatet.<br><br>
+					<strong>Tabulator:</strong> Hvis man Ã¸nsker at sangen vises sÃ¥dan at bestemte elementer (f.eks akkorder) stÃ¥r lige under hinanden kan man benytte en lodret streg ( <strong>| </strong>). Dette vil fungere som tabulator. Det er muligt at indsÃ¦tte flere lodrette streger pÃ¥ en linje.<br>
 					Genvejstast til <strong>| </strong>:  <strong>Ctrl+Alt+D</strong>.<br><br>
-                    <strong>Lydfil:</strong> Under "Stamdata" kan der tilknyttes en lydfil til hver sang. Det sker enten ved at uploade en .mp3 eller ved at linke til lydfilen et andet sted på internettet.  </span><a href="javascript:void(0);" onMouseover="ShowPop('term1');" onMouseout="HidePop('term1');"><img src="img/help_22x22.png" alt="Hjælp!" width="20" height="22" border="0" class="help_btn"></a></span> 
+                    <strong>Lydfil:</strong> Under "Stamdata" kan der tilknyttes en lydfil til hver sang. Det sker enten ved at uploade en .mp3 eller ved at linke til lydfilen et andet sted pÃ¥ internettet.  </span><a href="javascript:void(0);" onMouseover="ShowPop('term1');" onMouseout="HidePop('term1');"><img src="img/help_22x22.png" alt="HjÃ¦lp!" width="20" height="22" border="0" class="help_btn"></a></span> 
 					<br />   
 					<textarea cols="60" rows="25" id="editArea"><?php print($strProText); ?></textarea><br />
 					<span class="stamdata">Kommentar under tekst: </span><br />
@@ -321,7 +321,7 @@ function NewWindow(mypage, myname, scroll)
 				    <span id="Btn1">
                         <!--<button name="send" value="Gem sangtekst" class="submit_btn_2" onClick="javascript:saveLyrics();return false;"> Gem sangtekst </button>-->
 						&nbsp;&nbsp;&nbsp;&nbsp;
-						<button name="send" value="Opdatér" class="submit_btn_2" onClick="javascript:update();return false;"><img src="img/refresh_firefox.gif" alt="Opdat&eacute;r" width="18" height="19" align="absmiddle"/> Opdatér </button> 
+						<button name="send" value="OpdatÃ©r" class="submit_btn_2" onClick="javascript:update();return false;"><img src="img/refresh_firefox.gif" alt="Opdat&eacute;r" width="18" height="19" align="absmiddle"/> OpdatÃ©r </button> 
 						&nbsp;&nbsp;&nbsp;&nbsp;
 						<button name="send" value="Kopier tekst fra slides" class="submit_btn_2" onClick="javascript:copyFromSlides();return false;"> Hent tekst fra slides </button>
 						&nbsp;&nbsp;&nbsp;&nbsp;

@@ -6,7 +6,7 @@ include("db.php");
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <style type="text/css">
 body
 {
@@ -74,7 +74,7 @@ function addTeam(id)
 		$teamName = $line["Navn"];
 		$teamDesr = $line["Beskrivelse"];
 		echo "				<table id=\"musiker_table\" cellspacing=\"0\" cellpadding=\"3\" width=\"100%\">\n";
-		echo "				<tr bgcolor=\"#f2f2f2\"><td><strong>Team: </strong>".$teamName . "</td><td align=\"right\"><strong>Tilføj</strong></td></tr>\n";
+		echo "				<tr bgcolor=\"#f2f2f2\"><td><strong>Team: </strong>".$teamName . "</td><td align=\"right\"><strong>TilfÃ¸j</strong></td></tr>\n";
 		echo "				<tr><td colspan=\"2\"><strong>Beskrivelse: </strong>". $teamDesr . "</td></tr>\n";
 
 		$tmquery = "SELECT Person.PersonID,Person.Fornavn,Person.Efternavn FROM Person INNER JOIN TeamPerson ON TeamPerson.PersonID=Person.PersonID WHERE TeamPerson.TeamID=".$teamID.";";
@@ -107,7 +107,7 @@ function addTeam(id)
 				$colour = "";
 			}
 		}
-		echo "				<tr".$colour."><td align=\"right\"><a href=\"javascript:".$addteam."\"><img src=\"img/list-add.gif\" alt=\"Tilf&oslash;j team\" width=\"14\" height=\"14\" border=\"0\" align=\"top\" /></a>Tilføj hele teamet</td></tr>";
+		echo "				<tr".$colour."><td align=\"right\"><a href=\"javascript:".$addteam."\"><img src=\"img/list-add.gif\" alt=\"Tilf&oslash;j team\" width=\"14\" height=\"14\" border=\"0\" align=\"top\" /></a>TilfÃ¸j hele teamet</td></tr>";
 		echo "			</table><br />\n";
 	}
 

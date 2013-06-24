@@ -18,7 +18,7 @@ if (isset($_SESSION['logget_ind']) && isset($_SESSION['admin'])) {
 		$result = doSQLQuery($query);
 		$line = db_fetch_array($result);
 		if ($line) {
-			echo "<p>En bruger med det ønskede brugernavn findes allerede!</p>";
+			echo "<p>En bruger med det Ã¸nskede brugernavn findes allerede!</p>";
 		} else {
 
 			if ($_POST['admin'] != "") $admin = 1;
@@ -29,7 +29,7 @@ if (isset($_SESSION['logget_ind']) && isset($_SESSION['admin'])) {
 			// Send an email to the new user with the username and password
 			$to = $_POST['email'];
 			$subject = "Velkommen til ".$ROOT_URL."!";
-			$body = "Hej!\n\nDu er nu blevet oprettet som bruger på http://".$ROOT_URL.", hvilket betyder at du kan rette i sange setlister mm.\n\n".
+			$body = "Hej!\n\nDu er nu blevet oprettet som bruger pÃ¥ http://".$ROOT_URL.", hvilket betyder at du kan rette i sange setlister mm.\n\n".
 				"Dit brugernavn er:'".$_POST['brugernavn']."', og dit kodeord er: '".$_POST['brugernavn']."1234'.\n\n".
 				"Mvh\n\t ".$WEBMASTER_NAME."\n\n\nPS. Dette er en automatisk genereret e-mail.\n";
 			$headers = 'From: '.$WEBMASTER_EMAIL . "\r\n" .
@@ -96,7 +96,7 @@ if (isset($_SESSION['logget_ind']) && isset($_SESSION['admin'])) {
 		if ($line["Admin"] == 1) $checked = " checked";
 		echo "				<td><div align=\"center\"><input type=\"checkbox\" id=\"admin".$user."\" name=\"admin".$user."\"".$checked." /> </div></td>\n"; // Email
 		echo "				<td><a href=\"javascript:deleteUser(".$userId.")\"><img src=\"img/slet.gif\" alt=\"Ret\" width=\"16\" height=\"16\" border=\"0\" /></a></td>\n"; // delete-icons
-		echo "				<td><input class=\"submit_btn\" type=\"button\" value=\"Gem ændringer\" onclick=\"javascript:saveUser(".$user.",".$userId.")\" /></td>";
+		echo "				<td><input class=\"submit_btn\" type=\"button\" value=\"Gem Ã¦ndringer\" onclick=\"javascript:saveUser(".$user.",".$userId.")\" /></td>";
 		echo "				<td><input class=\"submit_btn\" type=\"button\" value=\"Ny kode\" onclick=\"javascript:newPassword(".$user.",".$userId.")\" /></td>";
 		if ($colour == "") {
 			$colour = " bgcolor=\"#f2f2f2\"";
@@ -112,7 +112,7 @@ if (isset($_SESSION['logget_ind']) && isset($_SESSION['admin'])) {
 	
 	<form id="personform" name="personform" method="post" action="main.php?page=admin">
 	<table id="musiker_table" cellspacing="0" cellpadding="3" width="550">
-		<tr><td height="15" background="img/tabletop_bg.gif" colspan="2"><div align="left"><strong>Tilføj ny bruger:</strong></div></td></tr>
+		<tr><td height="15" background="img/tabletop_bg.gif" colspan="2"><div align="left"><strong>TilfÃ¸j ny bruger:</strong></div></td></tr>
 		<tr bgcolor="#f2f2f2">
 			<td align="right">Brugernavn: <input type="text" id="brugernavn" name="brugernavn" size="45"></td>
 		</tr>
@@ -144,7 +144,7 @@ if (isset($_SESSION['logget_ind']) && isset($_SESSION['admin'])) {
 			if (file_exists("./odp-handler/templates/".$entry."/default")) {
 				echo "<td>Valgt som standard</td>\n";
 			} else {
-				echo "<td><input class=\"submit_btn\" type=\"button\" value=\"Vælg som standard\" onclick=\"javascript:setDefaultTemplate('".$entry."')\" /></td>\n";
+				echo "<td><input class=\"submit_btn\" type=\"button\" value=\"VÃ¦lg som standard\" onclick=\"javascript:setDefaultTemplate('".$entry."')\" /></td>\n";
 			}
 			echo "</tr>\n";
 			
@@ -157,12 +157,12 @@ if (isset($_SESSION['logget_ind']) && isset($_SESSION['admin'])) {
 	}
 	echo "<tr $colour>"; 
 ?>
-		<td align="right" colspan="3">Tilføj ny skabelon: <input type="file" name="uploadTemplate" size="30"/> <input class="submit_btn" type="submit" name="Submit" value="Tilføj" /></td></tr>
+		<td align="right" colspan="3">TilfÃ¸j ny skabelon: <input type="file" name="uploadTemplate" size="30"/> <input class="submit_btn" type="submit" name="Submit" value="TilfÃ¸j" /></td></tr>
 	</table>
 	</form>
 	<p>
 
-	<button name="send" onclick="window.location='impress/createSlides.php?songcount=-1';" value="Generer præsentation med alle sange" class="submit_btn"> Generer præsentation med alle sange </button>
+	<button name="send" onclick="window.location='impress/createSlides.php?songcount=-1';" value="Generer prÃ¦sentation med alle sange" class="submit_btn"> Generer prÃ¦sentation med alle sange </button>
 
 
 <?php

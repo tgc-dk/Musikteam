@@ -7,7 +7,7 @@ if (isset($_SESSION['logget_ind'])) {
 	include("db.php");
 	openDB();
 
-	echo "<?xml version=\"1.0\" encoding=\"iso-8859-1\"?>\n";
+	echo "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n";
 
 	echo "<song>\n";
 	$query = "SELECT Titel,Identifikation,ProTekst,CommentsOver,CommentsUnder FROM Sang WHERE SangId=".$_POST['song'];

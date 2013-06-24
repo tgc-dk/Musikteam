@@ -97,7 +97,7 @@ function slides_edit()
 
 	document.getElementById("slides_img").src = "img/slides_down.gif";
 	document.getElementById("text_img").src = "img/tekst_up.gif";
-	//document.getElementById("layout_img").src = "img/layout_up.gif";
+	document.getElementById("layout_img").src = "img/layout_up.gif";
 	
 }
 function text_input()
@@ -108,7 +108,7 @@ function text_input()
 	document.getElementById("modpro_txt").style.display="inline";
 
 	document.getElementById("text_img").src = "img/tekst_down.gif";
-	//document.getElementById("layout_img").src = "img/layout_up.gif";
+	document.getElementById("layout_img").src = "img/layout_up.gif";
 	document.getElementById("slides_img").src = "img/slides_up.gif";
 	
 }
@@ -120,18 +120,20 @@ function layout_edit()
 	document.getElementById("modpro_txt").style.display="inline";
 
 	document.getElementById("text_img").src = "img/tekst_up.gif";
-	//document.getElementById("layout_img").src = "img/layout_down.gif";
+	document.getElementById("layout_img").src = "img/layout_down.gif";
 	document.getElementById("slides_img").src = "img/slides_up.gif";
 
 	Afstande();
 }
 
-// When page is loaded this makes sure the modpro lyrics is rendered and that only the modpro edit window is shown.
-// It also setups onkeydown for all input fields.
+// When page is loaded this makes sure the modpro lyrics is rendered and that only the modpro edit window is shown
 function first_load()
 {
 	text_input();
 	update();
+
+	// setup the message that pops up on exit
+	window.onbeforeunload = beforeunload;
 
 	// setup shortcut keys
 	// Vertical dash
@@ -142,19 +144,6 @@ function first_load()
 	shortcut.add("Ctrl+Alt+T",function() {
 		insertAtCursor(document.getElementById('editArea'),'[]');
 	});
-	
-	// set onkeydown for all input fields and textareas, so that
-	// users are asked if any changes should be saved.
-	for (i=0; i < document.getElementsByTagName("input").length; i++) {	 
-		document.getElementsByTagName("input")[i].onkeydown=function(){
-			window.onbeforeunload = beforeunload;
-		};
-	}
-	for (i=0; i < document.getElementsByTagName("textarea").length; i++) {	 
-		document.getElementsByTagName("textarea")[i].onkeydown=function(){
-			window.onbeforeunload = beforeunload;
-		};
-	}
 }
 
 function beforeunload()
@@ -269,14 +258,14 @@ function saveSlides()
 	}
 
 	if (trim(document.getElementById('slides').value) == "") {
-		alert('Der skal indtastes en afspilningsrækkefølge for slidesne, f.eks.: "ABCBC".');
+		alert('Der skal indtastes en afspilningsrÃ¦kkefÃ¸lge for slidesne, f.eks.: "ABCBC".');
 	} else {
 
 		// Create the XMLHttpRequest object used for communication with the server
 		var xhr = createXmlHttpRequestObj();
 		
 		if (!xhr) {
-			alert('Din browser understøtter ikke XmlHttpRequest!');
+			alert('Din browser understÃ¸tter ikke XmlHttpRequest!');
 			return;
 		}
 		
@@ -286,7 +275,7 @@ function saveSlides()
 			if (xhr.readyState  == 4) {
 				if (xhr.status  == 200) {
 					if (xhr.responseText == "done") {
-						alert('De ændrede slides er blevet gemt.');
+						alert('De Ã¦ndrede slides er blevet gemt.');
 					} else if (pos = xhr.responseText.indexOf('done:') >= 0) {
 						songID = parseInt(xhr.responseText.substr(5));
 						alert('Slidesne er blevet gemt.');
@@ -318,7 +307,7 @@ function saveSlides()
 
 		// Send the data to the server
 		xhr.open("POST", "saveSongData.php",  true);
-		xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded; charset=iso-8859-1");
+		xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded; charset=UTF-8");
 		xhr.send(text);
 
 	}
@@ -335,7 +324,7 @@ function saveLyrics()
 	var xhr = createXmlHttpRequestObj();
 	
 	if (!xhr) {
-		alert('Din browser understøtter ikke XmlHttpRequest!');
+		alert('Din browser understÃ¸tter ikke XmlHttpRequest!');
 		return;
 	}
 	
@@ -345,7 +334,7 @@ function saveLyrics()
 		if (xhr.readyState  == 4) {
 			if (xhr.status  == 200) {
 				if (xhr.responseText == "done") { 
-					alert('Den ændrede sangtekst er blevet gemt.');
+					alert('Den Ã¦ndrede sangtekst er blevet gemt.');
 				} else if (pos = xhr.responseText.indexOf('done:') >= 0) {
 					songID = parseInt(xhr.responseText.substr(5));
 					alert('Sangteksten er blevet gemt.');
@@ -371,7 +360,7 @@ function saveLyrics()
 
 	// Send the data to the server
 	xhr.open("POST", "saveSongData.php",  true);
-	xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded; charset=iso-8859-1");
+	xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded; charset=UTF-8");
 	xhr.send(text);
 
 }
@@ -387,7 +376,7 @@ function saveMeta()
 	var xhr = createXmlHttpRequestObj();
 	
 	if (!xhr) {
-		alert('Din browser understøtter ikke XmlHttpRequest!');
+		alert('Din browser understÃ¸tter ikke XmlHttpRequest!');
 		return;
 	}
 	
@@ -397,7 +386,7 @@ function saveMeta()
 		if (xhr.readyState  == 4) {
 			if (xhr.status  == 200) {
 				if (xhr.responseText == "done") { 
-					alert('De ændrede stamdata er blevet gemt.');
+					alert('De Ã¦ndrede stamdata er blevet gemt.');
 				} else if (pos = xhr.responseText.indexOf('done:') >= 0) {
 					songID = parseInt(xhr.responseText.substr(5));
 					alert('Stamdataen er blevet gemt.');
@@ -422,7 +411,7 @@ function saveMeta()
 
 	// Send the data to the server
 	xhr.open("POST", "saveSongData.php",  true);
-	xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded; charset=iso-8859-1");
+	xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded; charset=UTF-8");
 	xhr.send(text);
 
 }
@@ -444,7 +433,7 @@ function saveAll()
 	}
 
 	if (songID != -1) {
-		doit = confirm('Dette vil overskrive tidligere tekst m. akkorder og slides, er du sikker på at du vil fortsætte?');
+		doit = confirm('Dette vil overskrive tidligere tekst m. akkorder og slides, er du sikker pÃ¥ at du vil fortsÃ¦tte?');
 		if (!doit) return;
 	}
 
@@ -452,7 +441,7 @@ function saveAll()
 	var xhr = createXmlHttpRequestObj();
 	
 	if (!xhr) {
-		alert('Din browser understøtter ikke XmlHttpRequest!');
+		alert('Din browser understÃ¸tter ikke XmlHttpRequest!');
 		return;
 	}
 	
@@ -462,7 +451,7 @@ function saveAll()
 		if (xhr.readyState  == 4) {
 			if (xhr.status  == 200) {
 				if (xhr.responseText == "done") { 
-					alert('De ændrede data er blevet gemt.');
+					alert('De Ã¦ndrede data er blevet gemt.');
 				} else if (pos = xhr.responseText.indexOf('done:') >= 0) {
 					songID = parseInt(xhr.responseText.substr(5));
 					alert('Dataen er blevet gemt.');
@@ -504,7 +493,7 @@ function saveAll()
 
 	// Send the data to the server
 	xhr.open("POST", "saveSongData.php",  true);
-	xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded; charset=iso-8859-1");
+	xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded; charset=UTF-8");
 	xhr.send(text);
 
 }
@@ -512,7 +501,7 @@ function saveAll()
 function copyToNew()
 {
 	songID = -1;
-	alert('Kopiering gennemført, brug evt. "Udgave" feltet til at kende forskel på den nye og den gamle version.');
+	alert('Kopiering gennemfÃ¸rt, brug evt. "Udgave" feltet til at kende forskel pÃ¥ den nye og den gamle version.');
 }
 
 function deleteSong()
@@ -528,7 +517,7 @@ function deleteSong()
 		var xhr = createXmlHttpRequestObj();
 		
 		if (!xhr) {
-			alert('Din browser understøtter ikke XmlHttpRequest!');
+			alert('Din browser understÃ¸tter ikke XmlHttpRequest!');
 			return;
 		}
 		
@@ -555,7 +544,7 @@ function deleteSong()
 
 		// Send the data to the server
 		xhr.open("POST", "saveSongData.php",  true);
-		xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded; charset=iso-8859-1");
+		xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded; charset=UTF-8");
 		xhr.send(text);
 	}
 
@@ -770,7 +759,7 @@ function changeTone(mode)
 			else newBassTone = getLowerTone(trim(bassTone));
 
 			if (newBassTone == 'ERROR') {
-				alert('Der opstod en fejl omkring tonen: ' + orgTone + '! Er du sikker på at du har skrevet tonerne korrekt?');
+				alert('Der opstod en fejl omkring tonen: ' + orgTone + '! Er du sikker pÃ¥ at du har skrevet tonerne korrekt?');
 				return;
 			}
 		}
@@ -781,7 +770,7 @@ function changeTone(mode)
 		else newTone = getLowerTone(trim(tone));
 
 		if (newTone == 'ERROR') {
-			alert('Der opstod en fejl omkring tonen: ' + orgTone + '! Er du sikker på at du har skrevet tonerne korrekt?');
+			alert('Der opstod en fejl omkring tonen: ' + orgTone + '! Er du sikker pÃ¥ at du har skrevet tonerne korrekt?');
 			return;
 		}
 
@@ -833,10 +822,10 @@ function HidePop(id)
 function uploadAudio()
 {
 	if (songID==-1) {
-		alert("Sangen skal gemmes før du kan uploade en lydfil");
+		alert("Sangen skal gemmes fÃ¸r du kan uploade en lydfil");
 		return;
 	}
-	if (document.getElementById('audiofile').innerHTML.indexOf('/musik/') != -1) {
+	if (document.getElementById('audiofile').innerHTML.indexOf('musikteam.dk/musik/') != -1) {
 		doit = confirm('Dette vil slette den eksisterende fil, er du sikker?');
 		if (!doit) return;
 	}
@@ -853,7 +842,7 @@ function uploadAudio()
 function giveAudioURL()
 {
 	var oldurl = "";
-	if (document.getElementById('audiofile').innerHTML.indexOf('/musik/') != -1) {
+	if (document.getElementById('audiofile').innerHTML.indexOf('musikteam.dk/musik/') != -1) {
 		doit = confirm('Dette vil slette den eksisterende fil, er du sikker?');
 		if (!doit) return;
 	} else {

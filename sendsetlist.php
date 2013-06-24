@@ -25,7 +25,7 @@ if (isset($_SESSION['logget_ind'])) {
 	if ($to != "") $to = substr($to, 0, $to.Length - 2);
 
 	// Create the content of the mail
-	$body = "Hej!\n\nDu modtager denne mail fordi er sat på til at spille til ".$_POST['eventName']."\n\n".
+	$body = "Hej!\n\nDu modtager denne mail fordi er sat pÃ¥ til at spille til ".$_POST['eventName']."\n\n".
 			"Setliste:\n";
 
 	// List the songs
@@ -49,9 +49,9 @@ if (isset($_SESSION['logget_ind'])) {
 		if ($role != "") $body .= "  (".$role.")";
 		$body .= "\n";
 	}
-	$body .= "\nDu kan se setlisten og udskrive sangblad samt sangene m akkorder på http://".$ROOT_URL."main.php?page=program&eventId=".$_POST['eventid']."\n";
+	$body .= "\nDu kan se setlisten og udskrive sangblad samt sangene m akkorder pÃ¥ http://www.musikteam.dk/main.php?page=program&eventId=".$_POST['eventid']."\n";
 
-	$body .= "\nMvh\n\t Københavnerkirkens Musikteam\n\n\nPS. Dette er en automatisk genereret e-mail.\n";
+	$body .= "\nMvh\n\t KÃ¸benhavnerkirkens Musikteam\n\n\nPS. Dette er en automatisk genereret e-mail.\n";
 
 	// Get email-address of sender
 	$username = $_POST['username'];
@@ -72,7 +72,7 @@ if (isset($_SESSION['logget_ind'])) {
 	if (mail($to, $subject, $body, $headers)) {
 		echo "done";
 	} else {
-		echo("Der blev ikke sendt en mail til bandet pga. fejl. Prøv igen. emails: ".$to);
+		echo("Der blev ikke sendt en mail til bandet pga. fejl. PrÃ¸v igen. emails: ".$to);
 	}
 }
 ?>

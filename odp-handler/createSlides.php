@@ -153,6 +153,10 @@ class PresentationCreator {
 		$this->presentation->createSongSlides($title, $author, $text4slides);
 		return true;
 	}
+
+	function finishSlides() {
+		$this->presentation->createEndSlides();
+	}
 	
 	function returnSlides() {
 		return $this->presentation->returnODPFile();
@@ -186,6 +190,8 @@ if ($songcount == -1) {
 		
 	}
 }
+$content->finishSlides();
+
 //$content->saveSlides();
 echo $content->returnSlides();
 

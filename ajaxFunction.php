@@ -21,7 +21,7 @@
 		openDB();
 		doSQLQuery($sql);
 		closeDB();
-		echo "<img src=\"img/favorit_unchecked.gif\" alt=\"Tilføj favorit\" width=\"16\" height=\"16\" style=\"cursor: pointer;\" onclick=\"FavoriteSong(".$sangid.",'addFavorite');\" />";
+		echo "<img src=\"img/favorit_unchecked.gif\" alt=\"TilfÃ¸j favorit\" width=\"16\" height=\"16\" style=\"cursor: pointer;\" onclick=\"FavoriteSong(".$sangid.",'addFavorite');\" />";
 		break;
 
 	default:

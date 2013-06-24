@@ -60,11 +60,11 @@ if (isset($_SESSION['logget_ind'])) {
 		}
 
 ?>
-					</select> (Hvis dit navn ikke står på listen skal du oprette dig selv under "Teams")
+					</select> (Hvis dit navn ikke stÃ¥r pÃ¥ listen skal du oprette dig selv under "Teams")
 				</td>
 			</tr>
 			<tr bgcolor="#f2f2f2">
-				<td align="center"><input class="submit_btn" type="submit" name="Submit" value="Gem ændringer" /></td>
+				<td align="center"><input class="submit_btn" type="submit" name="Submit" value="Gem Ã¦ndringer" /></td>
 			</tr>
 
 		</table>
@@ -74,7 +74,7 @@ if (isset($_SESSION['logget_ind'])) {
 
 	<table id="musiker_table" cellspacing="0" cellpadding="3" width="600">
 	<tr>
-		<td height="15" background="img/tabletop_bg.gif"><div align="left"><strong>Setlister hvor jeg er på:</strong></div></td>
+		<td height="15" background="img/tabletop_bg.gif"><div align="left"><strong>Setlister hvor jeg er pÃ¥:</strong></div></td>
 	</tr>
 
 <?php

@@ -112,8 +112,7 @@ function CreateLikeClause($strField, $strCriteria) {
 
 function db_fix_str($strIn) {
 	global $conn;
-	$str = utf8_decode($strIn);
-	$str = str_replace("‘", "'", $str);
+	$str = str_replace("‘", "'", $strIn);
 	$str = str_replace("’", "'", $str);
 	$str = str_replace("”", '"', $str);
 	$str = str_replace("“", '"', $str);

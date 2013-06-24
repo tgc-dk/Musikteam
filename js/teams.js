@@ -143,7 +143,7 @@ function editPerson(personID)
 	var xhr = createXmlHttpRequestObj();
 	
 	if (!xhr) {
-		alert('Din browser understøtter ikke XmlHttpRequest!');
+		alert('Din browser understÃ¸tter ikke XmlHttpRequest!');
 		return;
 	}
 	
@@ -162,7 +162,7 @@ function editPerson(personID)
 	
 	// Send the data to the server
 	xhr.open("POST", "getPerson.php", true);
-	xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded; charset=iso-8859-1");
+	xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded; charset=UTF-8");
 	xhr.send("id="+personID);
 }
 
@@ -272,7 +272,7 @@ function editTeam(teamID)
 	var xhr = createXmlHttpRequestObj();
 	
 	if (!xhr) {
-		alert('Din browser understøtter ikke XmlHttpRequest!');
+		alert('Din browser understÃ¸tter ikke XmlHttpRequest!');
 		return;
 	}
 	
@@ -290,7 +290,7 @@ function editTeam(teamID)
 
 	// Send the data to the server
 	xhr.open("POST", "getTeam.php", true);
-	xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded; charset=iso-8859-1");
+	xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded; charset=UTF-8");
 	xhr.send("id="+teamID);
 
 }

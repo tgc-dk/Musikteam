@@ -1,6 +1,6 @@
 <html>
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <title>akkord konverterings test</title
   <style type="text/css">
 <!--
@@ -95,7 +95,7 @@ function convertToPro(text) {
       proText += curLineText + "\n";
     
     // insert accords in the protext format
-    } else if (curLineStatus == "indsæt") {
+    } else if (curLineStatus == "indsÃ¦t") {
       var newLine = "";
       var noMoreText = false;
       m = 0;
@@ -128,7 +128,7 @@ function convertToPro(text) {
 
     // save accords for later, or insert accords in a line with no text
     } else if (curLineStatus == "akkord") {
-      if ((i+1 == lineCount) || (document.getElementById("link"+(i+1)).innerHTML != "indsæt")) {
+      if ((i+1 == lineCount) || (document.getElementById("link"+(i+1)).innerHTML != "indsÃ¦t")) {
         var newLine = "";
 
         for (j=0; j<=curLineText.length; j++) {
@@ -229,8 +229,8 @@ function convertToPro(text) {
       if (divContent.indexOf("tekst") != -1) {
         document.getElementById(linkId).innerHTML = "akkord";
       } else if (divContent.indexOf("akkord") != -1) {
-        document.getElementById(linkId).innerHTML = "indsæt";
-      } else if (divContent.indexOf("indsæt") != -1) {
+        document.getElementById(linkId).innerHTML = "indsÃ¦t";
+      } else if (divContent.indexOf("indsÃ¦t") != -1) {
         document.getElementById(linkId).innerHTML = "tekst";
       }
     }
@@ -256,12 +256,12 @@ function convertToPro(text) {
     #ie6msg p a.ie6expl{font-weight:normal; color:#006;}
 </style>
 <div id="ie6msg">
-<h4>OBS: Du har en ældre version af browseren Internet Explorer.</h4>
+<h4>OBS: Du har en Ã¦ldre version af browseren Internet Explorer.</h4>
 <p>
-        For at få en bedst mulig oplevelse af at bruge denne webside,<br />
+        For at fÃ¥ en bedst mulig oplevelse af at bruge denne webside,<br />
         kan du gratis <a class="getie7" href="http://www.microsoft.com/danmark/windows/downloads/ie/getitnow.mspx" target="_blank">hente en nyere version af Internet Explorer</a>,<br />
         eller bruge en anden browser som <a class="getie7" href="http://getfirefox.com">Mozilla Firefox</a> eller <a class="getie7" href="http://www.google.com/chrome/?hl=da">Google Chrome</a>.<br/>
-        Bruger du en arbejds-PC bør du kontakte den IT-ansvarlige.
+        Bruger du en arbejds-PC bÃ¸r du kontakte den IT-ansvarlige.
     </p>
 <p>
     </p>
@@ -269,24 +269,24 @@ function convertToPro(text) {
 <p>< ![endif]-->  
 
 
-<h3>Akkord konvertør</h3>
+<h3>Akkord konvertÃ¸r</h3>
 <p>Her kan du konvertere akkorder fra rent tekst format til Pro formatet som er det musikteam bruger. 
-Du indsætter din tekst med akkorder i tekstfeltet nedenfor, retter evt. til så akkorderne står hvor de skal og giver hver linje den rette mærkat.
-Der er 3 forskellige mærkater: "tekst", "akkord" og "indsæt". Mærkatet "tekst" er for linjer som hverken er akkorder, eller skal have nogen akkorder indsat.
-Mærkatet "akkord" er for de linjer der er akkorder, og mærkatat "indsæt" er for de tekst linjer hvor akkorderne skal indsættes.
-En linje med mærkatet "indsæt" <u>skal</u> være under en linje med mærkatet "akkord".
-Du skifter mellem de tre mærkater ved at trykke på dem (ude til venstre).
-Tryk på Opdater-knappen for at se hvordan resultatet bliver, og tryk på Importer-knappen for at importere de nye akkorder ind i sangen.</p>
+Du indsÃ¦tter din tekst med akkorder i tekstfeltet nedenfor, retter evt. til sÃ¥ akkorderne stÃ¥r hvor de skal og giver hver linje den rette mÃ¦rkat.
+Der er 3 forskellige mÃ¦rkater: "tekst", "akkord" og "indsÃ¦t". MÃ¦rkatet "tekst" er for linjer som hverken er akkorder, eller skal have nogen akkorder indsat.
+MÃ¦rkatet "akkord" er for de linjer der er akkorder, og mÃ¦rkatat "indsÃ¦t" er for de tekst linjer hvor akkorderne skal indsÃ¦ttes.
+En linje med mÃ¦rkatet "indsÃ¦t" <u>skal</u> vÃ¦re under en linje med mÃ¦rkatet "akkord".
+Du skifter mellem de tre mÃ¦rkater ved at trykke pÃ¥ dem (ude til venstre).
+Tryk pÃ¥ Opdater-knappen for at se hvordan resultatet bliver, og tryk pÃ¥ Importer-knappen for at importere de nye akkorder ind i sangen.</p>
 <!--Antal linjer: <div id="count">0</div> <br/>
 Aktiv linje: <div id="curline">0</div> <br/>-->
-<button name="send" value="Opdatér forhåndsvisning" class="submit_btn_2" onClick="javascript:update();return false;"><img src="img/refresh_firefox.gif" alt="Opdat&eacute;r" width="18" height="19" align="absmiddle"/> Opdatér forhåndsvisning </button> 
+<button name="send" value="OpdatÃ©r forhÃ¥ndsvisning" class="submit_btn_2" onClick="javascript:update();return false;"><img src="http://www.musikteam.dk/img/refresh_firefox.gif" alt="Opdat&eacute;r" width="18" height="19" align="absmiddle"/> OpdatÃ©r forhÃ¥ndsvisning </button> 
 <button name="send" value="Importer akkorder og luk dette vindue" class="submit_btn_2" onClick="javascript:importAndClose();return false;"> Importer akkorder og luk dette vindue </button> 
 <table>
   <tr>
     <td width="50px" style="font-size:10pt;font-family:monospace" valign="top" align="right"><div id="zeroes"></div></td>
     <td width="500px" valign="top">
       <textarea wrap="off" id="sangtekst" onkeyup="javascript:checkStuff();" cols="70" rows="10" style="font-size:10pt;border:0px;overflow-y:hidden;background-color:#CCCCCC;margin:0px">
-Indsæt sangtekst
+IndsÃ¦t sangtekst
 med akkorder her</textarea>
     </td>
     <td><div id="protext"></div></td>

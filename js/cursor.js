@@ -1,8 +1,8 @@
 function cursorPosition(textarea){
-//var textarea = document.getElementById(”myTextArea”);
+//var textarea = document.getElementById(âmyTextAreaâ);
 	textarea.focus();
 
-	// get selection in firefox, opera, …
+	// get selection in firefox, opera, â¦
 
 	if (typeof(textarea.selectionStart) == 'number') {
 		return textarea.selectionStart;
@@ -73,7 +73,7 @@ function cursorPosition(textarea){
 			} while ((!before_finished || !selection_finished || !after_finished));
 
 			// Untrimmed success test to make sure our results match what is actually in the textarea
-			// This can be removed once you’re confident it’s working correctly
+			// This can be removed once youâre confident itâs working correctly
 			var untrimmed_text = untrimmed_before_text + untrimmed_selection_text + untrimmed_after_text;
 			var untrimmed_successful = false;
 			if (textarea.value == untrimmed_text) {

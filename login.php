@@ -26,12 +26,12 @@ include("db.php");
     #ie6msg p a.ie6expl{font-weight:normal; color:#006;}
 </style>
 <div id="ie6msg">
-<h4>OBS: Du har en ældre version af browseren Internet Explorer.</h4>
+<h4>OBS: Du har en Ã¦ldre version af browseren Internet Explorer.</h4>
 <p>
-        For at få en bedst mulig oplevelse af at bruge denne webside,<br />
+        For at fÃ¥ en bedst mulig oplevelse af at bruge denne webside,<br />
         kan du gratis <a class="getie7" href="http://www.microsoft.com/danmark/windows/downloads/ie/getitnow.mspx" target="_blank">hente en nyere version af Internet Explorer</a>,<br />
         eller bruge en anden browser som <a class="getie7" href="http://getfirefox.com">Mozilla Firefox</a> eller <a class="getie7" href="http://www.google.com/chrome/?hl=da">Google Chrome</a>.<br/>
-        Bruger du en arbejds-PC bør du kontakte den IT-ansvarlige.
+        Bruger du en arbejds-PC bÃ¸r du kontakte den IT-ansvarlige.
     </p>
 <p>
     </p>
@@ -53,7 +53,7 @@ if ($admin != "") {
 	$_SESSION['password'] = md5($_POST['password'].'musikteam'); //$password;
 	$_SESSION['admin'] = $admin;
 } else {
-	echo "<h1>Ukorrekt login</h1><p>Du skal være logget ind for at se disse sider. <a href=\"default.php\">Log in</a></p>";
+	echo "<h1>Ukorrekt login</h1><p>Du skal vÃ¦re logget ind for at se disse sider. <a href=\"default.php\">Log in</a></p>";
 }
 closeDB();
 ?>

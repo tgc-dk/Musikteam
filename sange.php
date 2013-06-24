@@ -217,15 +217,15 @@ if (isset($_SESSION['logget_ind'])) {
 				<script language="JavaScript">document.getElementById('textfield').focus();</script>
 			</label>
 			<label>&nbsp;
-				<input class="submit_btn" type="submit" name="Submit" value="Søg" />
+				<input class="submit_btn" type="submit" name="Submit" value="SÃ¸g" />
 			</label>
 			<br />
 			<span class="style2">
-				Søg i: 
+				SÃ¸g i: 
 				<INPUT type="checkbox" name="searchTitle" id="searchTitle" onChange="findSong();" class="checkbox"<?php echo ($sTitle == "on" ? ' checked="true"' : ''); ?>>Titel&nbsp;&nbsp;&nbsp;&nbsp;
 				<INPUT type="checkbox" name="searchAuthor" id="searchAuthor" onChange="findSong();" class="checkbox"<?php echo($sAuthor == "on" ? ' checked="true"' : ''); ?>>Forfatter&nbsp;&nbsp;&nbsp;&nbsp;
 				<INPUT type="checkbox" name="searchText" id="searchText" onChange="findSong();" class="checkbox"<?php echo ($sText == "on" ? ' checked="true"' : ''); ?>>Tekst&nbsp;&nbsp;&nbsp;&nbsp;
-				<INPUT type="checkbox" name="searchProTextOnly" id="searchProTextOnly" onChange="findSong();" class="checkbox"<?php echo ($sProTextOnly == "on" ? ' checked="true"' : ''); ?>>Søg kun i sange m. akkorder			</span>
+				<INPUT type="checkbox" name="searchProTextOnly" id="searchProTextOnly" onChange="findSong();" class="checkbox"<?php echo ($sProTextOnly == "on" ? ' checked="true"' : ''); ?>>SÃ¸g kun i sange m. akkorder			</span>
 			<p>
             <table width="610px" border="0" cellspacing="0" cellpadding="0">
 			  <tr>
@@ -234,7 +234,7 @@ if (isset($_SESSION['logget_ind'])) {
 				  <button name="send" value="Vis alle sange m. akkorder" class="submit_btn5" onClick="showall(2);return false;"> Vis alle sange m. akkorder </button>&nbsp;&nbsp;&nbsp;&nbsp;
 				  <button name="send" value="Vis mine favorit sange" class="submit_btn6" onClick="showall(4);return false;"> Vis mine favorit sange </button></td>
 				<td></td>
-				<td width="100" colspan="2"><button name="send" onclick="var song_win=NewWindow('editSong.php?song=-1','song_win','yes');return false;" value="Tilføj ny sang" class="submit_btn7"> Tilføj ny sang </button></td>
+				<td width="100" colspan="2"><button name="send" onclick="var song_win=NewWindow('editSong.php?song=-1','song_win','yes');return false;" value="TilfÃ¸j ny sang" class="submit_btn7"> TilfÃ¸j ny sang </button></td>
 			  </tr>
 		      <tr>
 			    <td>
@@ -277,7 +277,7 @@ if (isset($_SESSION['logget_ind'])) {
 			<td width="80" height="15" background="img/tabletop_bg.gif"><div align="center"><strong>Sidst spillet d</strong></div></td>
 			<td height="15" background="img/tabletop_bg.gif"><div align="center"><strong>Favorit</strong></div></td>
 			<td height="15" background="img/tabletop_bg.gif"><div align="center"><strong>Lyt</strong></div></td>
-			<td height="15" background="img/tabletop_bg.gif"><div align="center"><strong>Tilføj</strong></div></td>
+			<td height="15" background="img/tabletop_bg.gif"><div align="center"><strong>TilfÃ¸j</strong></div></td>
 		</tr>
 
 <?php
@@ -379,7 +379,7 @@ if (isset($_SESSION['logget_ind'])) {
 				echo "			<td align=\"center\">&nbsp;</td>\n"; // Link or audio file
 			}
 
-		// Tilføj sang til setlist
+		// TilfÃ¸j sang til setlist
 			if (isSongInProgram($songid, $_SESSION['setlist']))
 				echo "			<td id=\"addImg".$songid."\" align=\"center\"><img src=\"img/list-minus.gif\" alt=\"Fjern sang\" width=\"14\" height=\"14\" border=\"0\" style=\"cursor: pointer;\" align=\"top\" onclick=\"removeSong(".$songid.")\" /></td>\n"; // Remove
 			else

@@ -42,13 +42,13 @@ if ($_GET['day'] < 1 && $_POST['date'] == "" && $_POST['title'] == "" && $_GET['
 ?>
 	<form id="form1" name="form1" method="post" action="main.php?page=program" onSubmit="return ValidateForm(form1.date.value);">
 		<label>
-			Tilføj arrangement: <br/> Titel: <input name="title" type="text" size="15" value=""/>
+			TilfÃ¸j arrangement: <br/> Titel: <input name="title" type="text" size="15" value=""/>
 		</label>
 		<label>
-			Dato (dd/mm/åååå): <input name="date" type="text" size="15" value=""/>
+			Dato (dd/mm/Ã¥Ã¥Ã¥Ã¥): <input name="date" type="text" size="15" value=""/>
 		</label>
 		<label>&nbsp;
-			<input class="submit_btn" type="submit" name="Submit" value="Tilføj" />
+			<input class="submit_btn" type="submit" name="Submit" value="TilfÃ¸j" />
 		</label>
 	</form>
 <div class="musiker_table_2">
@@ -121,7 +121,7 @@ if ($_GET['day'] < 1 && $_POST['date'] == "" && $_POST['title'] == "" && $_GET['
 			$query = "SELECT ProgramID,Arrangement FROM Program WHERE (Dato >= #00:00:00 $month/$day/$year#) and (Dato < #01:00:00 $month/$day/$year#)";
 		}
 		$result = doSQLQuery($query);
-		echo "<br />Vælg et arrangement på den valgte dato:<br />";
+		echo "<br />VÃ¦lg et arrangement pÃ¥ den valgte dato:<br />";
 		while ($line = db_fetch_array($result)) {
 ?>
 			<div id="sub_menu_1"><a href="main.php?page=program&eventId=<?php echo $line["ProgramID"]; ?>" > <?php echo $line["Arrangement"]; ?> </a></div>
@@ -140,7 +140,7 @@ if ($_GET['day'] < 1 && $_POST['date'] == "" && $_POST['title'] == "" && $_GET['
 ?>
 <!-- Sange -->
 <div class="arrangement">
-<button name="send" value="Tilføj arrangement" class="submit_btn" onClick="javascript:location.href='main.php?page=program';return false;"> Tilføj arrangement </button><br>
+<button name="send" value="TilfÃ¸j arrangement" class="submit_btn" onClick="javascript:location.href='main.php?page=program';return false;"> TilfÃ¸j arrangement </button><br>
 <!--<a href="main.php?page=program" target="_top"><img src="img/arrangement.gif" border="0" alt="Sange" /></a>--></div>
 <table id="setliste_table" cellspacing="0" cellpadding="3">
 	<tr>
@@ -226,7 +226,7 @@ if ($_GET['day'] < 1 && $_POST['date'] == "" && $_POST['title'] == "" && $_GET['
 		<td width="17"><a href="javascript:deletePerson(<?php echo $personCount; ?>)"><img src="img/slet.gif" alt="Slet" width="16" height="16" border="0" /></a></td>
 		<td>
 			<select name="selectAbility">
-				<option value="-1">Vælg en rolle</option>
+				<option value="-1">VÃ¦lg en rolle</option>
 <?php
 			// Find and list abilities
 			$selectedAbility = $line["RolleID"];

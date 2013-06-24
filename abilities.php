@@ -16,7 +16,7 @@ if (isset($_SESSION['logget_ind'])) {
 		echo "				<tr><td".$colour.">\n";
 		echo "					<form id=\"abilityform".$roleID."\" name=\"abilityform".$roleID."\" method=\"post\" action=\"main.php?page=teams&subpage=abilities&id=".$roleID."\">\n";
 		echo "						<input type=\"text\" size=\"30\" value=\"".$roleName."\" name=\"ability\">&nbsp;&nbsp;\n";
-		echo "						<input class=\"submit_btn\" type=\"submit\" name=\"Submit\" value=\"Gem ændringer\" />&nbsp;&nbsp;\n";
+		echo "						<input class=\"submit_btn\" type=\"submit\" name=\"Submit\" value=\"Gem Ã¦ndringer\" />&nbsp;&nbsp;\n";
 		echo "						<button name=\"send\" value=\"Slet evne\" class=\"submit_btn_2\" onClick=\"javascript:deleteAbility(".$roleID.");document.abilityform".$roleID.".submit();\"> Slet evne </button>\n";
 		echo "					</form>\n";
 		echo "				</td></tr>\n";

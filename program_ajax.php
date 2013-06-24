@@ -25,7 +25,7 @@ else if($_POST['setlist'] != NULL)
 		if (isSongInProgram($sangid, $_SESSION['setlist'])) {
 			$str .= "<br/><span id=\"setlist\"><a href=\"javascript:removeSong(".$sangid.");\">Fjern sangen fra setlisten</a></span>";
 		} else {
-			$str .= "<br/><span id=\"setlist\"><a href=\"javascript:addSong(".$sangid.");\">Tilføj sangen til setlisten</a></span>";
+			$str .= "<br/><span id=\"setlist\"><a href=\"javascript:addSong(".$sangid.");\">TilfÃ¸j sangen til setlisten</a></span>";
 		}
 	}
 
@@ -48,7 +48,7 @@ else if($_POST['mode'] == 'allSetlist' || $_POST['mode'] == 'Setlist') //ingen d
 	$str .= "<table width=\"100%\" cellpadding=\"0\" cellspacing=\"0\">";
 	$str .= "	<tr>";
 	$str .= "		<th background=\"img/tabletop_bg.gif\">";
-	$str .= "Vælg en setliste!";
+	$str .= "VÃ¦lg en setliste!";
 	$str .= "		</th>";
 	$str .= "	</tr>";
 	$str .= "   <tr>";
@@ -90,7 +90,7 @@ else if($_POST['mode'] == 'add')
 {
 
 	$query = "INSERT INTO ProgramPunkt (ProgramID, SangID, Raekkefoelge) VALUES (".$_SESSION['setlist'].",".$sangid.",".getNextRank($_SESSION['setlist']).")";
-	$str .= "<script>document.getElementById('divSetListStatusBar').innerHTML='Sangen \"".getSangTitel($sangid)."\" er tilføjet til programmet!';</script>";
+	$str .= "<script>document.getElementById('divSetListStatusBar').innerHTML='Sangen \"".getSangTitel($sangid)."\" er tilfÃ¸jet til programmet!';</script>";
 	$str .= "<img src=\"img/list-minus.gif\" alt=\"Fjern sang\" width=\"14\" height=\"14\" border=\"0\" style=\"cursor: pointer;\" align=\"top\" onclick=\"removeSong(".$sangid.")\" />";
 	doSQLQuery($query);
 }
@@ -116,7 +116,7 @@ else if($_POST['mode'] == 'editDateTitle')
 				'		</td>' .
 				'	</tr>' .
 				'	<tr>' .
-				'		<td nowrap><label for="tbDato">Dato <span>(dd/mm/åååå)</span>:</label></td>' .
+				'		<td nowrap><label for="tbDato">Dato <span>(dd/mm/Ã¥Ã¥Ã¥Ã¥)</span>:</label></td>' .
 				'		<td>' .
 				'			<input type="text" value="'.dbDateTxt(db_result($rs,'Dato')).'" size="15" id="tbDato" />' .
 				'		</td>' .
@@ -150,7 +150,7 @@ else if($_POST['mode'] == 'saveDateTitle')
 			'		<td>'.db_result($rs,'Arrangement').'</td>' .
 			'	</tr>' .
 			'	<tr>' .
-			'		<td nowrap><label for="tbDato">Dato <span>(dd/mm/åååå)</span>:</label></td>' .
+			'		<td nowrap><label for="tbDato">Dato <span>(dd/mm/Ã¥Ã¥Ã¥Ã¥)</span>:</label></td>' .
 			'		<td>'.dbDateTxt(db_result($rs,'Dato')).'</td>' .
 			'	</tr>' .
 			'	<tr>' .

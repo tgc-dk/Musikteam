@@ -38,7 +38,7 @@ if ($_POST['brugerID'] != "") {
 		<div class="sidebar_header">
 Du er logget ind som: <strong><?php echo $_SESSION['brugernavn'] ?> </strong>
 			<div class="log_help"><a href="logout.php">Log af</a> 
-			<span id="help"><a href="help.html" onclick="NewWindow(this.href,'help_win','yes');return false;">Hjælp!</a></span></div>
+			<span id="help"><a href="help.html" onclick="NewWindow(this.href,'help_win','yes');return false;">HjÃ¦lp!</a></span></div>
 		</div>
 
 		<div id="sidebar">
@@ -110,7 +110,7 @@ Du er logget ind som: <strong><?php echo $_SESSION['brugernavn'] ?> </strong>
 		$curyear = date('Y', $now);
 ?>
 
-			<div class="sidebar_top"> Senest tilføjet: </div>
+			<div class="sidebar_top"> Senest tilfÃ¸jet: </div>
 			<div class="sidebar_bg"> 
 <?php
 

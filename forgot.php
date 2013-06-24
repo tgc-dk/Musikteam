@@ -53,7 +53,7 @@ if ($email == "") {
 
 				<table width="250" border="0" align="center" cellpadding="3" cellspacing="0">
 				<tr>
-					<td colspan="2">Indtast din email adresse, så vil du få tilsendt en ny kode</td>
+					<td colspan="2">Indtast din email adresse, sÃ¥ vil du fÃ¥ tilsendt en ny kode</td>
 				</tr>
 				<tr>
 					<td>E-mail</td>
@@ -87,7 +87,7 @@ if ($email == "") {
 
 		// Send an email to the new user with the username and password
 		$subject = "Ny kode til ".$ROOT_URL."!";
-		$body = "Hej!\n\nDin kode til http://".$ROOT_URL.", er blevet ændret og er nu: \"".$newPassword."\"\n".
+		$body = "Hej!\n\nDin kode til http://".$ROOT_URL.", er blevet Ã¦ndret og er nu: \"".$newPassword."\"\n".
 			"Dit brugernavn er stadig '".$brugernavn."'.\n\n".
 			"Mvh\n\t ".$WEBMASTER_NAME."\n\n\nPS. Dette er en automatisk genereret e-mail.\n";
 		$headers = 'From: '. $WEBMASTER_NAME . "\r\n" .
@@ -96,7 +96,7 @@ if ($email == "") {
 		if (mail($email, $subject, $body, $headers)) {
 			echo "&nbsp;&nbsp;&nbsp;&nbsp;Der er nu blevet sendt en email med en nyt adgangskode til emailadressen.";
 		} else {
-			echo("Der blev ikke sendt en email pga. fejl på serveren, kontakt venligst webmasteren.");
+			echo("Der blev ikke sendt en email pga. fejl pÃ¥ serveren, kontakt venligst webmasteren.");
 		}
 	} else {
 		echo "Den oplyste email-adresse eksisterer ikke i databasen.";

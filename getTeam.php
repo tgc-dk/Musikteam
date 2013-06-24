@@ -7,7 +7,7 @@ if (isset($_SESSION['logget_ind'])) {
 	include("db.php");
 	openDB();
 
-	echo "<?xml version=\"1.0\" encoding=\"iso-8859-1\"?>\n";
+	echo "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
 
 	echo "<team>\n";
 	$query = "SELECT Team.Navn,Team.Beskrivelse FROM Team WHERE Team.TeamID=".$_POST['id'];

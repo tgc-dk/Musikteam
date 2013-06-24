@@ -26,7 +26,7 @@
 	$str .= "		<td width=\"80\" height=\"15\" background=\"img/tabletop_bg.gif\"><div align=\"center\"><strong>Sidst spillet d</strong></div></td>";
 	$str .= "		<td height=\"15\" background=\"img/tabletop_bg.gif\"><div align=\"center\"><strong>Favorit</strong></div></td>";
 	$str .= "		<td height=\"15\" background=\"img/tabletop_bg.gif\"><div align=\"center\"><strong>Lyt</strong></div></td>";
-	$str .= "		<td height=\"15\" background=\"img/tabletop_bg.gif\"><div align=\"center\"><strong>Tilføj</strong></div></td>";
+	$str .= "		<td height=\"15\" background=\"img/tabletop_bg.gif\"><div align=\"center\"><strong>TilfÃ¸j</strong></div></td>";
 
 	$str .= "	</tr>";
 
@@ -130,7 +130,7 @@
 		else
 			$str .= "			<td align=\"center\">&nbsp;</td>\n"; // Link or audio file
 		
-		// Tilføj sang til setlist
+		// TilfÃ¸j sang til setlist
 		if ($_SESSION['setlist'] && isSongInProgram($songid, $_SESSION['setlist']))
 			$str .= "			<td id=\"addImg".$songid."\" align=\"center\"><img src=\"img/list-minus.gif\" alt=\"Fjern sang\" width=\"14\" height=\"14\" border=\"0\" style=\"cursor: pointer;\" align=\"top\" onclick=\"removeSong(".$songid.")\" /></td>\n"; // Remove
 		else

@@ -7,7 +7,7 @@ if (isset($_SESSION['logget_ind'])) {
 	include("db.php");
 	openDB();
 
-	echo "<?xml version=\"1.0\" encoding=\"iso-8859-1\"?>\n";
+	echo "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
 
 	echo "<person>\n";
 	$query = "SELECT Person.Fornavn,Person.Efternavn,Person.Adresse1,Person.Adresse2,Person.Telefon,Person.Mobil,Person.Mail FROM Person WHERE Person.PersonID=".$_POST['id'];
@@ -47,8 +47,8 @@ if (isset($_SESSION['logget_ind'])) {
 Output format (more or less)
 <person>
 	<id>42</id>
-	<firstname>Fornavn</firstname>
-	<lastname>Efternavn</lastname>
+	<firstname>Tomas</firstname>
+	<lastname>Groth</lastname>
 	<address></address>
 	<address2></address2>
 	<tlf></tlf>
