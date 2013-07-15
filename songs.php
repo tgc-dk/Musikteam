@@ -85,7 +85,7 @@ function SongText($text)
 	//Font
     $this->SetFont('Times','',11);
     //Output text in a 9 cm width column
-    $this->MultiCell(90,5,$text);
+    $this->MultiCell(90,5,utf8_decode($text));
     $this->Ln();
 }
 
@@ -95,7 +95,7 @@ function SongTitle($label)
     $this->SetFont('Arial','',12);
     $this->SetFillColor(200,200,200);
 //    $this->SetFillColor(200,220,255);
-    $this->Cell(90,5,"$label",0,1,'L',1);
+    $this->Cell(90,5,utf8_decode("$label"),0,1,'L',1);
     $this->Ln();
 }
 
@@ -104,7 +104,7 @@ function SongHeading($heading)
     //Title
     $this->Ln();
     $this->SetFont('Arial','',14);
-    $this->Cell(90,5,"$heading",0,0,'C');
+    $this->Cell(90,5,utf8_decode("$heading"),0,0,'C');
     $this->Ln();
 }
 

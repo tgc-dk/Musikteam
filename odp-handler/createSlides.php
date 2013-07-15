@@ -33,8 +33,8 @@ class PresentationCreator {
 		$result = doSQLQuery($query);
 
 		if ($line = mysql_fetch_array($result)) {
-			$title = utf8_encode(stripslashes(htmlspecialchars($line["Titel"],ENT_NOQUOTES)));
-			$author = utf8_encode(stripslashes(htmlspecialchars($line["Identifikation"],ENT_NOQUOTES)));
+			$title = stripslashes(htmlspecialchars($line["Titel"],ENT_NOQUOTES)))
+			$author = stripslashes(htmlspecialchars($line["Identifikation"],ENT_NOQUOTES));
 			$slides = $line["Slides2"];
 		} else {
 			return false;
@@ -47,7 +47,7 @@ class PresentationCreator {
 		if ($slides != "") {
 			$texts = array();
 			while ($line = mysql_fetch_array($result)) {
-				$texts[] = utf8_encode(stripslashes(htmlspecialchars($line["Slidetekst"],ENT_NOQUOTES)));
+				$texts[] = stripslashes(htmlspecialchars($line["Slidetekst"],ENT_NOQUOTES));
 			}
 			for($slideIndex = 0; $slideIndex < strlen($slides); $slideIndex++) {
 				switch ($slides[$slideIndex]) {
@@ -83,7 +83,7 @@ class PresentationCreator {
 		} else {
 			while ($line = mysql_fetch_array($result)) {
 				//$this->insertSongTextPage($author,$title,stripslashes(htmlspecialchars($line["Slidetekst"],ENT_NOQUOTES)));
-				$text4slides[] = utf8_encode(stripslashes(htmlspecialchars($line["Slidetekst"],ENT_NOQUOTES)));
+				$text4slides[] = stripslashes(htmlspecialchars($line["Slidetekst"],ENT_NOQUOTES));
 			}
 		}
 		$this->presentation->createSongSlides($title, $author, $text4slides);

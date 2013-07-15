@@ -425,6 +425,23 @@ function slides(eventname)
 	window.location = "odp-handler/createSlides.php?" + text;
 }
 
+// Creates an OpenLP service file with the song lyrics
+function openLP(eventname)
+{
+	var text ="";
+	// Extract song ids
+	var tbl = document.getElementById('setliste_table');
+	for (var count = 0; count < numSongs; count++) {
+		text += "Song" + count + "=";
+		var tmp = tbl.rows[2+count].cells[0].innerHTML;
+		var start = tmp.indexOf("song=", 0)+5;
+		var length = tmp.indexOf(">", start) - start - 1;
+		text += tmp.substr(start, length) + "&";
+	}
+	text += "songcount=" + count + "&eventName=" + eventname;
+	window.location = "openlp/createServiceFile.php?" + text;
+}
+
 // Sends an email to the band with the setlist
 function sendSetlist(eventid,eventname,username)
 {

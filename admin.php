@@ -162,7 +162,8 @@ if (isset($_SESSION['logget_ind']) && isset($_SESSION['admin'])) {
 	</form>
 	<p>
 
-	<button name="send" onclick="window.location='impress/createSlides.php?songcount=-1';" value="Generer præsentation med alle sange" class="submit_btn"> Generer præsentation med alle sange </button>
+	<button name="send" onclick="window.location='odp-handler/createSlides.php?songcount=-1';" value="Generer præsentation med alle sange" class="submit_btn"> Generer præsentation med alle sange </button>
+	<button name="send" onclick="window.location='openlp/createServiceFile.php?songcount=-1';" value="Generer OpenLP-fil med alle sange" class="submit_btn"> Generer OpenLP-fil med alle sange </button>
 
 
 <?php
