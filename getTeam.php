@@ -1,5 +1,6 @@
 <?php
 session_start();
+header("Content-Type: application/xml; charset=utf-8");
 
 
 if (isset($_SESSION['logget_ind'])) {
@@ -13,8 +14,8 @@ if (isset($_SESSION['logget_ind'])) {
 	$query = "SELECT Team.Navn,Team.Beskrivelse FROM Team WHERE Team.TeamID=".$_POST['id'];
 	$result = doSQLQuery($query);
 	$line = db_fetch_array($result);
-	$teamName = utf8_encode(stripslashes($line["Navn"]));
-	$teamDescr = utf8_encode(stripslashes($line["Beskrivelse"]));
+	$teamName = stripslashes($line["Navn"]);
+	$teamDescr = stripslashes($line["Beskrivelse"]);
 
 	echo "<id>".$_POST['id']."</id>\n";
 	echo "<teamName>".$teamName."</teamName>\n";

@@ -1,6 +1,6 @@
 <?php
 session_start();
-
+header("Content-Type: application/xml; charset=utf-8");
 
 if (isset($_SESSION['logget_ind'])) {
 
@@ -13,13 +13,13 @@ if (isset($_SESSION['logget_ind'])) {
 	$query = "SELECT Person.Fornavn,Person.Efternavn,Person.Adresse1,Person.Adresse2,Person.Telefon,Person.Mobil,Person.Mail FROM Person WHERE Person.PersonID=".$_POST['id'];
 	$result = doSQLQuery($query);
 	$line = db_fetch_array($result);
-	$firstName = utf8_encode(stripslashes($line["Fornavn"]));
-	$lastName = utf8_encode(stripslashes($line["Efternavn"]));
-	$address = utf8_encode(stripslashes($line["Adresse1"]));
-	$address2 = utf8_encode(stripslashes($line["Adresse2"]));
-	$phone = utf8_encode(stripslashes($line["Telefon"]));
-	$mobile = utf8_encode(stripslashes($line["Mobil"]));
-	$email = utf8_encode(stripslashes($line["Mail"]));
+	$firstName = stripslashes($line["Fornavn"]);
+	$lastName = stripslashes($line["Efternavn"]);
+	$address = stripslashes($line["Adresse1"]);
+	$address2 = stripslashes($line["Adresse2"]);
+	$phone = stripslashes($line["Telefon"]);
+	$mobile = stripslashes($line["Mobil"]);
+	$email = stripslashes($line["Mail"]);
 
 	echo "<id>".$_POST['id']."</id>\n";
 	echo "<firstName>".$firstName."</firstName>\n";

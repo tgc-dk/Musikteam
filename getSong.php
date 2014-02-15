@@ -1,6 +1,6 @@
 <?php
 session_start();
-
+header("Content-Type: application/xml; charset=utf-8");
 
 if (isset($_SESSION['logget_ind'])) {
 
@@ -13,11 +13,11 @@ if (isset($_SESSION['logget_ind'])) {
 	$query = "SELECT Titel,Identifikation,ProTekst,CommentsOver,CommentsUnder FROM Sang WHERE SangId=".$_POST['song'];
 	$result = doSQLQuery($query);
 	$line = db_fetch_array($result);
-	$songTitle = utf8_encode(stripslashes($line["Titel"]));
-	$songAuthor = utf8_encode(stripslashes($line["Identifikation"]));
-	$songText = utf8_encode(stripslashes($line["ProTekst"]));
-	$commentsAbove = utf8_encode(stripslashes($line["CommentsOver"]));
-	$commentsBelow = utf8_encode(stripslashes($line["CommentsUnder"]));
+	$songTitle = stripslashes($line["Titel"]);
+	$songAuthor = stripslashes($line["Identifikation"]);
+	$songText = stripslashes($line["ProTekst"]);
+	$commentsAbove = stripslashes($line["CommentsOver"]);
+	$commentsBelow = stripslashes($line["CommentsUnder"]);
 
 	echo "<num>".$_POST['num']."</num>\n";
 	echo "<songTitle>".$songTitle."</songTitle>\n";
