@@ -54,6 +54,10 @@ class OpenLyrics {
 		// Add title
 		$properties->addChild("titles", "");
 		$properties->titles->addChild("title", $this->title);
+		// OpenLP doesn't use the variant tag but allows for multiple titles
+		if (strlen($this->variant) > 0) {
+			$properties->titles->addChild("title", $this->title . " - " . $this->variant);
+		}
 
 		// Add author
 		$properties->addChild("authors");

@@ -26,7 +26,10 @@ class Header {
 	public $end_time;
 	public $processor;
 	
-	function __construct($title, $author) {
+	function __construct($title, $author, $variant) {
+		if (strlen(trim($author)) == 0) {
+			$author = ".";
+		}
 		$this->xml_version = "";
 		$this->auto_play_slides_loop = false;
 		$this->auto_play_slides_once = false;
@@ -35,12 +38,20 @@ class Header {
 		$this->capabilities = array(2, 1, 5, 8, 9, 13);
 		$this->theme = null;
 		$this->background_audio = array();
-		$this->icon = "/plugins/plugin_songs.png";
+		$this->icon = ":/plugins/plugin_songs.png";
 		$this->type = 1;
 		$this->start_time = 0;
 		$this->from_plugin = false;
 		$this->media_length = 0;
-		$this->data = array("authors" => $author, "title" => $title);
+		$tmp_title = preg_replace('/\W+/',' ', $title);
+		$tmp_title = trim(preg_replace('/\s+/',' ', $tmp_title));
+		$tmp_variant = preg_replace('/\W+/',' ', $variant);
+		$tmp_variant = trim(preg_replace('/\s+/',' ', $tmp_variant));
+		$dataTitle = strtolower($tmp_title . "@");
+		if (strlen($tmp_variant) > 0) {
+			$dataTitle .= strtolower($tmp_title. " " . $tmp_variant);
+		}
+		$this->data = array("authors" => $author, "title" => $dataTitle);
 		$this->timed_slide_interval = 0;
 		$this->audit = array($title, array($author), "", "");
 		$this->search = "";
@@ -65,8 +76,8 @@ class ServiceItem {
 	public $header;
 	public $data;
 
-	function __construct($title, $author) {
-		$this->header = new Header($title, $author);
+	function __construct($title, $author, $variant) {
+		$this->header = new Header($title, $author, $variant);
 		$this->data = array();
 	}
 

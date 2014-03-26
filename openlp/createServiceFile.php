@@ -50,9 +50,13 @@ class ServiceCreator {
 			$modified = date_format(date_create($line['modified']), "c");
 		}
 		
-		$serviceitem = new ServiceItem($title, $author);
+		$serviceitem = new ServiceItem($title, $author, $variant);
 		$ol = new OpenLyrics();
-		$ol->setAuthor($author);
+		if (strlen(trim($author)) > 0) {
+			$ol->setAuthor($author);
+		} else {
+			$ol->setAuthor(".");
+		}
 		$ol->setTitle($title);
 		$ol->setVariant($variant);
 		$ol->setModified($modified);
@@ -98,8 +102,8 @@ class ServiceCreator {
 						$index = 7;
 						break;
 				}
-				$serviceitem->addVerse(("v".($index+1)), $texts[$index]);
-				$verseorder .= "v".($index+1) . " ";
+				$serviceitem->addVerse(("V".($index+1)), $texts[$index]);
+				$verseorder .= "V".($index+1) . " ";
 			}
 			$ol->setVerseOrder(trim($verseorder));
 		} else {
@@ -107,7 +111,8 @@ class ServiceCreator {
 			while ($line = mysql_fetch_array($result)) {
 				$insertedSong = true;
 				$ol->addVerse(stripslashes(htmlspecialchars($line["Slidetekst"],ENT_NOQUOTES)));
-				$serviceitem->addVerse(("v" .$num), stripslashes(htmlspecialchars($line["Slidetekst"],ENT_NOQUOTES)));
+				$serviceitem->addVerse(("V" .$num), stripslashes(htmlspecialchars($line["Slidetekst"],ENT_NOQUOTES)));
+				$num += 1;
 			}
 		}
 		if ($insertedSong == true) {
@@ -121,7 +126,7 @@ class ServiceCreator {
 	
 	function insertCustom($title, $author, $text)
 	{
-		$serviceitem = new ServiceItem($title, $author);
+		$serviceitem = new ServiceItem($title, $author, "");
 		$serviceitem->addVerse(null, $text);
 		
 		// overwrite header stuff so that it matches custom slides
@@ -193,6 +198,8 @@ $songcount = $_GET['songcount'];
 if ($songcount == -1) {
 	$content->insertAllSongs();
 } else {
+	// insert blank custom slide first
+	$content->insertCustom(" ", "", "  ");
 	for ($count = 0; $count < $songcount; $count++) {
 		$index = 'Song'.$count;
 		$songid = $_GET[$index];
