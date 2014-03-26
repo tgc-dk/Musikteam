@@ -120,12 +120,15 @@ function parseSongXML(xml)
 
 	document.getElementById(index).innerHTML = RenderSong(songText, songTitle, songAuthor, songCommentAbove, songCommentBelow);
 
+	if (parseInt(numb) != songCount-1) {
+		document.getElementById(index).innerHTML += '<p style="page-break-after: always">';
+	}
+
 	printedSongs++;
 	if (printedSongs == songCount) {
 		print();
-	} else {
-		document.getElementById(index).innerHTML += '<p style="page-break-after: always">';
 	}
+	
 }
 
 function insertSong(num, song)
