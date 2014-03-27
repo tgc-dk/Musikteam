@@ -43,9 +43,10 @@ class Header {
 		$this->start_time = 0;
 		$this->from_plugin = false;
 		$this->media_length = 0;
-		$tmp_title = preg_replace('/\W+/',' ', $title);
+		// Clean title and variant for non-word chars
+		$tmp_title = preg_replace('/[^\p{L}\p{N}]+/u',' ', $title);
 		$tmp_title = trim(preg_replace('/\s+/',' ', $tmp_title));
-		$tmp_variant = preg_replace('/\W+/',' ', $variant);
+		$tmp_variant = preg_replace('/[^\p{L}\p{N}]+/u',' ', $variant);
 		$tmp_variant = trim(preg_replace('/\s+/',' ', $tmp_variant));
 		$dataTitle = strtolower($tmp_title . "@");
 		if (strlen($tmp_variant) > 0) {
