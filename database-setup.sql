@@ -15,19 +15,17 @@ CREATE TABLE IF NOT EXISTS `Bruger` (
   `Brugernavn` varchar(50) DEFAULT NULL,
   `Kode` varchar(50) DEFAULT NULL,
   `Admin` tinyint(1) DEFAULT '0',
-  `PersonId` int(11) DEFAULT '0',
   `Email` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`BrugerId`),
-  KEY `BrugerId` (`BrugerId`),
-  KEY `PersonId` (`PersonId`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf-8 AUTO_INCREMENT=1 ;
+  KEY `BrugerId` (`BrugerId`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
 -- Dumping data for table `Bruger`
 --
 
-INSERT INTO `Bruger` (`BrugerId`, `Brugernavn`, `Kode`, `Admin`, `PersonId`, `Email`) VALUES
-(1, 'admin', 'fcfe90b58d59aabc248600baff58a7e2', 1, -1, 'admin@musikteam.com');
+INSERT INTO `Bruger` (`BrugerId`, `Brugernavn`, `Kode`, `Admin`, `Email`) VALUES
+(1, 'admin', 'fcfe90b58d59aabc248600baff58a7e2', 1, 'admin@musikteam.com');
 
 -- --------------------------------------------------------
 
@@ -41,44 +39,23 @@ CREATE TABLE IF NOT EXISTS `Historik` (
   `Dato` datetime DEFAULT NULL,
   `Change` varchar(255) DEFAULT NULL,
   KEY `BrugerId` (`BrugerId`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf-8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Person`
+-- Table structure for table `BrugerRolle`
 --
 
-CREATE TABLE IF NOT EXISTS `Person` (
-  `PersonID` int(11) NOT NULL AUTO_INCREMENT,
-  `Fornavn` varchar(50) DEFAULT NULL,
-  `Efternavn` varchar(50) DEFAULT NULL,
-  `Adresse1` varchar(50) DEFAULT NULL,
-  `Adresse2` varchar(50) DEFAULT NULL,
-  `Mail` varchar(50) DEFAULT NULL,
-  `Telefon` varchar(50) DEFAULT NULL,
-  `Mobil` varchar(50) DEFAULT NULL,
-  `Leder` tinyint(1) DEFAULT '0',
-  PRIMARY KEY (`PersonID`),
-  KEY `PersonID` (`PersonID`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf-8 AUTO_INCREMENT=1 ;
-
-
--- --------------------------------------------------------
-
---
--- Table structure for table `PersonRolle`
---
-
-CREATE TABLE IF NOT EXISTS `PersonRolle` (
-  `PersonID` int(11) NOT NULL DEFAULT '0',
+CREATE TABLE IF NOT EXISTS `BrugerRolle` (
+  `BrugerID` int(11) NOT NULL DEFAULT '0',
   `RolleID` int(11) NOT NULL DEFAULT '0',
   `Primaer` tinyint(1) DEFAULT '0',
-  PRIMARY KEY (`PersonID`,`RolleID`),
-  KEY `PersonID` (`PersonID`),
+  PRIMARY KEY (`BrugerID`,`RolleID`),
+  KEY `BrugerID` (`BrugerID`),
   KEY `RolleID` (`RolleID`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf-8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 
 -- --------------------------------------------------------
@@ -98,24 +75,24 @@ CREATE TABLE IF NOT EXISTS `Program` (
   KEY `LederID` (`LederID`),
   KEY `ProgramID` (`ProgramID`),
   KEY `TeamID` (`TeamID`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf-8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ProgramPerson`
+-- Table structure for table `ProgramBruger`
 --
 
-CREATE TABLE IF NOT EXISTS `ProgramPerson` (
+CREATE TABLE IF NOT EXISTS `ProgramBruger` (
   `ProgramID` int(11) NOT NULL DEFAULT '0',
-  `PersonID` int(11) NOT NULL DEFAULT '0',
+  `BrugerID` int(11) NOT NULL DEFAULT '0',
   `RolleID` int(11) DEFAULT '0',
   `Kommentar` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`ProgramID`,`PersonID`),
-  KEY `PersonID` (`PersonID`),
+  PRIMARY KEY (`ProgramID`,`BrugerID`),
+  KEY `BrugerID` (`BrugerID`),
   KEY `RolleID` (`RolleID`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf-8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 
 -- --------------------------------------------------------
@@ -132,7 +109,7 @@ CREATE TABLE IF NOT EXISTS `ProgramPunkt` (
   `Raekkefoelge` int(11) DEFAULT '0',
   KEY `ProgramID` (`ProgramID`),
   KEY `SangID` (`SangID`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf-8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 
 -- --------------------------------------------------------
@@ -147,7 +124,7 @@ CREATE TABLE IF NOT EXISTS `Rolle` (
   `Raekkefoelge` int(11) DEFAULT '0',
   PRIMARY KEY (`RolleID`),
   KEY `RolleID` (`RolleID`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf-8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 
 -- --------------------------------------------------------
@@ -173,7 +150,7 @@ CREATE TABLE IF NOT EXISTS `Sang` (
   PRIMARY KEY (`SangId`),
   KEY `Identifikation` (`Identifikation`),
   KEY `SangId` (`SangId`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf-8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 
 -- --------------------------------------------------------
@@ -188,7 +165,7 @@ CREATE TABLE IF NOT EXISTS `SangBruger` (
   PRIMARY KEY (`BrugerId`,`SangId`),
   KEY `BrugerId` (`BrugerId`),
   KEY `SangId` (`SangId`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf-8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 
 -- --------------------------------------------------------
@@ -204,7 +181,7 @@ CREATE TABLE IF NOT EXISTS `Slide` (
   PRIMARY KEY (`SangID`,`SlideID`),
   KEY `SangID` (`SangID`),
   KEY `SlideID` (`SlideID`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf-8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 
 -- --------------------------------------------------------
@@ -220,7 +197,7 @@ CREATE TABLE IF NOT EXISTS `Slide2` (
   PRIMARY KEY (`SangID`,`SlideID`),
   KEY `SangID` (`SangID`),
   KEY `SlideID` (`SlideID`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf-8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 
 -- --------------------------------------------------------
@@ -237,7 +214,7 @@ CREATE TABLE IF NOT EXISTS `Speciel` (
   `TilSlide` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`SpecielID`),
   KEY `SpecielID` (`SpecielID`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf-8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 
 -- --------------------------------------------------------
@@ -253,18 +230,18 @@ CREATE TABLE IF NOT EXISTS `Team` (
   `Raekkefoelge` int(11) DEFAULT '0',
   PRIMARY KEY (`TeamID`),
   KEY `TeamID` (`TeamID`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf-8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 
 --
--- Table structure for table `TeamPerson`
+-- Table structure for table `TeamBruger`
 --
 
-CREATE TABLE IF NOT EXISTS `TeamPerson` (
+CREATE TABLE IF NOT EXISTS `TeamBruger` (
   `TeamID` int(11) NOT NULL DEFAULT '0',
-  `PersonID` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`TeamID`,`PersonID`),
-  KEY `PersonID` (`PersonID`),
+  `BrugerID` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`TeamID`,`BrugerID`),
+  KEY `BrugerID` (`BrugerID`),
   KEY `TeamID` (`TeamID`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf-8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 

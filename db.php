@@ -123,16 +123,6 @@ function db_fix_str($strIn) {
 	return $str;
 }
 
-function getPersonId()
-{
-	$query = "SELECT PersonId FROM Bruger WHERE Brugerid = ".$_SESSION['brugerid'];
-	$result = doSQLQuery($query);
-	if(db_fetch_array($result))
-		return db_result($result,"PersonId");
-	else
-		return 0;
-}
-
 function convDate($dbDate)
 {
 	return substr($dbDate,8,2)."/".substr($dbDate,5,2)."/".substr($dbDate,0,4);

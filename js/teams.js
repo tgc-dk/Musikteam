@@ -1,13 +1,13 @@
-document.getElementById("Afstande").style.display="inline";
-	document.getElementById("Afstande_menu").className="sub_menu_2";
-	document.getElementById("Tekst_2").style.display="none";
-	document.getElementById("Tekst_2_menu").className="sub_menu_1";
-	document.getElementById("Overskrifter").style.display="none";
-	document.getElementById("Overskrifter_menu").className="sub_menu_1";
-	document.getElementById("Kommentarer").style.display="none";
-	document.getElementById("Kommentarer_menu").className="sub_menu_1";
-	document.getElementById("Gem_layout").style.display="none";
-	document.getElementById("Gem_layout_menu").className="sub_menu_1";
+ //   document.getElementById("Afstande").style.display="inline";
+	//document.getElementById("Afstande_menu").className="sub_menu_2";
+	//document.getElementById("Tekst_2").style.display="none";
+	//document.getElementById("Tekst_2_menu").className="sub_menu_1";
+	//document.getElementById("Overskrifter").style.display="none";
+	//document.getElementById("Overskrifter_menu").className="sub_menu_1";
+	//document.getElementById("Kommentarer").style.display="none";
+	//document.getElementById("Kommentarer_menu").className="sub_menu_1";
+	//document.getElementById("Gem_layout").style.display="none";
+	//document.getElementById("Gem_layout_menu").className="sub_menu_1";
 // Switch between different team tabs
 function Teams()
 {

@@ -77,16 +77,16 @@ function addTeam(id)
 		echo "				<tr bgcolor=\"#f2f2f2\"><td><strong>Team: </strong>".$teamName . "</td><td align=\"right\"><strong>Tilføj</strong></td></tr>\n";
 		echo "				<tr><td colspan=\"2\"><strong>Beskrivelse: </strong>". $teamDesr . "</td></tr>\n";
 
-		$tmquery = "SELECT Person.PersonID,Person.Fornavn,Person.Efternavn FROM Person INNER JOIN TeamPerson ON TeamPerson.PersonID=Person.PersonID WHERE TeamPerson.TeamID=".$teamID.";";
+		$tmquery = "SELECT Bruger.BrugerID,Bruger.Fornavn,Bruger.Efternavn FROM Bruger INNER JOIN TeamBruger ON TeamBruger.BrugerID=Bruger.BrugerID WHERE TeamBruger.TeamID=".$teamID.";";
 		$tmresult = doSQLQuery($tmquery);
 		while ($tmline = db_fetch_array($tmresult)) {
-			$personid = $tmline["PersonID"];
+			$brugerid = $tmline["BrugerID"];
 			$firstName = $tmline["Fornavn"];
 			$lastName = $tmline["Efternavn"];
 			echo "				<tr".$colour."><td>".$firstName." ".$lastName." (";
 
 			// Find and list abilities
-			$abilityQuery = "SELECT Rolle.Navn,Rolle.RolleID FROM Rolle INNER JOIN PersonRolle ON Rolle.RolleID=PersonRolle.RolleID WHERE PersonRolle.PersonID=".$personid.";";
+			$abilityQuery = "SELECT Rolle.Navn,Rolle.RolleID FROM Rolle INNER JOIN BrugerRolle ON Rolle.RolleID=BrugerRolle.RolleID WHERE BrugerRolle.BrugerID=".$brugerid.";";
 			$abilityResult = doSQLQuery($abilityQuery);
 			$abilities = "";
 			$abilitiesID = "";
@@ -98,7 +98,7 @@ function addTeam(id)
 			}
 			echo $abilities.")"; // Abilities
 
-			$addperson = "addPerson('".$firstName." ".$lastName."','".$abilities."','".$abilitiesID."',".$personid.");";
+			$addperson = "addPerson('".$firstName." ".$lastName."','".$abilities."','".$abilitiesID."',".$brugerid.");";
 			$addteam .= $addperson;
 			echo "</td><td align=\"right\"><a href=\"javascript:".$addperson."\"><img src=\"img/list-add.gif\" alt=\"Tilf&oslash;j team\" width=\"14\" height=\"14\" border=\"0\" align=\"top\" /></a></td></tr>\n";
 			if ($colour == "") {
@@ -107,7 +107,7 @@ function addTeam(id)
 				$colour = "";
 			}
 		}
-		echo "				<tr".$colour."><td align=\"right\"><a href=\"javascript:".$addteam."\"><img src=\"img/list-add.gif\" alt=\"Tilf&oslash;j team\" width=\"14\" height=\"14\" border=\"0\" align=\"top\" /></a>Tilføj hele teamet</td></tr>";
+		echo "				<tr".$colour."><td align=\"right\" colspan=\"2\"><a href=\"javascript:".$addteam."\"><img src=\"img/list-add.gif\" alt=\"Tilf&oslash;j team\" width=\"14\" height=\"14\" border=\"0\" align=\"top\" /></a>Tilføj hele teamet</td></tr>";
 		echo "			</table><br />\n";
 	}
 

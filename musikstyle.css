@@ -491,7 +491,8 @@ a:active {
 }
 .tekst {
 	position:relative;
-	top:20px;
+	margin-top:20px;
+    margin-bottom: 20px;
 	float:right;
 	padding:4px;
 	background-color:#CCCCCC;

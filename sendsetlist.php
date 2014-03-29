@@ -15,7 +15,7 @@ if (isset($_SESSION['logget_ind'])) {
 	for ($count = 0; $count < $personcount; $count++) {
 		$index = 'Person'.$count;
 		$personid = $_POST[$index];
-		$query = "SELECT Mail,Fornavn,Efternavn FROM Person WHERE PersonID=" . $personid;
+		$query = "SELECT EMail,Fornavn,Efternavn FROM Bruger WHERE BrugerID=" . $personid;
 		$result = doSQLQuery($query);
 		$line = db_fetch_array($result);
 		$tmp = current($line);

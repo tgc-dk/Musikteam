@@ -32,16 +32,16 @@ if (isset($_SESSION['logget_ind'])) {
 		$result = doSQLQuery($query);
 	}
 
-	// Delete the old entries in the ProgramPerson table
-	$query = "DELETE FROM ProgramPerson WHERE ProgramID=" . $eventid;
+	// Delete the old entries in the ProgramBruger table
+	$query = "DELETE FROM ProgramBruger WHERE ProgramID=" . $eventid;
 	$result = doSQLQuery($query);
 
 	// Insert the new entries
 	$personcount = $_POST['personcount'];
 	for ($count = 0; $count < $personcount; $count++) {
-		$personid = $_POST['Person'.$count];
+		$brugerid = $_POST['Person'.$count];
 		$roleid = $_POST['Rolle'.$count];
-		$query = "INSERT INTO ProgramPerson (ProgramID,PersonID,RolleID) VALUES (".$eventid.",".$personid.",".$roleid.");";
+		$query = "INSERT INTO ProgramBruger (ProgramID,BrugerID,RolleID) VALUES (".$eventid.",".$brugerid.",".$roleid.");";
 		$result = doSQLQuery($query);
 	}
 

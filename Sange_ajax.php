@@ -1,6 +1,5 @@
 <?php 
 	header('content-type: text/html; charset: utf-8');
-	
 	session_start();
 	
 	include("db.php");
@@ -147,8 +146,8 @@
 	}
 	closeDB();
 	$str .= "</table>";
-
-	echo utf8_encode($str);
+    echo $str;
+	//echo utf8_encode($str);
 ?>
 	
 	

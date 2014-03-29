@@ -42,7 +42,7 @@ else if($_POST['mode'] == 'allSetlist' || $_POST['mode'] == 'Setlist') //ingen d
 	if($_POST['mode'] == 'allSetlist')
 		$query = "SELECT p.* FROM Program p WHERE p.Dato > Now() ORDER BY p.Dato ASC";
 	else
-		$query = "SELECT p.* FROM Program p INNER JOIN ProgramPerson pp ON pp.ProgramID = p.ProgramID WHERE pp.PersonID = ".getPersonId()." AND p.Dato > Now() ORDER BY p.Dato ASC";
+		$query = "SELECT p.* FROM Program p INNER JOIN ProgramBruger pp ON pp.ProgramID = p.ProgramID WHERE pp.BrugerId = ".getPersonId()." AND p.Dato > Now() ORDER BY p.Dato ASC";
 
 	$rs = doSQLQuery($query);
 	$str .= "<table width=\"100%\" cellpadding=\"0\" cellspacing=\"0\">";

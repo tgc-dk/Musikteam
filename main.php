@@ -15,33 +15,34 @@ openDB();
 	<div id="header">
 <?php
 // Sets the tab
+    $page = isset($_GET['page']) ? $_GET['page']: '';
 
-		if ($_GET['page'] == 'sange' || $_GET['page'] =='') {
+		if ($page == 'sange' || $page =='') {
 			echo '		<div id="sange_img"><img src="img/sange_down.gif" alt="Sange" /></div>';
 		} else {
 			echo '		<div id="sange_img"><a href="main.php?page=sange" target="_top"><img src="img/sange_up.gif" alt="Sange" width="101" height="27" border="0" /></a></div>';
 		}
 
-		if ($_GET['page'] == 'program') {
+		if ($page == 'program') {
 			echo '		<div id="program_img"><img src="img/program_down.gif" alt="Program" /></div>';
 		} else {
 			echo '		<div id="program_img"><a href="main.php?page=program" target="_top"><img src="img/program_up.gif" alt="Program" width="101" height="27" border="0" /></a></div>';
 		}
 
-		if ($_GET['page'] == 'teams') {
+		if ($page == 'teams') {
 			echo '		<div id="teams_img"><img src="img/teams_down.gif" alt="Teams" /></div>';
 		} else {
 			echo '		<div id="teams_img"><a href="main.php?page=teams" target="_top"><img src="img/teams_up.gif" alt="Teams" width="101" height="27" border="0" /></a></div>';
 		}
 
-		if ($_GET['page'] == 'mypage') {
+		if ($page == 'mypage') {
 			echo '		<div id="mypage_img"><img src="img/mypage_down.gif" alt="My side" /></div>';
 		} else {
 			echo '		<div id="mypage_img"><a href="main.php?page=mypage" target="_top"><img src="img/mypage_up.gif" alt="Min side" width="101" height="27" border="0" /></a></div>';
 		}
 
-		if ($_SESSION['admin'] == 1) {
-			if ($_GET['page'] == 'admin') {
+		if (isset($_SESSION['admin']) && $_SESSION['admin'] == 1) {
+			if ($page == 'admin') {
 				echo '		<div id="admin_img"><img src="img/admin_down.gif" alt="Admin" /></div>';
 			} else {
 				echo '		<div id="admin_img"><a href="main.php?page=admin" target="_top"><img src="img/admin_up.gif" alt="Admin" width="101" height="27" border="0" /></a></div>';
@@ -56,18 +57,18 @@ openDB();
 
 if (isset($_SESSION['logget_ind'])) {
 
-	if ($_GET['page'] != 'teams') include('sidebar.php');
+	if ($page != 'teams') include('sidebar.php');
 ?>
 	<div class="block_1">
 		<div class="main">
 <?php
-	if ($_GET['page'] == 'program') {
+	if ($page == 'program') {
 		include('program.php');
-	} else if ($_GET['page'] == 'teams') {
+	} else if ($page == 'teams') {
 		include('teams.php');
-	} else if ($_GET['page'] == 'mypage') {
+	} else if ($page == 'mypage') {
 		include('mypage.php');
-	} else if ($_GET['page'] == 'admin' && $_SESSION['admin'] == 1) {
+	} else if ($page == 'admin' && isset($_SESSION['admin']) && $_SESSION['admin'] == 1) {
 		include('admin.php');
 	} else {
 		include('sange.php');
@@ -89,7 +90,7 @@ if (isset($_SESSION['logget_ind'])) {
 					</tr>
 					<tr>
 						<td>Brugernavn</td>
-						<td align="right"><input name="brugernavn" id="brugernavn" type="text" ><script language="JavaScript">document.getElementById('brugernavn').focus();</script></td>
+						<td align="right"><input name="brugernavn" id="brugernavn" type="text" ><script>document.getElementById('brugernavn').focus();</script></td>
 					</tr>
 					<tr>
 						<td>Adgangskode</td>
