@@ -1,4 +1,10 @@
 <?php
+if ($_POST['target'] != "") {
+    header("Location: ".$_POST['target']);
+} else {
+    header("Location: main.php");
+}
+ 
     session_start();
     $strTitle="Passwordkontrol";
     include("header.php");
@@ -24,14 +30,7 @@
 ?>
 
 
-<?php
-if ($_POST['target'] != "") {
-    header("Location: ".$_POST['target']);
-} else {
-    header("Location: main.php");
-}
-    
-?>
+
 
 <body class="home">
     <div class="wrapper">
