@@ -22,10 +22,10 @@ if (isset($_SESSION['logget_ind'])) {
 	echo "<description>".$teamDescr."</description>\n";
 	echo "<members>\n";
 
-	$memberQuery = "SELECT Person.PersonID FROM Person INNER JOIN TeamPerson ON Person.PersonID=TeamPerson.PersonID WHERE TeamPerson.TeamID=".$_POST['id'];
+	$memberQuery = "SELECT Bruger.BrugerID FROM Bruger INNER JOIN TeamBruger ON Bruger.BrugerID=TeamBruger.BrugerID WHERE TeamBruger.TeamID=".$_POST['id'];
 	$memberResult = doSQLQuery($memberQuery);
 	while ($memberLine = db_fetch_array($memberResult)) {
-		 echo "<member>".utf8_encode(stripslashes($memberLine["PersonID"]))."</member>\n";
+		 echo "<member>".utf8_encode(stripslashes($memberLine["BrugerID"]))."</member>\n";
 	}
 
 	echo "</members>\n";

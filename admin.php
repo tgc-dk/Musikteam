@@ -3,18 +3,19 @@
 require("./odp-handler/odp-handler.php");
 
 if (isset($_SESSION['logget_ind']) && isset($_SESSION['admin'])) {
-
+    $deleteuser = isset($_GET['deleteUser'])? $_GET['deleteUser']: '';
+    $brugernavn = isset($_POST['brugernavn'])? $_POST['brugernavn']: "";
 
 	// Delete a user if requested
-	if ($_GET['deleteUser'] != "") {
-		$query = "DELETE FROM Bruger WHERE BrugerId = ".$_GET['deleteUser'];
+	if ($deleteuser != "") {
+		$query = "DELETE FROM Bruger WHERE BrugerId = ".$deleteuser;
 		$result = doSQLQuery($query);
 
 	// Create a user if requested
-	} else if ($_POST['brugernavn'] != "") {
+	} else if ($brugernavn != "") {
 
 		// First make sure a user with this username doesn't exist
-		$query = "SELECT BrugerId FROM Bruger WHERE Brugernavn = '".$_POST['brugernavn']."'";
+		$query = "SELECT BrugerId FROM Bruger WHERE Brugernavn = '".$brugernavn."'";
 		$result = doSQLQuery($query);
 		$line = db_fetch_array($result);
 		if ($line) {
@@ -23,7 +24,7 @@ if (isset($_SESSION['logget_ind']) && isset($_SESSION['admin'])) {
 
 			if ($_POST['admin'] != "") $admin = 1;
 			else $admin = 0;
-			$query = "INSERT INTO Bruger (Brugernavn,Kode,Admin,PersonId,Email) VALUES ('".$_POST['brugernavn']."','".md5($_POST['brugernavn']."1234"."musikteam")."',".$admin.",-1,'".$_POST['email']."')";
+			$query = "INSERT INTO Bruger (Brugernavn,Kode,Admin,Email) VALUES ('".$_POST['brugernavn']."','".md5($_POST['brugernavn']."1234"."musikteam")."',".$admin.",'".$_POST['email']."')";
 			$result = doSQLQuery($query);
 
 			// Send an email to the new user with the username and password
@@ -43,7 +44,7 @@ if (isset($_SESSION['logget_ind']) && isset($_SESSION['admin'])) {
 		}
 		
 	// Handle uploaded odp-template
-	} else if ($_FILES['uploadTemplate']['name']!="") {
+	} else if (isset($_FILES['uploadTemplate']) && $_FILES['uploadTemplate']['name']!="") {
 		
 		$odp = basename( $_FILES['uploadTemplate']['name']);
 		$uploadpath = getcwd() . "/odp-handler/upload/" . $odp;

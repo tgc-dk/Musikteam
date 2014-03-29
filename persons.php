@@ -5,7 +5,7 @@ if (isset($_SESSION['logget_ind'])) {
 		<div id="Personer">
 			<div id="edit_person">
 				<form id="personform" name="personform" method="post" action="main.php?page=teams&subpage=persons&action=save">
-				<input type="hidden" name="personID" id="personID" value="-1">
+				<input type="hidden" name="brugerID" id="personID" value="-1">
 				<table id="musiker_table" cellspacing="0" cellpadding="3" width="780">
 				<tr><td height="15" background="img/tabletop_bg.gif" colspan="2"><div align="left"><strong>Ret person:</strong></div></td></tr>
 				<tr>
@@ -70,12 +70,12 @@ if (isset($_SESSION['logget_ind'])) {
 				<td height="15" background="img/tabletop_bg.gif"><div align="center"><div align="center"><span class="style3">Ret</span></div></div></td>
 			</tr>
 <?php
-	$query = "SELECT Person.PersonID,Person.Fornavn,Person.Efternavn,Person.Adresse1,Person.Adresse2,Person.Telefon,Person.Mobil,Person.Mail FROM Person ORDER BY Person.Efternavn";
+	$query = "SELECT Bruger.BrugerID,Bruger.Fornavn,Bruger.Efternavn,Bruger.Adresse1,Bruger.Adresse2,Bruger.Telefon,Bruger.Mobil,Bruger.EMail FROM Bruger ORDER BY Bruger.Efternavn";
 
 	$result = doSQLQuery($query);
 	$colour = "";
 	while ($line = db_fetch_array($result)) {
-		$personid = stripslashes($line["PersonID"]);
+		$brugerid = stripslashes($line["BrugerID"]);
 		echo "			<tr>\n";
 		echo "				<td".$colour."><div align=\"left\">".stripslashes($line["Fornavn"])." ".stripslashes($line["Efternavn"])."</td>\n"; // Name
 		echo "				<td".$colour."><div align=\"left\">".stripslashes($line["Adresse1"])." ".stripslashes($line["Adresse2"])."</td>\n"; // Adress
@@ -83,11 +83,11 @@ if (isset($_SESSION['logget_ind'])) {
 		$mobile = trim(stripslashes($line["Mobil"]));
 		$phone = $phone . ($phone != "" && $mobile != "" ? " / ".$mobile : $mobile);
 		echo "				<td".$colour."><div align=\"left\">".$phone."</td>\n"; // Telephone and mobile
-		echo "				<td".$colour."><div align=\"left\">".stripslashes($line["Mail"])."</td>\n"; // email
+		echo "				<td".$colour."><div align=\"left\">".stripslashes($line["EMail"])."</td>\n"; // email
 
 		// Find and list abilities
 		echo "			<td".$colour."><div align=\"left\">";
-		$abilityQuery = "SELECT Rolle.Navn FROM Rolle INNER JOIN PersonRolle ON Rolle.RolleID=PersonRolle.RolleID WHERE PersonRolle.PersonID=".$personid.";";
+		$abilityQuery = "SELECT Rolle.Navn FROM Rolle INNER JOIN BrugerRolle ON Rolle.RolleID=BrugerRolle.RolleID WHERE BrugerRolle.BrugerID=".$brugerid.";";
 		$abilityResult = doSQLQuery($abilityQuery);
 		$abilities = "";
 		while ($abilityLine = db_fetch_array($abilityResult)) {
@@ -98,7 +98,7 @@ if (isset($_SESSION['logget_ind'])) {
 
 		// Find and list teams
 		echo "			<td".$colour."><div align=\"left\">";
-		$teamsQuery = "SELECT Team.Navn FROM Team INNER JOIN TeamPerson ON Team.TeamID=TeamPerson.TeamID WHERE TeamPerson.PersonID=".$personid.";";
+		$teamsQuery = "SELECT Team.Navn FROM Team INNER JOIN TeamBruger ON Team.TeamID=TeamBruger.TeamID WHERE TeamBruger.BrugerID=".$brugerid.";";
 		$teamsResult = doSQLQuery($teamsQuery);
 		$teams = "";
 		while ($teamsLine = db_fetch_array($teamsResult)) {
@@ -107,7 +107,7 @@ if (isset($_SESSION['logget_ind'])) {
 		}
 		echo $teams."</td>\n"; // Teams
 
-		echo "				<td".$colour."><div align=\"left\"><a href=\"javascript:editPerson(".$personid.")\">Ret</a></td>\n"; // edit-icons
+		echo "				<td".$colour."><div align=\"left\"><a href=\"javascript:editPerson(".$brugerid.")\">Ret</a></td>\n"; // edit-icons
 
 		echo "			</tr>\n"; // end of row
 		if ($colour == "") {

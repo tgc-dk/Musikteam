@@ -10,7 +10,7 @@ if (isset($_SESSION['logget_ind'])) {
 	echo "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
 
 	echo "<person>\n";
-	$query = "SELECT Person.Fornavn,Person.Efternavn,Person.Adresse1,Person.Adresse2,Person.Telefon,Person.Mobil,Person.Mail FROM Person WHERE Person.PersonID=".$_POST['id'];
+	$query = "SELECT Bruger.Fornavn,Bruger.Efternavn,Bruger.Adresse1,Bruger.Adresse2,Bruger.Telefon,Bruger.Mobil,Bruger.EMail FROM Bruger WHERE Bruger.BrugerID=".$_POST['id'];
 	$result = doSQLQuery($query);
 	$line = db_fetch_array($result);
 	$firstName = stripslashes($line["Fornavn"]);
@@ -19,7 +19,7 @@ if (isset($_SESSION['logget_ind'])) {
 	$address2 = stripslashes($line["Adresse2"]);
 	$phone = stripslashes($line["Telefon"]);
 	$mobile = stripslashes($line["Mobil"]);
-	$email = stripslashes($line["Mail"]);
+	$email = stripslashes($line["EMail"]);
 
 	echo "<id>".$_POST['id']."</id>\n";
 	echo "<firstName>".$firstName."</firstName>\n";
@@ -32,10 +32,10 @@ if (isset($_SESSION['logget_ind'])) {
 
 	echo "<abilities>\n";
 
-	$abilityQuery = "SELECT Rolle.RolleID FROM Rolle INNER JOIN PersonRolle ON Rolle.RolleID=PersonRolle.RolleID WHERE PersonRolle.PersonID=".$_POST['id'];
+	$abilityQuery = "SELECT Rolle.RolleID FROM Rolle INNER JOIN BrugerRolle ON Rolle.RolleID=BrugerRolle.RolleID WHERE BrugerRolle.BrugerID=".$_POST['id'];
 	$abilityResult = doSQLQuery($abilityQuery);
 	while ($abilityLine = db_fetch_array($abilityResult)) {
-		 echo "<ability>".utf8_encode(stripslashes($abilityLine["RolleID"]))."</ability>\n";
+		 echo "<ability>".utf8_encode(c($abilityLine["RolleID"]))."</ability>\n";
 	}
 
 	echo "</abilities>\n";

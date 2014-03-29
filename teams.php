@@ -29,19 +29,23 @@ include ("teamdoaction.php");
 				<tr><td align="left" bgcolor="#f2f2f2" colspan="2"><strong>Medlemmer:</strong> (dem med kryds i)</td></tr>
 
 <?php
-	$tmquery = "SELECT Person.PersonID,Person.Fornavn,Person.Efternavn FROM Person;";
+	$tmquery = "SELECT Bruger.BrugerID,Bruger.Fornavn,Bruger.Efternavn, Bruger.Email FROM Bruger order by fornavn, email;";
 	$tmresult = doSQLQuery($tmquery);
 	$colour = "";
 	while ($tmline = db_fetch_array($tmresult)) {
-		$personid = $tmline["PersonID"];
+		$brugerid = $tmline["BrugerID"];
 		$firstName = $tmline["Fornavn"];
 		$lastName = $tmline["Efternavn"];
+        $displayName = $firstName." ".$lastName;
+        if($displayName == ' '){
+            $displayName = $tmline['Email'];
+        }
 		echo "<tr><td".$colour." align=\"left\" colspan=\"2\">";
-		echo "<input class=\"checkbox\" type=\"checkbox\" id=\"member".$personid."\" name=\"member".$personid."\">";
-		echo $firstName." ".$lastName." (";
+		echo "<input class=\"checkbox\" type=\"checkbox\" id=\"member".$brugerid."\" name=\"member".$brugerid."\">";
+		echo $displayName." (";
 
 		// Find and list abilities
-		$abilityQuery = "SELECT Rolle.Navn FROM Rolle INNER JOIN PersonRolle ON Rolle.RolleID=PersonRolle.RolleID WHERE PersonRolle.PersonID=".$personid.";";
+		$abilityQuery = "SELECT Rolle.Navn FROM Rolle INNER JOIN BrugerRolle ON Rolle.RolleID=BrugerRolle.RolleID WHERE BrugerRolle.BrugerID=".$brugerid.";";
 		$abilityResult = doSQLQuery($abilityQuery);
 		$abilities = "";
 		while ($abilityLine = db_fetch_array($abilityResult)) {
@@ -89,16 +93,20 @@ include ("teamdoaction.php");
 		echo "				<tr><td bgcolor=\"#f2f2f2\"><strong>Team: </strong>".$teamName . "</td></tr>\n";
 		echo "				<tr><td ><strong>Beskrivelse: </strong>". $teamDesr . "</td></tr>\n";
 
-		$tmquery = "SELECT Person.PersonID,Person.Fornavn,Person.Efternavn FROM Person INNER JOIN TeamPerson ON TeamPerson.PersonID=Person.PersonID WHERE TeamPerson.TeamID=".$teamID.";";
+		$tmquery = "SELECT Bruger.BrugerID,Bruger.Fornavn,Bruger.Efternavn, Bruger.Email FROM Bruger INNER JOIN TeamBruger ON TeamBruger.BrugerID=Bruger.BrugerID WHERE TeamBruger.TeamID=".$teamID.";";
 		$tmresult = doSQLQuery($tmquery);
 		while ($tmline = db_fetch_array($tmresult)) {
-			$personid = $tmline["PersonID"];
+			$brugerid = $tmline["BrugerID"];
 			$firstName = $tmline["Fornavn"];
 			$lastName = $tmline["Efternavn"];
-			echo "				<tr><td".$colour.">".$firstName." ".$lastName." (";
+            $displayName = $firstName." ".$lastName;
+            if($displayName != ' '){
+                $displayName= $tmline['Email'];
+            }
+			echo "<tr><td".$colour.">".$displayName." (";
 
 			// Find and list abilities
-			$abilityQuery = "SELECT Rolle.Navn FROM Rolle INNER JOIN PersonRolle ON Rolle.RolleID=PersonRolle.RolleID WHERE PersonRolle.PersonID=".$personid.";";
+			$abilityQuery = "SELECT Rolle.Navn FROM Rolle INNER JOIN BrugerRolle ON Rolle.RolleID=BrugerRolle.RolleID WHERE BrugerRolle.BrugerID=".$brugerid.";";
 			$abilityResult = doSQLQuery($abilityQuery);
 			$abilities = "";
 			while ($abilityLine = db_fetch_array($abilityResult)) {
@@ -115,8 +123,8 @@ include ("teamdoaction.php");
 				$colour = "";
 			}
 		}
-		echo "				<tr><td".$colour."><button name=\"send\" value=\"Ret team\" class=\"submit_btn_2\" onClick=\"javascript:editTeam(".$teamID.");return false;\"> Ret team </button></td></tr>";
-		echo "			</table><br />\n";
+		echo "<tr><td".$colour."><button name=\"send\" value=\"Ret team\" class=\"submit_btn_2\" onClick=\"javascript:editTeam(".$teamID.");return false;\"> Ret team </button></td></tr>";
+		echo "</table><br />\n";
 	}
 ?>
 			<button name="send" value="Opret nyt team" class="submit_btn_2" onClick="javascript:newTeam();return false;"> Opret nyt team </button>

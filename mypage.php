@@ -1,32 +1,29 @@
 
 <?php
 if (isset($_SESSION['logget_ind'])) {
-
-	if ($_POST['brugerID'] != "") {
+    $brugerid = isset($_POST['brugerID']) ? $_POST['brugerID']: '';
+	if ($brugerid != "") {
 
 		$password = "";
 		$query = "";
 		if ($_POST['password1'] != "" && $_POST['password2'] != "" && $_POST['password1'] == $_POST['password2']) {
 			$password = $_POST['password1'];
 			$query = "UPDATE Bruger SET Email = '" . addslashes($_POST['email']) .
-					"', PersonId = " . $_POST['personId'] .
 					", Kode = '" . md5($_POST['password1']."musikteam") .
 					"' WHERE BrugerId = " . $_POST['brugerID'];
 		} else {
 			$query = "UPDATE Bruger SET Email = '" . addslashes($_POST['email']) .
-					"', PersonId = " . $_POST['personId'] .
 					" WHERE BrugerId = " . $_POST['brugerID'];
 		}
 		$result = doSQLQuery($query);	
 	}
 
-	$query = "SELECT Email,BrugerId,PersonId FROM Bruger WHERE Brugernavn = '".$_SESSION['brugernavn']."'";
+	$query = "SELECT Email,BrugerId FROM Bruger WHERE Brugernavn = '".$_SESSION['brugernavn']."'";
 	$result = doSQLQuery($query);
 	$line = db_fetch_array($result);
 	$brugernavn = $_SESSION['brugernavn'];
 	$email = $line["Email"];
 	$brugerid = $line["BrugerId"];
-	$personid = $line["PersonId"];
 
 ?>
 	<p></p>
@@ -44,25 +41,6 @@ if (isset($_SESSION['logget_ind'])) {
 			<tr bgcolor="#f2f2f2">
 				<td align="left">Ny kode: <input type="password" id="password1" name="password1" size="10">  Gentag ny kode: <input type="password" id="password2" name="password2" size="10"></td>
 			</tr>
-			<tr>
-				<td>Jeg er:  
-					<select name="personId">
-						<option value="-1">Ingen af dem</option>
-<?php
-		$query = "SELECT PersonID,Fornavn,Efternavn FROM Person ORDER BY Fornavn";
-		$result = doSQLQuery($query);
-
-		while ($line = db_fetch_array($result)) {
-			$curPersonid = $line["PersonID"];
-			$navn = $line["Fornavn"]." ".$line["Efternavn"];
-			if ($personid != $curPersonid) echo "						<option value=\"".$curPersonid."\">".$navn."</option>\n";
-			else echo "						<option value=\"".$curPersonid."\" selected=\"selected\">".$navn."</option>\n";			
-		}
-
-?>
-					</select> (Hvis dit navn ikke står på listen skal du oprette dig selv under "Teams")
-				</td>
-			</tr>
 			<tr bgcolor="#f2f2f2">
 				<td align="center"><input class="submit_btn" type="submit" name="Submit" value="Gem ændringer" /></td>
 			</tr>
@@ -79,9 +57,9 @@ if (isset($_SESSION['logget_ind'])) {
 
 <?php
 	if ($DB_TYPE == "mysql") {
-		$query = "SELECT Program.Dato,Program.ProgramId,Program.Arrangement FROM Program INNER JOIN ProgramPerson ON ProgramPerson.ProgramID=Program.ProgramID WHERE ProgramPerson.PersonID=".$personid." AND DateDiff(Dato, '$curyear-$curmonth-$today') > -1 ORDER BY Dato LIMIT 3;";
+		$query = "SELECT Program.Dato,Program.ProgramId,Program.Arrangement FROM Program INNER JOIN ProgramBruger ON ProgramBruger.ProgramID=Program.ProgramID WHERE ProgramBruger.BrugerID=".$brugerid." AND DateDiff(Dato, '$curyear-$curmonth-$today') > -1 ORDER BY Dato LIMIT 3;";
 	} else if ($DB_TYPE == "odbc") {
-		$query = "SELECT TOP 3 Program.Dato,Program.ProgramId,Program.Arrangement FROM Program INNER JOIN ProgramPerson ON ProgramPerson.ProgramID=Program.ProgramID WHERE ProgramPerson.PersonID=".$personid." AND DateDiff('s', Dato, '$curyear-$curmonth-$today') < 1 ORDER BY Dato;";
+		$query = "SELECT TOP 3 Program.Dato,Program.ProgramId,Program.Arrangement FROM Program INNER JOIN ProgramBruger ON ProgramBruger.ProgramID=Program.ProgramID WHERE ProgramBruger.BrugerID=".$brugerid." AND DateDiff('s', Dato, '$curyear-$curmonth-$today') < 1 ORDER BY Dato;";
 	}
 	$result = doSQLQuery($query);
 

@@ -1,5 +1,5 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Musikteam - <?php echo $strTitle; ?></title>
@@ -8,6 +8,9 @@
 <link href="musikstyleIE.css" type="text/css" rel="stylesheet" media="screen" />
 <![endif]-->
 <?php
+
+//ini_set('display_errors', 'On');
+//error_reporting(E_ALL);
 
 if (isset($_GET['page'])) {
     if ($_GET['page'] == 'teams') echo '<script src="js/teams.js" type="text/javascript"></script>';
@@ -38,8 +41,8 @@ function NewWindow(mypage, myname, scroll)
 }
 // -->
 </script>
-<script language="JavaScript" type="text/javascript" src="js/ajax.js"></script>
-<script language="JavaScript" type="text/javascript" src="js/func.js"></script>
+<script src="js/ajax.js"></script>
+<script src="js/func.js"></script>
 <style type="text/css">
 <!--
 .style3 {font-size: 9px}

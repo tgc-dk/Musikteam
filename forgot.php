@@ -45,7 +45,7 @@ include("db.php")
 
 		<div class="login">
 <?php
-$email = addslashes($_POST['email']);
+$email = isset($_POST['email']) ? addslashes($_POST['email']): '';
 
 if ($email == "") {
 ?>
