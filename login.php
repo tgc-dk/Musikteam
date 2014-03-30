@@ -13,15 +13,16 @@ if ($_POST['target'] != "") {
     $username = addslashes($_POST['brugernavn']);
     $password = addslashes($_POST['password']);
     
-    $query = "SELECT Admin, BrugerId FROM Bruger WHERE Brugernavn ='".$username."' AND Kode = '".md5($password.'musikteam')."'";
+    $query = "SELECT Admin, BrugerId, Email FROM Bruger WHERE Brugernavn ='".$username."' AND Kode = '".md5($password.'musikteam')."'";
     $result = doSQLQuery($query);
-    
+
     $admin = db_result($result, "Admin");
     if ($admin != "") {
         $_SESSION['logget_ind']=1;
         $_SESSION['brugerid'] = db_result($result, "BrugerId");
         $_SESSION['brugernavn'] = $_POST['brugernavn']; //$brugernavn;
         $_SESSION['password'] = md5($_POST['password'].'musikteam'); //$password;
+        $_SESSION['email'] = db_result($result, "Email");
         $_SESSION['admin'] = $admin;
     } else {
         echo "<h1>Ukorrekt login</h1><p>Du skal være logget ind for at se disse sider. <a href=\"default.php\">Log in</a></p>";
