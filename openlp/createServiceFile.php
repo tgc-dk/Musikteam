@@ -23,7 +23,7 @@ class ServiceCreator {
 	{
 		$query = "SELECT DISTINCT SangId FROM Sang ORDER BY Titel";
 		$result = doSQLQuery($query);
-		while ($line = mysql_fetch_array($result)) {
+		while ($line = db_fetch_array($result)) {
 			$this->insertSong($line['SangId']);
 		}
 		
@@ -34,7 +34,7 @@ class ServiceCreator {
 		$query = "SELECT Titel,Identifikation,Slides2,Udgave FROM Sang WHERE SangId=" . $songid;
 		$result = doSQLQuery($query);
 		
-		if ($line = mysql_fetch_array($result)) {
+		if ($line = db_fetch_array($result)) {
 			$title = stripslashes(htmlspecialchars($line["Titel"],ENT_NOQUOTES));
 			$author = stripslashes(htmlspecialchars($line["Identifikation"],ENT_NOQUOTES));
 			$variant = stripslashes(htmlspecialchars($line["Udgave"],ENT_NOQUOTES));
@@ -46,7 +46,7 @@ class ServiceCreator {
 		$query = "SELECT MAX(Dato) as modified FROM Historik WHERE SangId=" . $songid;
 		$result = doSQLQuery($query);
 		$modified = "";
-		if ($line = mysql_fetch_array($result)) {
+		if ($line = db_fetch_array($result)) {
 			$modified = date_format(date_create($line['modified']), "c");
 		}
 		
@@ -69,7 +69,7 @@ class ServiceCreator {
 		
 		if ($slides != "") {
 			$texts = array();
-			while ($line = mysql_fetch_array($result)) {
+			while ($line = db_fetch_array($result)) {
 				$insertedSong = true;
 				$texts[] = stripslashes(htmlspecialchars($line["Slidetekst"],ENT_NOQUOTES));
 				$ol->addVerse(stripslashes(htmlspecialchars($line["Slidetekst"],ENT_NOQUOTES)));
@@ -108,7 +108,7 @@ class ServiceCreator {
 			$ol->setVerseOrder(trim($verseorder));
 		} else {
 			$num = 1;
-			while ($line = mysql_fetch_array($result)) {
+			while ($line = db_fetch_array($result)) {
 				$insertedSong = true;
 				$ol->addVerse(stripslashes(htmlspecialchars($line["Slidetekst"],ENT_NOQUOTES)));
 				$serviceitem->addVerse(("V" .$num), stripslashes(htmlspecialchars($line["Slidetekst"],ENT_NOQUOTES)));
