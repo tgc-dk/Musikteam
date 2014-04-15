@@ -1,9 +1,6 @@
 <?php
 include('./../db.php');
 
-ini_set('display_errors', 'On');
-error_reporting(E_ALL);
-
 /**
  * The City strategy for Opauth
  * based on https://github.com/uzyn/opauth-facebook
@@ -25,8 +22,6 @@ error_reporting(E_ALL);
         $this->image = $dataArray['info']['image'];
     }
 };
-
-       
 
 
 class TheCityStrategy extends OpauthStrategy{
