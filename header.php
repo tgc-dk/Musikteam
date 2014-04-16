@@ -1,3 +1,12 @@
+<?php
+//ini_set('display_errors', 'On');
+//error_reporting(E_ALL);
+
+if (!$_SESSION['logget_ind']) {
+    header("Location: /auth/thecity/");
+    die(); 
+}
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,15 +17,6 @@
 <link href="musikstyleIE.css" type="text/css" rel="stylesheet" media="screen" />
 <![endif]-->
 <?php
-
-//ini_set('display_errors', 'On');
-//error_reporting(E_ALL);
-
-if (!$_SESSION['logget_ind']) {
-    header("Location: /auth/thecity/");
-    die(); 
-}
-
 if (isset($_GET['page'])) {
     if ($_GET['page'] == 'teams') echo '<script src="js/teams.js" type="text/javascript"></script>';
     if ($_GET['page'] == 'program') echo '<script src="js/program.js" type="text/javascript"></script>';
