@@ -50,7 +50,6 @@ if (isset($_SESSION['logget_ind'])) {
 				<tr>
 					<td align="center" colspan="2">
 						<input class="submit_btn" type="submit" name="Submit" value="Gem persondata" />&nbsp;&nbsp;
-						<button name="send" value="Slet person" class="submit_btn_2" onClick="javascript:return deletePerson();"> Slet person </button>&nbsp;&nbsp;
 						<button name="send" value="Annuller" class="submit_btn_2" onClick="javascript:document.getElementById('edit_person').style.display='none';return false;"> Annuller </button>
 					</td>
 				</tr>
@@ -67,7 +66,6 @@ if (isset($_SESSION['logget_ind'])) {
 				<td height="15" background="img/tabletop_bg.gif"><div align="center"><strong>Mail</strong></div></td>
 				<td height="15" background="img/tabletop_bg.gif"><div align="left"><strong>Evner/Instrumenter</strong></div></td>
 				<td height="15" background="img/tabletop_bg.gif"><div align="left"><strong>Teams</strong></div></td>
-				<td height="15" background="img/tabletop_bg.gif"><div align="center"><div align="center"><span class="style3">Ret</span></div></div></td>
 			</tr>
 <?php
 	$query = "SELECT Bruger.BrugerID,Bruger.Fornavn,Bruger.Efternavn,Bruger.Adresse1,Bruger.Adresse2,Bruger.Telefon,Bruger.Mobil,Bruger.EMail FROM Bruger ORDER BY Bruger.Efternavn";
@@ -107,8 +105,6 @@ if (isset($_SESSION['logget_ind'])) {
 		}
 		echo $teams."</td>\n"; // Teams
 
-		echo "				<td".$colour."><div align=\"left\"><a href=\"javascript:editPerson(".$brugerid.")\">Ret</a></td>\n"; // edit-icons
-
 		echo "			</tr>\n"; // end of row
 		if ($colour == "") {
 			$colour = " bgcolor=\"#f2f2f2\"";
@@ -118,9 +114,6 @@ if (isset($_SESSION['logget_ind'])) {
 	}
 ?>
 			</table>
-<p align="center">
-				<button name="send" value="Opret ny person" class="submit_btn_2" onClick="javascript:newPerson();return false;"> Opret ny person </button>
-			</p>
 
 		</div> <!--  personer -->
 <?php

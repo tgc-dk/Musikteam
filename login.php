@@ -1,33 +1,54 @@
 <?php
-if ($_POST['target'] != "") {
-    header("Location: ".$_POST['target']);
-} else {
-    header("Location: main.php");
-}
- 
-    session_start();
-    $strTitle="Passwordkontrol";
-    include("header.php");
+    ini_set('display_errors', 'On');
+    error_reporting(E_ALL);
+
+if($_SERVER["SERVER_NAME"] == "localhost" && isset($_REQUEST["thecityid"])){
     include("db.php");
     openDB();
-    $username = addslashes($_POST['brugernavn']);
-    $password = addslashes($_POST['password']);
     
-    $query = "SELECT Admin, BrugerId, Email FROM Bruger WHERE Brugernavn ='".$username."' AND Kode = '".md5($password.'musikteam')."'";
+    $query = "SELECT * FROM Bruger WHERE onTheCityId = ".$_REQUEST["thecityid"];
     $result = doSQLQuery($query);
+    
+    session_start();
+    $_SESSION['logget_ind']=1;
+    $_SESSION['brugerid'] = db_result($result, "BrugerId");
+    $_SESSION['brugernavn'] = db_result($result, "Brugernavn"); //$brugernavn;
+    $_SESSION['password'] = db_result($result, 'password'); //$password;
+    $_SESSION['email'] = db_result($result, "Email");
+    $_SESSION['admin'] = db_result($result, "Admin");
 
-    $admin = db_result($result, "Admin");
-    if ($admin != "") {
-        $_SESSION['logget_ind']=1;
-        $_SESSION['brugerid'] = db_result($result, "BrugerId");
-        $_SESSION['brugernavn'] = $_POST['brugernavn']; //$brugernavn;
-        $_SESSION['password'] = md5($_POST['password'].'musikteam'); //$password;
-        $_SESSION['email'] = db_result($result, "Email");
-        $_SESSION['admin'] = $admin;
-    } else {
-        echo "<h1>Ukorrekt login</h1><p>Du skal være logget ind for at se disse sider. <a href=\"default.php\">Log in</a></p>";
-    }
     closeDB();
+    header("Location: main.php");
+}
+//if ($_POST['target'] != "") {
+//    header("Location: ".$_POST['target']);
+//} else {
+//    header("Location: main.php");
+//}
+// 
+//    session_start();
+//    $strTitle="Passwordkontrol";
+    include("header.php");
+//    include("db.php");
+//    openDB();
+//    $username = addslashes($_POST['brugernavn']);
+//    $password = addslashes($_POST['password']);
+//    
+//    $query = "SELECT Admin, BrugerId, Email FROM Bruger WHERE Brugernavn ='".$username."' AND Kode = '".md5($password.'musikteam')."'";
+//    $result = doSQLQuery($query);
+
+//    $admin = db_result($result, "Admin");
+//    if ($admin != "") {
+//        $_SESSION['logget_ind']=1;
+//        $_SESSION['brugerid'] = db_result($result, "BrugerId");
+//        $_SESSION['brugernavn'] = $_POST['brugernavn']; //$brugernavn;
+//        $_SESSION['password'] = md5($_POST['password'].'musikteam'); //$password;
+//        $_SESSION['email'] = db_result($result, "Email");
+//        $_SESSION['admin'] = $admin;
+//    } else {
+//        echo "<h1>Ukorrekt login</h1><p>Du skal være logget ind for at se disse sider. <a href=\"default.php\">Log in</a></p>";
+//    }
+//    closeDB();
 ?>
 
 

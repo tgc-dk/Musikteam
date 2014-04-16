@@ -143,8 +143,8 @@ include ("teamdoaction.php");
 	document.getElementById("edit_team").style.display="none";
 <?php
 	echo "	".$jsArrStr;
-	if ($_GET['subpage'] == "persons") echo "	Personer();\n";
-	else if ($_GET['subpage'] == "abilities") echo "	Evner();\n";
+	if (isset($_GET['subpage']) && $_GET['subpage'] == "persons") echo "	Personer();\n";
+	else if (isset($_GET['subpage']) && $_GET['subpage'] == "abilities") echo "	Evner();\n";
 	else echo "	Teams();\n";
 ?>
 </script>
