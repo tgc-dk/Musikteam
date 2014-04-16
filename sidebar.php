@@ -28,8 +28,8 @@ Du er logget ind som: <strong><?php echo $_SESSION['brugernavn'] ?> </strong>
             $today = date('d', $now);
             $curmonth = date('m', $now);
             $curyear = date('Y', $now);
-            
-                if ($_GET['page'] == 'sange' || $_GET['page'] == '')  {
+            $page = isset($_GET['page']) ? $_GET['page'] : '';
+            if ($page == 'sange' || $page == '')  {
             
         ?>
         <div class="sidebar_top">
@@ -74,7 +74,7 @@ Du er logget ind som: <strong><?php echo $_SESSION['brugernavn'] ?> </strong>
         </div>
         <div class="sidebar_bund"></div>
         <?php
-            } else if ($_GET['page'] == 'program')  {
+            } else if ($page == 'program')  {
         ?>
         <div class="sidebar_top">Kalender</div>
         <div class="sidebar_bg">
