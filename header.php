@@ -3,7 +3,7 @@
 //error_reporting(E_ALL);
 
 if (!$_SESSION['logget_ind']) {
-    header("Location: /auth/thecity/");
+    header("Location: auth/thecity/");
     die(); 
 }
 ?>
