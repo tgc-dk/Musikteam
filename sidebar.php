@@ -2,28 +2,14 @@
 <?php
     if (isset($_SESSION['logget_ind'])) {
     global $DB_TYPE;
-    if (isset($_POST['brugerID']) && $_POST['brugerID'] != "") {
     
-            $password = "";
-            $query = "";
-            if ($_POST['password1'] != "" && $_POST['password2'] != "" && $_POST['password1'] == $_POST['password2']) {
-                $password = $_POST['password1'];
-                $query = "UPDATE Bruger SET Email = '" . addslashes($_POST['email']) .
-                        ", Kode = '" . $_POST['password1'] .
-                        "' WHERE BrugerId = " . $_POST['brugerID'];
-            } else {
-                $query = "UPDATE Bruger SET Email = '" . addslashes($_POST['email']) .
-                        " WHERE BrugerId = " . $_POST['brugerID'];
-            }
-            $result = doSQLQuery($query);	
-        }
     
-        $query = "SELECT Email,BrugerId FROM Bruger WHERE Brugernavn = '".$_SESSION['brugernavn']."'";
-        $result = doSQLQuery($query);
-        $line = db_fetch_array($result);
-        $brugernavn = $_SESSION['brugernavn'];
-        $email = $line["Email"];
-        $brugerid = $line["BrugerId"];
+    $query = "SELECT Email,BrugerId FROM Bruger WHERE Brugerid = '".$_SESSION['brugerid']."'";
+    $result = doSQLQuery($query);
+    $line = db_fetch_array($result);
+    $brugernavn = $_SESSION['brugernavn'];
+    $email = $line["Email"];
+    $brugerid = $line["BrugerId"];
     
 ?>
 
