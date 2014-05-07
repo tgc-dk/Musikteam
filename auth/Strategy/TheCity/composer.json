@@ -1,0 +1,23 @@
+{
+	"name": "opauth/thecity",
+	"description": "The City strategy for Opauth",
+	"keywords": ["authentication","auth","thecity"],
+	"homepage": "http://opauth.org",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Eric C. Brown",
+			"email": "djheir@gmail.com",
+			"homepage": "http://github.com/ericthelast"
+		}
+	],
+	"require": {
+		"php": ">=5.2.0",
+		"opauth/opauth": ">=0.2.0"
+	},
+	"autoload": {
+		"psr-0": {
+			"": "."
+		}
+	}
+}
