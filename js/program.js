@@ -408,8 +408,8 @@ function sangBlad(eventname)
 	window.location = "songs.php?" + text;
 }
 
-// Creates an OpenOffice Impress presentation with the song lyrics
-function slides(eventname)
+// Creates link to an OpenOffice Impress presentation with the song lyrics
+function getSlideUrl(eventname)
 {
 	var text ="";
 	// Extract song ids
@@ -422,7 +422,22 @@ function slides(eventname)
 		text += tmp.substr(start, length) + "&";
 	}
 	text += "songcount=" + count + "&eventName=" + eventname;
-	window.location = "odp-handler/createSlides.php?" + text;
+	return ("odp-handler/createSlides.php?" + text);
+}
+
+// Creates an OpenOffice Impress presentation with the song lyrics
+function slides(eventname)
+{
+	window.location = getSlideUrl(eventname);
+}
+
+// Creates an web presentation with the song lyrics, 
+//based on the generated OpenOffice Impress file
+function webSlides(eventname)
+{
+	// Add an odp-extention, otherwise webodf wont load it
+	odpLink = "odf-viewer/#../" + getSlideUrl(eventname) + "&ext=.odp";
+	var myWindow = window.open(odpLink, "", "width=800, height=640");
 }
 
 // Creates an OpenLP service file with the song lyrics

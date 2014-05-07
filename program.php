@@ -187,10 +187,11 @@
         <td colspan="5">
             <table border="0" width="100%">
                 <tr>
-                    <td width="20%">
+                    <td width="12%">
                         <a href="javascript:toggleSongIframe()"><img id="searchSongImg" src="img/list-add.gif" alt="Tilf&oslash;j sang" width="14" height="14" border="0" align="top" /></a>&nbsp;&nbsp; <span class="style3">Tilf&oslash;j sang</span>
                     </td>
-                    <td width="80%" align="right">
+                    <td width="88%" align="right">
+                        <button name="send" value="Vis nu" class="submit_btn" onclick="javascript:webSlides('<?php echo $eventTitle?> d. <?php echo $eventDate?>');return false;"> <img src="img/slide_show_48.png" alt="Vis nu" width="18" height="19" border="0" align="absmiddle" /> Vis nu </button>
                         <button name="send" value="Udskriv alle sange" class="submit_btn" onclick="javascript:printSongs();return false;"> <img src="img/udskriv_lille.gif" alt="Udskriv alle sange" width="18" height="19" border="0" align="absmiddle" /> Udskriv alle sange </button>
                         <button name="send" value="Lav slides" class="submit_btn" onclick="javascript:slides('<?php echo $eventTitle?> d. <?php echo $eventDate?>');return false;"> <img src="img/oo-impress.gif" alt="Udskriv" width="18" height="19" border="0" align="absmiddle" /> Lav slides </button>
                         <button name="send" value="Lav sangblad" class="submit_btn" onclick="javascript:sangBlad('<?php echo $eventTitle?> d. <?php echo $eventDate?>');return false;"> <img src="img/pdf.gif" alt="Lav sangblad" width="18" height="19" border="0" align="absmiddle" /> Lav sangblad </button>
