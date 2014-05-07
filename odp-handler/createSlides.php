@@ -32,8 +32,8 @@ class PresentationCreator {
 		$query = "SELECT Titel,Identifikation,Slides2 FROM Sang WHERE SangId=" . $songid;
 		$result = doSQLQuery($query);
 
-		if ($line = mysql_fetch_array($result)) {
-			$title = stripslashes(htmlspecialchars($line["Titel"],ENT_NOQUOTES)))
+		if ($line = db_fetch_array($result)) {
+			$title = stripslashes(htmlspecialchars($line["Titel"],ENT_NOQUOTES));
 			$author = stripslashes(htmlspecialchars($line["Identifikation"],ENT_NOQUOTES));
 			$slides = $line["Slides2"];
 		} else {
@@ -46,7 +46,7 @@ class PresentationCreator {
 
 		if ($slides != "") {
 			$texts = array();
-			while ($line = mysql_fetch_array($result)) {
+			while ($line = db_fetch_array($result)) {
 				$texts[] = stripslashes(htmlspecialchars($line["Slidetekst"],ENT_NOQUOTES));
 			}
 			for($slideIndex = 0; $slideIndex < strlen($slides); $slideIndex++) {
@@ -81,7 +81,7 @@ class PresentationCreator {
 				$text4slides[] = $texts[$index];
 			}
 		} else {
-			while ($line = mysql_fetch_array($result)) {
+			while ($line = db_fetch_array($result)) {
 				//$this->insertSongTextPage($author,$title,stripslashes(htmlspecialchars($line["Slidetekst"],ENT_NOQUOTES)));
 				$text4slides[] = stripslashes(htmlspecialchars($line["Slidetekst"],ENT_NOQUOTES));
 			}
@@ -98,7 +98,7 @@ class PresentationCreator {
 		$text4slides = array();
 
 		$numsongs = 0;
-		while($line = mysql_fetch_array($result)) {
+		while($line = db_fetch_array($result)) {
 			$songid = $line["SangId"];
 			$title = stripslashes(htmlspecialchars($line["Titel"],ENT_NOQUOTES));
 			$author = stripslashes(htmlspecialchars($line["Identifikation"],ENT_NOQUOTES));
@@ -112,7 +112,7 @@ class PresentationCreator {
 			$slideResult = doSQLQuery($slideQuery);
 			if ($slides != "") {
 				$texts = array();
-				while ($line = mysql_fetch_array($result)) {
+				while ($line = db_fetch_array($result)) {
 					$texts[] = stripslashes(htmlspecialchars($line["Slidetekst"],ENT_NOQUOTES));
 				}
 				for($slideIndex = 0; $slideIndex < strlen($slides); $slideIndex++) {
@@ -145,7 +145,7 @@ class PresentationCreator {
 					$text4slides[] = $texts[$index];
 				}
 			} else {
-				while ($slideLine = mysql_fetch_array($slideResult)) {
+				while ($slideLine = db_fetch_array($slideResult)) {
 					$text4slides[] = stripslashes(htmlspecialchars($line["Slidetekst"],ENT_NOQUOTES));
 				}
 			}
