@@ -213,8 +213,8 @@
 </style>
 <form id="form1" name="form1" method="post" action="main.php?page=sange&subpage=search">
     <label>
-        <input name="textfield" id="textfield" type="text" class="textfield" value="<?php echo $_POST['textfield']; ?>" onkeyup="findSong(this)" />
-        <script language="JavaScript">document.getElementById('textfield').focus();</script>
+        <input name="textfield" id="textfield" type="text" class="textfield" value="<?php echo isset($_POST['textfield'])?$_POST['textfield']:""; ?>" onkeyup="findSong(this)" />
+        <script>document.getElementById('textfield').focus();</script>
     </label>
     <label>&nbsp;
         <input class="submit_btn" type="submit" name="Submit" value="Søg" />
@@ -288,7 +288,7 @@
         <?php
             
             // Show all songs, or do a search
-            if ($_GET['showall'] > 0) {
+            if (isset($_GET['showall']) && $_GET['showall'] > 0) {
                 if ($_GET['showall'] == 2) {
                     $query = "SELECT DISTINCT Sang.SangId,Sang.Titel,Sang.Identifikation,Sang.Udgave, sb.BrugerId,Sang.Lydfil FROM (Sang LEFT OUTER JOIN Slide2 ON Sang.SangID = Slide2.SangID) LEFT JOIN (SELECT * FROM SangBruger WHERE BrugerId = ".$_SESSION['brugerid'].") sb ON sb.SangId = Sang.SangId WHERE " . CreateLikeClause("Sang.ProTekst", "]") . " ORDER BY Sang.Titel";
                 }
@@ -385,7 +385,7 @@
                 }
             
             // Tilføj sang til setlist
-                if (isSongInProgram($songid, $_SESSION['setlist']))
+                if (isset($_SESSION['setlist']) && isSongInProgram($songid, $_SESSION['setlist']))
                     echo "			<td id=\"addImg".$songid."\" align=\"center\"><img src=\"img/list-minus.gif\" alt=\"Fjern sang\" width=\"14\" height=\"14\" border=\"0\" style=\"cursor: pointer;\" align=\"top\" onclick=\"removeSong(".$songid.")\" /></td>\n"; // Remove
                 else
                     echo "			<td id=\"addImg".$songid."\" align=\"center\"><img src=\"img/list-add.gif\" alt=\"Tilf&oslash;j sang\" width=\"14\" height=\"14\" border=\"0\" style=\"cursor: pointer;\" align=\"top\" onclick=\"addSong(".$songid.")\" /></td>\n"; // Add

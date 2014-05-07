@@ -2,28 +2,14 @@
 <?php
     if (isset($_SESSION['logget_ind'])) {
     global $DB_TYPE;
-    if (isset($_POST['brugerID']) && $_POST['brugerID'] != "") {
     
-            $password = "";
-            $query = "";
-            if ($_POST['password1'] != "" && $_POST['password2'] != "" && $_POST['password1'] == $_POST['password2']) {
-                $password = $_POST['password1'];
-                $query = "UPDATE Bruger SET Email = '" . addslashes($_POST['email']) .
-                        ", Kode = '" . $_POST['password1'] .
-                        "' WHERE BrugerId = " . $_POST['brugerID'];
-            } else {
-                $query = "UPDATE Bruger SET Email = '" . addslashes($_POST['email']) .
-                        " WHERE BrugerId = " . $_POST['brugerID'];
-            }
-            $result = doSQLQuery($query);	
-        }
     
-        $query = "SELECT Email,BrugerId FROM Bruger WHERE Brugernavn = '".$_SESSION['brugernavn']."'";
-        $result = doSQLQuery($query);
-        $line = db_fetch_array($result);
-        $brugernavn = $_SESSION['brugernavn'];
-        $email = $line["Email"];
-        $brugerid = $line["BrugerId"];
+    $query = "SELECT Email,BrugerId FROM Bruger WHERE Brugerid = '".$_SESSION['brugerid']."'";
+    $result = doSQLQuery($query);
+    $line = db_fetch_array($result);
+    $brugernavn = $_SESSION['brugernavn'];
+    $email = $line["Email"];
+    $brugerid = $line["BrugerId"];
     
 ?>
 
@@ -42,8 +28,8 @@ Du er logget ind som: <strong><?php echo $_SESSION['brugernavn'] ?> </strong>
             $today = date('d', $now);
             $curmonth = date('m', $now);
             $curyear = date('Y', $now);
-            
-                if ($_GET['page'] == 'sange' || $_GET['page'] == '')  {
+            $page = isset($_GET['page']) ? $_GET['page'] : '';
+            if ($page == 'sange' || $page == '')  {
             
         ?>
         <div class="sidebar_top">
@@ -88,7 +74,7 @@ Du er logget ind som: <strong><?php echo $_SESSION['brugernavn'] ?> </strong>
         </div>
         <div class="sidebar_bund"></div>
         <?php
-            } else if ($_GET['page'] == 'program')  {
+            } else if ($page == 'program')  {
         ?>
         <div class="sidebar_top">Kalender</div>
         <div class="sidebar_bg">
