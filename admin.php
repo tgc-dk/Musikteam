@@ -72,18 +72,17 @@ if (isset($_SESSION['logget_ind']) && isset($_SESSION['admin'])) {
 ?>
 	<p></p>
 
-	<table id="musiker_table" cellspacing="0" cellpadding="3" width="450">
+	<table id="musiker_table" cellspacing="0" cellpadding="3" width="100%">
 	<tr background="img/tabletop_bg.gif">
-		<td height="15" background="img/tabletop_bg.gif"><div align="center"><strong>Brugernavn</strong></div></td>
+		<td height="15" background="img/tabletop_bg.gif"><div align="center"><strong>Navn</strong></div></td>
 		<td height="15" background="img/tabletop_bg.gif"><div align="center"><strong>E-mail</strong></div></td>
 		<td height="15" background="img/tabletop_bg.gif"><div align="center"><strong>Admin</strong></div></td>
-		<td height="15" background="img/tabletop_bg.gif"><div align="center"><div align="center"><span class="style3">Slet</span></div></div></td>
-		<td height="15" background="img/tabletop_bg.gif"></td>
+		<td height="15" background="img/tabletop_bg.gif"><div align="center"><span class="style3">Slet</span></div></td>
 		<td height="15" background="img/tabletop_bg.gif"></td>
 	</tr>
 
 <?php
-	$query = "SELECT BrugerId,Brugernavn,Email,Admin FROM Bruger ORDER BY Brugernavn";
+	$query = "SELECT BrugerId,ForNavn,EfterNavn,Brugernavn,Email,Admin FROM Bruger ORDER BY Brugernavn";
 	$result = doSQLQuery($query);
 
 	$colour = "";
@@ -91,14 +90,13 @@ if (isset($_SESSION['logget_ind']) && isset($_SESSION['admin'])) {
 	while ($line = db_fetch_array($result)) {
 		$userId = $line["BrugerId"];
 		echo "			<tr".$colour.">\n";
-		echo "				<td>".stripslashes($line["Brugernavn"])."</td>\n"; // Username
-		echo "				<td><input type=\"text\" id=\"email".$user."\" name=\"email".$user."\" value=\"".stripslashes($line["Email"])."\" size=30 /></td>\n"; // Email
+		echo "				<td>".stripslashes($line["ForNavn"])." ".stripslashes($line["EfterNavn"])."</td>\n"; // Fornavn og efternavn 
+		echo "				<td>".stripslashes($line["Email"])."</td>\n"; // Email
 		$checked = "";
 		if ($line["Admin"] == 1) $checked = " checked";
 		echo "				<td><div align=\"center\"><input type=\"checkbox\" id=\"admin".$user."\" name=\"admin".$user."\"".$checked." /> </div></td>\n"; // Email
 		echo "				<td><a href=\"javascript:deleteUser(".$userId.")\"><img src=\"img/slet.gif\" alt=\"Ret\" width=\"16\" height=\"16\" border=\"0\" /></a></td>\n"; // delete-icons
 		echo "				<td><input class=\"submit_btn\" type=\"button\" value=\"Gem ændringer\" onclick=\"javascript:saveUser(".$user.",".$userId.")\" /></td>";
-		echo "				<td><input class=\"submit_btn\" type=\"button\" value=\"Ny kode\" onclick=\"javascript:newPassword(".$user.",".$userId.")\" /></td>";
 		if ($colour == "") {
 			$colour = " bgcolor=\"#f2f2f2\"";
 		} else {
@@ -109,30 +107,11 @@ if (isset($_SESSION['logget_ind']) && isset($_SESSION['admin'])) {
 ?>
 	</table>
 
-	<br />
-	
-	<form id="personform" name="personform" method="post" action="main.php?page=admin">
-	<table id="musiker_table" cellspacing="0" cellpadding="3" width="550">
-		<tr><td height="15" background="img/tabletop_bg.gif" colspan="2"><div align="left"><strong>Tilføj ny bruger:</strong></div></td></tr>
-		<tr bgcolor="#f2f2f2">
-			<td align="right">Brugernavn: <input type="text" id="brugernavn" name="brugernavn" size="45"></td>
-		</tr>
-		<tr>
-			<td align="right">E-mail: <input type="text" id="email" name="email" size="45"></td>
-		</tr>
-		<tr bgcolor="#f2f2f2">
-			<td align="center">Administrator: <input type="checkbox" id="admin" name="admin"></td>
-		</tr>
-		<tr>
-			<td align="center"><input class="submit_btn" type="submit" name="Submit" value="Opret bruger" /></td>
-		</tr>
-	</table>
-	</form>
 	
 	<p>
 	
 	<form id="slideform" name="slideform" method="post" action="main.php?page=admin" enctype="multipart/form-data">
-	<table id="musiker_table" cellspacing="0" cellpadding="3" width="550">
+	<table id="musiker_table" cellspacing="0" cellpadding="3" width="100%">
 		<tr><td height="15" background="img/tabletop_bg.gif" colspan="3"><div align="left"><strong>Slide skabeloner:</strong></div></td></tr>
 <?php
 	$colour = " bgcolor=\"#f2f2f2\"";

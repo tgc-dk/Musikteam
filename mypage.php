@@ -3,22 +3,14 @@
 if (isset($_SESSION['logget_ind'])) {
     $brugerid = isset($_POST['brugerID']) ? $_POST['brugerID']: '';
 	if ($brugerid != "") {
-
-		$password = "";
-		$query = "";
-		if ($_POST['password1'] != "" && $_POST['password2'] != "" && $_POST['password1'] == $_POST['password2']) {
-			$password = $_POST['password1'];
-			$query = "UPDATE Bruger SET Email = '" . addslashes($_POST['email']) .
-					", Kode = '" . md5($_POST['password1']."musikteam") .
-					"' WHERE BrugerId = " . $_POST['brugerID'];
-		} else {
-			$query = "UPDATE Bruger SET Email = '" . addslashes($_POST['email']) .
-					" WHERE BrugerId = " . $_POST['brugerID'];
-		}
+		$query = "UPDATE Bruger SET Fornavn = '" . addslashes($_POST['fornavn']) ."',".
+				" Efternavn = '" . addslashes($_POST['efternavn']) ."'".
+				" WHERE BrugerId = " . $_POST['brugerID'];
+                echo $query;
 		$result = doSQLQuery($query);	
 	}
 
-	$query = "SELECT Email,BrugerId FROM Bruger WHERE Brugernavn = '".$_SESSION['brugernavn']."'";
+	$query = "SELECT Email,BrugerId,ForNavn, Efternavn FROM Bruger WHERE Brugerid = '".$_SESSION['brugerid']."'";
 	$result = doSQLQuery($query);
 	$line = db_fetch_array($result);
 	$brugernavn = $_SESSION['brugernavn'];
@@ -33,13 +25,10 @@ if (isset($_SESSION['logget_ind'])) {
 		<table id="musiker_table" cellspacing="0" cellpadding="3" width="600">
 			<tr><td height="15" background="img/tabletop_bg.gif" colspan="2"><div align="left"><strong>Om mig:</strong></div></td></tr>
 			<tr bgcolor="#f2f2f2">
-				<td align="left">Brugernavn: <?php echo $brugernavn; ?></td>
+				<td align="left">Fornavn: <input type="text" name="fornavn" value="<?php echo $line["ForNavn"]; ?>" /> Efternavn: <input type="text" name="efternavn" value="<?php echo $line["Efternavn"]; ?>" /></td>
 			</tr>
 			<tr>
-				<td align="left">E-mail: <input type="text" id="email" name="email" size="45" value="<?php echo $email; ?>"></td>
-			</tr>
-			<tr bgcolor="#f2f2f2">
-				<td align="left">Ny kode: <input type="password" id="password1" name="password1" size="10">  Gentag ny kode: <input type="password" id="password2" name="password2" size="10"></td>
+				<td align="left">E-mail: <?php echo $email; ?></td>
 			</tr>
 			<tr bgcolor="#f2f2f2">
 				<td align="center"><input class="submit_btn" type="submit" name="Submit" value="Gem ændringer" /></td>
