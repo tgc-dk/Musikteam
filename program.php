@@ -49,7 +49,7 @@
 			Tilføj arrangement: <br /> Titel: <input name="title" type="text" size="15" value="" />
     </label>
     <label>
-			Dato (dd/mm/åååå): <input name="date" type="date" size="15" value=""  />
+			Dato (åååå-mm-dd): <input name="date" type="date" size="15" value="" />
     </label>
     <label>&nbsp;
         <input class="submit_btn" type="submit" name="Submit" value="Tilføj" />
@@ -102,9 +102,7 @@
         $title = isset($_POST['title']) ? $_POST['title'] : '';
         // A new event has been created
         if ($date != "" && $title != "") {
-            // Convert into a date-format that mysql accepts
-            $eventDate = substr($_POST['date'],6,4)."-".substr($_POST['date'],3,2)."-".substr($_POST['date'],0,2);
-            $query = "INSERT INTO Program (Arrangement,Dato) VALUES ('".$_POST['title']."','" . $eventDate . "')";
+            $query = "INSERT INTO Program (Arrangement,Dato) VALUES ('".$_POST['title']."','" . $date . "')";
             $result = doSQLQuery($query);
             $query = "SELECT MAX(ProgramID) AS NewProgramId FROM Program";
             $result = doSQLQuery($query);
