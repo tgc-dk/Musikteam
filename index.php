@@ -1,3 +1,7 @@
+<?php 
+header("location: http://musikteam.dk/auth/thecity");
+exit;
+?>
 <?php $strTitle="Password - login";?>
 
 <?php include("header.php"); ?>
