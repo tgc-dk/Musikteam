@@ -85,7 +85,7 @@ class ServiceItem {
 	function addVerse($tag, $versetext) {
 		$verse = new Verse();
 		$verse->verseTag = $tag;
-		$verse->title = substr($versetext, 0, 30);
+		$verse->title = mb_substr($versetext, 0, 30);
 		$verse->raw_slide = $versetext;
 		$this->data[] = $verse;
 	}
