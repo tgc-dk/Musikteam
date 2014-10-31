@@ -144,7 +144,7 @@ class ServiceCreator {
 	
 	function getJSON()
 	{
-		$first = bool;
+		$first = true;
 		$json = " [ ";
 		foreach($this->serviceItems as $item) {
 			if ($first) {
