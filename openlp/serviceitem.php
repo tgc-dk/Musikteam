@@ -48,9 +48,9 @@ class Header {
 		$tmp_title = trim(preg_replace('/\s+/',' ', $tmp_title));
 		$tmp_variant = preg_replace('/[^\p{L}\p{N}]+/u',' ', $variant);
 		$tmp_variant = trim(preg_replace('/\s+/',' ', $tmp_variant));
-		$dataTitle = strtolower($tmp_title . "@");
+		$dataTitle = mb_strtolower($title . "@", 'UTF-8');
 		if (strlen($tmp_variant) > 0) {
-			$dataTitle .= strtolower($tmp_title. " " . $tmp_variant);
+			$dataTitle .= mb_strtolower($tmp_title. " " . $tmp_variant, 'UTF-8');
 		}
 		$this->data = array("authors" => $author, "title" => $dataTitle);
 		$this->timed_slide_interval = 0;
