@@ -100,7 +100,7 @@ include ("teamdoaction.php");
 			$firstName = $tmline["Fornavn"];
 			$lastName = $tmline["Efternavn"];
             $displayName = $firstName." ".$lastName;
-            if($displayName != ' '){
+            if(trim($displayName) == ""){
                 $displayName= $tmline['Email'];
             }
 			echo "<tr><td".$colour.">".$displayName." (";
