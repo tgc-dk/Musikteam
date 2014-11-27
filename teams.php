@@ -100,23 +100,11 @@ include ("teamdoaction.php");
 			$firstName = $tmline["Fornavn"];
 			$lastName = $tmline["Efternavn"];
             $displayName = $firstName." ".$lastName;
-            if($displayName != ' '){
+            if(trim($displayName) == ""){
                 $displayName= $tmline['Email'];
             }
-			echo "<tr><td".$colour.">".$displayName." (";
+			echo "<tr><td".$colour.">".$displayName."</td></tr>\n";
 
-			// Find and list abilities
-			$abilityQuery = "SELECT Rolle.Navn FROM Rolle INNER JOIN BrugerRolle ON Rolle.RolleID=BrugerRolle.RolleID WHERE BrugerRolle.BrugerID=".$brugerid.";";
-			$abilityResult = doSQLQuery($abilityQuery);
-			$abilities = "";
-			while ($abilityLine = db_fetch_array($abilityResult)) {
-				if ($abilities != "") $abilities = $abilities . ", ";
-				$abilities = $abilities . $abilityLine["Navn"];
-			}
-			echo $abilities.")"; // Abilities
-
-
-			echo "</td></tr>\n";
 			if ($colour == "") {
 				$colour = " bgcolor=\"#f2f2f2\"";
 			} else {
