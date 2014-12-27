@@ -9,6 +9,7 @@ setcookie("PHPSESSID",$_COOKIE['PHPSESSID'],time()+1800);
 
 if (isset($_SESSION['logget_ind'])) {*/
 openDB();
+mb_internal_encoding("UTF-8");
 
 class ServiceCreator {
 
