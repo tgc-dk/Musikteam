@@ -72,7 +72,7 @@ class ServiceCreator {
 			$texts = array();
 			while ($line = db_fetch_array($result)) {
 				$insertedSong = true;
-				$slideTekst = preg_replace("/^\s+|(?:[ ])[ ]|[ ]+$/m", "", $line["Slidetekst"]);
+				$slideTekst = preg_replace("/^\s+|(?: ) | (?=\n)+|\s+$/", "", $line["Slidetekst"]);
 				$slideTekst = stripslashes(htmlspecialchars($slideTekst,ENT_NOQUOTES));
 				$texts[] = $slideTekst;
 				$ol->addVerse($slideTekst,ENT_NOQUOTES);
