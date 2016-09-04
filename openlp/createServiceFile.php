@@ -197,12 +197,11 @@ class ServiceCreator {
 
 $content = new ServiceCreator();
 
-// Insert the new entries
-$songcount = $_GET['songcount'];
-
 $eventId = $_GET['eventId'];
 // Should we do the whole database, or only some chosen ones.
 if ($eventId) {
+	$content->insertCustom(" ", "", "  ");
+
     $query = "SELECT SangID, Dato FROM ProgramPunkt INNER JOIN Program ON ProgramPunkt.ProgramID = Program.ProgramID WHERE Program.ProgramID = " . $eventId ." ORDER BY Raekkefoelge";
     $result = doSQLQuery($query);
     $line = db_fetch_array($result);
@@ -215,22 +214,8 @@ if ($eventId) {
     	$content->insertCustom(" ", "", "  ");
     } while ($line = db_fetch_array($result));
 
-} else if ($songcount == -1) {
-	$content->insertAllSongs();
 } else {
-	// insert blank custom slide first
-	$content->insertCustom(" ", "", "  ");
-	for ($count = 0; $count < $songcount; $count++) {
-		$index = 'Song'.$count;
-		$songid = $_GET[$index];
-		if ($content->insertSong($songid)==false) {
-			echo "ERROR when inserting $songid!";
-			break;
-		}
-		// insert blank custom slide between songs
-		$content->insertCustom(" ", "", "  ");
-
-	}
+	$content->insertAllSongs();
 }
 
 echo $content->returnService();
