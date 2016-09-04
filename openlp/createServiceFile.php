@@ -14,9 +14,12 @@ mb_internal_encoding("UTF-8");
 class ServiceCreator {
 
 	private $serviceItems;
-	
+
+    public $serviceName;
+
 	function __construct()
 	{
+        $this->serviceName = "service.osz";
 		$this->serviceItems = array();
 	}
 	
@@ -174,7 +177,7 @@ class ServiceCreator {
 		// Stream the file to the client
 		header("Content-Type: application/octet-stream");
 		header("Content-Length: " . filesize($file));
-		header("Content-Disposition: attachment; filename=\"service.osz\"");
+		header("Content-Disposition: attachment; filename=" . $this->serviceName);
 		readfile($file);
 		unlink($file); 
 
