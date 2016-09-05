@@ -169,11 +169,7 @@ class ServiceCreator {
 	
 	function returnService() {
 		$file = tempnam("tmp", "zip");
-		$zip = new ZipArchive();
-		// Zip will open and overwrite the file, rather than try to read it.
-		$zip->open($file, ZipArchive::OVERWRITE);
-		$zip->addFromString('service.osj', $this->getJSON());
-		$zip->close();
+        $this->saveService($file);
 		// Stream the file to the client
 		header("Content-Type: application/octet-stream");
 		header("Content-Length: " . filesize($file));
