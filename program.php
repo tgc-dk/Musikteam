@@ -193,7 +193,7 @@
                         <button name="send" value="Udskriv alle sange" class="submit_btn" onclick="javascript:printSongs();return false;"> <img src="img/udskriv_lille.gif" alt="Udskriv alle sange" width="18" height="19" border="0" align="absmiddle" /> Udskriv alle sange </button>
                         <button name="send" value="Lav slides" class="submit_btn" onclick="javascript:slides('<?php echo $eventTitle?> d. <?php echo $eventDate?>');return false;"> <img src="img/oo-impress.gif" alt="Udskriv" width="18" height="19" border="0" align="absmiddle" /> Lav slides </button>
                         <button name="send" value="Lav sangblad" class="submit_btn" onclick="javascript:sangBlad('<?php echo $eventTitle?> d. <?php echo $eventDate?>');return false;"> <img src="img/pdf.gif" alt="Lav sangblad" width="18" height="19" border="0" align="absmiddle" /> Lav sangblad </button>
-                        <button name="send" value="Lav OpenLP-fil" class="submit_btn" onclick="javascript:openLP('<?php echo $eventTitle?> d. <?php echo $eventDate?>');return false;"> <img src="img/openlp.png" alt="Lav OLP-fil" width="18" height="19" border="0" align="absmiddle" /> Lav OpenLP-fil </button>
+                        <button name="send" value="Lav OpenLP-fil" class="submit_btn" onclick="javascript:openLP(<?php echo $eventId?>);return false;"> <img src="img/openlp.png" alt="Lav OLP-fil" width="18" height="19" border="0" align="absmiddle" /> Lav OpenLP-fil </button>
                     </td>
                 </tr>
             </table>

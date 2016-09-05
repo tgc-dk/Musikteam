@@ -14,9 +14,12 @@ mb_internal_encoding("UTF-8");
 class ServiceCreator {
 
 	private $serviceItems;
-	
+
+    public $serviceName;
+
 	function __construct()
 	{
+        $this->serviceName = "service.osz";
 		$this->serviceItems = array();
 	}
 	
@@ -174,7 +177,7 @@ class ServiceCreator {
 		// Stream the file to the client
 		header("Content-Type: application/octet-stream");
 		header("Content-Length: " . filesize($file));
-		header("Content-Disposition: attachment; filename=\"service.osz\"");
+		header("Content-Disposition: attachment; filename=" . $this->serviceName);
 		readfile($file);
 		unlink($file); 
 
@@ -194,26 +197,25 @@ class ServiceCreator {
 
 $content = new ServiceCreator();
 
-// Insert the new entries
-$songcount = $_GET['songcount'];
-
+$eventId = $_GET['eventId'];
 // Should we do the whole database, or only some chosen ones.
-if ($songcount == -1) {
-	$content->insertAllSongs();
-} else {
-	// insert blank custom slide first
+if ($eventId) {
 	$content->insertCustom(" ", "", "  ");
-	for ($count = 0; $count < $songcount; $count++) {
-		$index = 'Song'.$count;
-		$songid = $_GET[$index];
-		if ($content->insertSong($songid)==false) {
+
+    $query = "SELECT SangID, Dato FROM ProgramPunkt INNER JOIN Program ON ProgramPunkt.ProgramID = Program.ProgramID WHERE Program.ProgramID = " . $eventId ." ORDER BY Raekkefoelge";
+    $result = doSQLQuery($query);
+    $line = db_fetch_array($result);
+    $content->serviceName = substr($line['Dato'], 0, 10) . ".osz";
+	do {
+        if ($content->insertSong($line['SangID'])==false) {
 			echo "ERROR when inserting $songid!";
 			break;
 		}
-		// insert blank custom slide between songs
-		$content->insertCustom(" ", "", "  ");
-		
-	}
+    	$content->insertCustom(" ", "", "  ");
+    } while ($line = db_fetch_array($result));
+
+} else {
+	$content->insertAllSongs();
 }
 
 echo $content->returnService();
