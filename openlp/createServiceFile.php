@@ -253,7 +253,11 @@ if ($eventId) {
 	$content->insertAllSongs();
 }
 
-echo $content->returnService();
+if($_GET['email']){
+    $content->sendTo($_GET['email']);
+} else {
+    echo $content->returnService();
+}
 
 closeDB();
 
