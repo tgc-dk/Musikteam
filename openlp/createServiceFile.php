@@ -187,7 +187,7 @@ class ServiceCreator {
 		$zip->close();
 	}
 
-    function sendTo($emailAddress) {
+    function sendTo($emailAddress, $fromEmailAddress) {
 		$file = tempnam("tmp", "zip");
         $this->saveService($file);
 
@@ -201,7 +201,7 @@ class ServiceCreator {
         $eol = PHP_EOL;
 
         // main header (multipart mandatory)
-        $headers = "From: b-dur@b-dur.dk" . $eol;
+        $headers = "From: " . $fromEmailAddress . $eol;
         $headers .= "MIME-Version: 1.0" . $eol;
         $headers .= "Content-Type: multipart/mixed; boundary=\"" . $separator . "\"" . $eol;
         $headers .= "Content-Transfer-Encoding: 7bit" . $eol;
@@ -253,8 +253,8 @@ if ($eventId) {
 	$content->insertAllSongs();
 }
 
-if($_GET['email']){
-    $content->sendTo($_GET['email']);
+if($_GET['email']) {
+    $content->sendTo($_GET['email'], $WEBMASTER_EMAIL);
 } else {
     echo $content->returnService();
 }
