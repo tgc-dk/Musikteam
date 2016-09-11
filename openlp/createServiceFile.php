@@ -169,11 +169,7 @@ class ServiceCreator {
 	
 	function returnService() {
 		$file = tempnam("tmp", "zip");
-		$zip = new ZipArchive();
-		// Zip will open and overwrite the file, rather than try to read it.
-		$zip->open($file, ZipArchive::OVERWRITE);
-		$zip->addFromString('service.osj', $this->getJSON());
-		$zip->close();
+        $this->saveService($file);
 		// Stream the file to the client
 		header("Content-Type: application/octet-stream");
 		header("Content-Length: " . filesize($file));
@@ -190,10 +186,49 @@ class ServiceCreator {
 		$zip->addFromString('service.osj', $this->getJSON());
 		$zip->close();
 	}
-	
+
+    function sendTo($emailAddress, $fromEmailAddress) {
+		$file = tempnam("tmp", "zip");
+        $this->saveService($file);
+
+        $content = file_get_contents($file);
+        $content = chunk_split(base64_encode($content));
+
+        // a random hash will be necessary to send mixed content
+        $separator = md5(time());
+
+        // carriage return type (we use a PHP end of line constant)
+        $eol = PHP_EOL;
+
+        // main header (multipart mandatory)
+        $headers = "From: " . $fromEmailAddress . $eol;
+        $headers .= "MIME-Version: 1.0" . $eol;
+        $headers .= "Content-Type: multipart/mixed; boundary=\"" . $separator . "\"" . $eol;
+        $headers .= "Content-Transfer-Encoding: 7bit" . $eol;
+        $headers .= "This is a MIME encoded message." . $eol;
+
+        // message
+        $headers .= "--" . $separator . $eol;
+        $headers .= "Content-Type: text/plain; charset=\"iso-8859-1\"" . $eol;
+        $headers .= "Content-Transfer-Encoding: 8bit" . $eol;
+        $headers .= "Dagens program" . $eol;
+
+        // attachment
+        $headers .= "--" . $separator . $eol;
+        $headers .= "Content-Type: application/octet-stream; name=\"".$this->serviceName."\"" . $eol;
+        $headers .= "Content-Transfer-Encoding: base64" . $eol;
+        $headers .= "Content-Disposition: attachment" . $eol;
+        $headers .= $content . $eol;
+        $headers .= "--" . $separator . "--";
+
+        //SEND Mail
+        if (mail($emailAddress, "Dagens program", "", $headers)) {
+            echo "mail send ... OK"; // or use booleans here
+        } else {
+            echo "mail send ... ERROR!";
+        }
+    }
 }
-
-
 
 $content = new ServiceCreator();
 
@@ -218,7 +253,11 @@ if ($eventId) {
 	$content->insertAllSongs();
 }
 
-echo $content->returnService();
+if($_GET['email']) {
+    $content->sendTo($_GET['email'], $WEBMASTER_EMAIL);
+} else {
+    echo $content->returnService();
+}
 
 closeDB();
 
