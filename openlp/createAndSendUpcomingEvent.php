@@ -2,6 +2,11 @@
 include("../db.php");
 include("serviceCreator.php");
 
+if(!isset($_GET["key"]) || $_GET["key"] != $ACCESS_KEY) {
+    echo "no access";
+    exit();
+}
+
 if(!isset($_GET["email"])) {
      echo "no email";
      exit();
