@@ -2,8 +2,6 @@
 //ini_set("memory_limit","100M");
 include("../db.php");
 include("serviceCreator.php");
-require("openlyrics.php");
-require("serviceitem.php");
 
 /*session_start();
 setcookie("PHPSESSID",$_COOKIE['PHPSESSID'],time()+1800);

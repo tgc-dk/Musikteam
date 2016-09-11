@@ -1,4 +1,7 @@
 <?php
+require("openlyrics.php");
+require("serviceitem.php");
+
 class ServiceCreator {
 
 	private $serviceItems;
