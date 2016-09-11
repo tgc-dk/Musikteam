@@ -12,6 +12,9 @@ $WEBMASTER_EMAIL = "admin@musikteam.com";
 // DB type, supported: "mysql", "odbc"
 $DB_TYPE = "mysql";
 
+// AccessKey for Endpoints
+$ACCESS_KEY = 'accesskey';
+
 // temp mysql array, used by the db_result function
 $result_arr;
 
