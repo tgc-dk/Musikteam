@@ -213,21 +213,21 @@ class ServiceCreator {
         $headers .= "This is a MIME encoded message." . $eol;
 
         // message
-        $headers .= "--" . $separator . $eol;
-        $headers .= "Content-Type: text/plain; charset=\"iso-8859-1\"" . $eol;
-        $headers .= "Content-Transfer-Encoding: 8bit" . $eol;
-        $headers .= "Dagens program" . $eol;
+        $message .= "--" . $separator . $eol;
+        $message .= "Content-Type: text/plain; charset=\"iso-8859-1\"" . $eol;
+        $message .= "Content-Transfer-Encoding: 8bit" . $eol;
+        $message .= "Dagens program" . $eol;
 
         // attachment
-        $headers .= "--" . $separator . $eol;
-        $headers .= "Content-Type: application/octet-stream; name=\"".$this->serviceName."\"" . $eol;
-        $headers .= "Content-Transfer-Encoding: base64" . $eol;
-        $headers .= "Content-Disposition: attachment" . $eol;
-        $headers .= $content . $eol;
-        $headers .= "--" . $separator . "--";
+        $message .= "--" . $separator . $eol;
+        $message .= "Content-Type: application/octet-stream; name=\"".$this->serviceName."\"" . $eol;
+        $message .= "Content-Transfer-Encoding: base64" . $eol;
+        $message .= "Content-Disposition: attachment" . $eol;
+        $message .= $content . $eol;
+        $message .= "--" . $separator . "--";
 
         //SEND Mail
-        if (mail($emailAddress, "Dagens program", "", $headers)) {
+        if (mail($emailAddress, "Dagens program", $message, $headers)) {
             echo "mail send ... OK"; // or use booleans here
         } else {
             echo "mail send ... ERROR!";
