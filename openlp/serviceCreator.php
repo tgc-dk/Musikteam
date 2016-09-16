@@ -213,7 +213,7 @@ class ServiceCreator {
         $headers .= "This is a MIME encoded message." . $eol;
 
         // message
-        $message .= "--" . $separator . $eol;
+        $message = "--" . $separator . $eol;
         $message .= "Content-Type: text/plain; charset=\"iso-8859-1\"" . $eol;
         $message .= "Content-Transfer-Encoding: 8bit" . $eol;
         $message .= "Dagens program" . $eol;
