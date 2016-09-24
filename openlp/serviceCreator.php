@@ -221,9 +221,9 @@ class ServiceCreator {
         // attachment
         $message .= "--" . $separator . $eol;
         $message .= "Content-Type: application/octet-stream; name=\"".$this->serviceName."\"" . $eol;
-        $message .= "Content-Transfer-Encoding: base64" . $eol;
-        $message .= "Content-Disposition: attachment" . $eol;
-        $message .= $content . $eol;
+        $message .= "Content-Disposition: attachment; filename=\"".$this->serviceName."\"" . $eol;
+        $message .= "Content-Transfer-Encoding: base64" . $eol . $eol;
+        $message .= $content;
         $message .= "--" . $separator . "--";
 
         //SEND Mail
